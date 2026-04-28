@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
+import penggajian.page.Login;
 
 /**
  *
@@ -17,7 +18,7 @@ import javax.swing.UIManager;
  */
 public class BaseSetting {
     public static void apply(JFrame frame) {
-
+                
         frame.setMinimumSize(new Dimension(1800, 1012));
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocationRelativeTo(null);
