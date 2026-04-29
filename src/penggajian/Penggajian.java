@@ -21,11 +21,7 @@ public class Penggajian {
     public static void main(String[] args) {
         BaseSetting.setGlobalFont();
         
-        if (Session.isLogin) {
-            new Home().setVisible(true);
-        } else {
-            new Login().setVisible(true);
-        }
+        new Login().setVisible(true);
 
 
     }

@@ -7,7 +7,6 @@ package penggajian.page;
 
 import javax.swing.JOptionPane;
 import penggajian.helper.BaseSetting;
-import penggajian.helper.Session;
 import penggajian.page.dashboard.Home;
 
 /**
@@ -20,9 +19,10 @@ public class Login extends javax.swing.JFrame {
      * Creates new form login
      */
     public Login() {
+        
+        BaseSetting.applyFrame(this);
         initComponents();
         
-        BaseSetting.apply(this);
 
     }
 
@@ -59,7 +59,11 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/penggajian/img/logo.png"))); // NOI18N
+        jLabel2.setToolTipText("");
+        jLabel2.setAutoscrolls(true);
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel2.setInheritsPopupMenu(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -182,8 +186,7 @@ public class Login extends javax.swing.JFrame {
         String new_username = username.getText();
         String new_password = password.getText();;
 
-        if (new_username.equals("admin123") && new_password.equals("Admin123")) {
-            Session.isLogin = true;
+        if (new_username.equals("a") && new_password.equals("a")) {
             new Home().setVisible(true);
             this.dispose();
         } else {
