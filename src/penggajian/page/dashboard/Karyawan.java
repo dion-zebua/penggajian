@@ -9,12 +9,12 @@ package penggajian.page.dashboard;
  *
  * @author Dion
  */
-public class Home extends javax.swing.JPanel {
+public class Karyawan extends javax.swing.JPanel {
 
     /**
      * Creates new form Home
      */
-    public Home() {
+    public Karyawan() {
         initComponents();
     }
 
@@ -29,7 +29,7 @@ public class Home extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
 
-        jLabel1.setText("Home");
+        jLabel1.setText("Karyawan");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -38,7 +38,7 @@ public class Home extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(356, Short.MAX_VALUE))
+                .addContainerGap(330, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

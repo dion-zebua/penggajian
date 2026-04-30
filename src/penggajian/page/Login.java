@@ -7,7 +7,6 @@ package penggajian.page;
 
 import javax.swing.JOptionPane;
 import penggajian.helper.BaseSetting;
-import penggajian.page.dashboard.Home;
 
 /**
  *
@@ -187,7 +186,7 @@ public class Login extends javax.swing.JFrame {
         String new_password = password.getText();;
 
         if (new_username.equals("a") && new_password.equals("a")) {
-            new Home().setVisible(true);
+            new Dashboard().setVisible(true);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Login Gagal!");

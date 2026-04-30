@@ -21,8 +21,7 @@ public class BaseSetting {
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setLocation(0, 0);
-//        frame.setResizable(false);
+        frame.setLocation(0, 0);
     }
     
     
