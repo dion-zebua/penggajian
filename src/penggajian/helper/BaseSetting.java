@@ -4,17 +4,10 @@
  * and open the template in the editor.
  */
 package penggajian.helper;
-
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
+import java.awt.*;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import javax.swing.*;
 
 /**
  *
@@ -56,7 +49,6 @@ public class BaseSetting {
     }
     public static void setBoxPanel(JPanel panel, Boolean light) {
         panel.setBackground(light ? new java.awt.Color(255, 255, 255) : new java.awt.Color(51, 0, 153));
-        panel.setLayout(new javax.swing.BoxLayout(panel, javax.swing.BoxLayout.Y_AXIS));
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
     }
         
@@ -71,6 +63,7 @@ public class BaseSetting {
     }
     public static void setTitlePanel(JLabel label, String text, int size, Boolean light) {
         label.setText(text);
+        label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
         label.setForeground(light ? new Color(255,255,255) : new Color(50,50,50));
         label.setFont(new Font("Tahoma", Font.PLAIN, size));
@@ -78,8 +71,9 @@ public class BaseSetting {
     
     public static void setTable(JTable table) {
         
+        Font font = new Font("Tahoma", Font.PLAIN, 24);
         table.setRowHeight(40);
-        table.setFont(new Font("Tahoma", Font.PLAIN, 24));
+        table.setFont(font);
 
         table.setGridColor(new java.awt.Color(204, 204, 204));
 
@@ -91,8 +85,22 @@ public class BaseSetting {
         table.getTableHeader().setReorderingAllowed(false);
         table.getTableHeader().setResizingAllowed(false);
 
-        table.getTableHeader().setFont(
-            new Font("Tahoma", Font.BOLD, 24)
-        );
+        table.getTableHeader().setFont(font);
+    }
+    
+    public static String setRupiah(Long nominal) {
+        DecimalFormat kursIndonesia = (DecimalFormat)
+                DecimalFormat.getCurrencyInstance();
+
+        DecimalFormatSymbols formatRp =
+                new DecimalFormatSymbols();
+
+        formatRp.setCurrencySymbol("Rp ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+
+        return kursIndonesia.format(nominal);
     }
 }

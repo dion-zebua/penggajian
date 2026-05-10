@@ -16,23 +16,23 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" pref="482" max="32767" attributes="0"/>
+          <Component id="panelKaryawanTerbaru" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <Component id="titlePage" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
-          <Component id="panelKaryawanTerbaru" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="titlePage" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Component id="panelKaryawanTerbaru" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -71,8 +71,8 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="titlePanelKaryawan1" min="-2" max="-2" attributes="0"/>
-                  <Component id="titlePanelKaryawan2" min="-2" max="-2" attributes="0"/>
+                  <Component id="titlePanelKaryawan2" alignment="0" pref="127" max="32767" attributes="0"/>
+                  <Component id="titlePanelKaryawan1" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -88,7 +88,6 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="titlePanelKaryawan1">
               <Properties>
-                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Title"/>
                 <Property name="autoscrolls" type="boolean" value="true"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -99,7 +98,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="titlePanelKaryawan2">
               <Properties>
-                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Title"/>
               </Properties>
             </Component>
@@ -115,8 +113,8 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="titlePanelJabatan1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="titlePanelJabatan2" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="titlePanelJabatan1" pref="127" max="32767" attributes="0"/>
+                  <Component id="titlePanelJabatan2" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -132,7 +130,6 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="titlePanelJabatan1">
               <Properties>
-                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Title"/>
                 <Property name="autoscrolls" type="boolean" value="true"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -143,7 +140,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="titlePanelJabatan2">
               <Properties>
-                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Title"/>
               </Properties>
             </Component>
@@ -159,8 +155,8 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="titlePanelTer1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="titlePanelTer2" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="titlePanelTer1" pref="127" max="32767" attributes="0"/>
+                  <Component id="titlePanelTer2" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -176,7 +172,6 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="titlePanelTer1">
               <Properties>
-                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Title"/>
                 <Property name="autoscrolls" type="boolean" value="true"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -187,7 +182,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="titlePanelTer2">
               <Properties>
-                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Title"/>
               </Properties>
             </Component>
@@ -205,19 +199,17 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <Component id="titlePanelKaryawanTerbaru" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
-              <Component id="jScrollPane1" pref="1131" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+              <Component id="titlePanelKaryawanTerbaru" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="titlePanelKaryawanTerbaru" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -225,11 +217,16 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="titlePanelKaryawanTerbaru">
           <Properties>
-            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="jScrollPane1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Title"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+          <Properties>
+            <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
+          </Properties>
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>

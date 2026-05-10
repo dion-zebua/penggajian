@@ -40,7 +40,7 @@ public class Dashboard extends javax.swing.JFrame {
         innerContent.add(karyawan, "karyawan");
         innerContent.add(gaji, "gaji");
 
-        clInner.show(innerContent, "home");
+        clInner.show(innerContent, "jabatan");
     }
 
     /**

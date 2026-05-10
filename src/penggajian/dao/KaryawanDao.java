@@ -29,9 +29,9 @@ public class KaryawanDao {
     
     public List<Object[]> getKaryawanTerbaru() {
         return em.createNativeQuery(
-            "SELECT k.id, k.nama, k.gaji_pokok, k.golongan_ter, j.nama AS jabatan " +
-            "FROM karyawan k " +
-            "JOIN jabatan j ON k.jabatan_id = j.id"
+            "SELECT k.id, k.nama, k.golongan_ter, k.created_at, j.nama AS jabatan FROM karyawan k " +
+            "JOIN jabatan j ON k.jabatan_id = j.id " +
+            "order by k.created_at desc limit 5"
         ).getResultList();
     }
 }

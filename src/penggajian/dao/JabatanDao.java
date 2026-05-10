@@ -5,6 +5,7 @@
  */
 package penggajian.dao;
 
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -24,5 +25,15 @@ public class JabatanDao {
         return (Long) em.createNativeQuery(
             "SELECT COUNT(id) FROM jabatan"
         ).getSingleResult();
+    }
+    
+    public List<Object[]> getSemuaJabatan() {
+        return em.createNativeQuery(
+            "SELECT j.id, j.nama, j.tunjangan, COUNT(k.id) AS total_karyawan " + 
+            "FROM jabatan j " +
+            "JOIN karyawan k ON k.jabatan_id = j.id " +
+            "GROUP BY j.id, j.nama, j.tunjangan " +
+            "order by j.id desc"
+        ).getResultList();
     }
 }

@@ -51,7 +51,7 @@ public class Home extends javax.swing.JPanel {
         List<Object[]> results = karyawan.getKaryawanTerbaru();
         for (Object[] row : results) {
             model.addRow(new Object[]{
-                "#" + String.format("%03d", row[0]),
+                "#" + String.format("%05d", row[0]),
                 row[1],
                 row[4]
             });
@@ -95,21 +95,19 @@ public class Home extends javax.swing.JPanel {
 
         panelJumlahKaryawan.setBackground(new java.awt.Color(204, 204, 204));
 
-        titlePanelKaryawan1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titlePanelKaryawan1.setText("Title");
         titlePanelKaryawan1.setAutoscrolls(true);
         titlePanelKaryawan1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         titlePanelKaryawan1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        titlePanelKaryawan2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titlePanelKaryawan2.setText("Title");
 
         javax.swing.GroupLayout panelJumlahKaryawanLayout = new javax.swing.GroupLayout(panelJumlahKaryawan);
         panelJumlahKaryawan.setLayout(panelJumlahKaryawanLayout);
         panelJumlahKaryawanLayout.setHorizontalGroup(
             panelJumlahKaryawanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titlePanelKaryawan1)
-            .addComponent(titlePanelKaryawan2)
+            .addComponent(titlePanelKaryawan2, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+            .addComponent(titlePanelKaryawan1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelJumlahKaryawanLayout.setVerticalGroup(
             panelJumlahKaryawanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,21 +121,19 @@ public class Home extends javax.swing.JPanel {
 
         panelJumlahJabatan.setBackground(new java.awt.Color(204, 204, 204));
 
-        titlePanelJabatan1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titlePanelJabatan1.setText("Title");
         titlePanelJabatan1.setAutoscrolls(true);
         titlePanelJabatan1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         titlePanelJabatan1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        titlePanelJabatan2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titlePanelJabatan2.setText("Title");
 
         javax.swing.GroupLayout panelJumlahJabatanLayout = new javax.swing.GroupLayout(panelJumlahJabatan);
         panelJumlahJabatan.setLayout(panelJumlahJabatanLayout);
         panelJumlahJabatanLayout.setHorizontalGroup(
             panelJumlahJabatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titlePanelJabatan1)
-            .addComponent(titlePanelJabatan2)
+            .addComponent(titlePanelJabatan1, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+            .addComponent(titlePanelJabatan2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelJumlahJabatanLayout.setVerticalGroup(
             panelJumlahJabatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,21 +147,19 @@ public class Home extends javax.swing.JPanel {
 
         panelJumlahTer.setBackground(new java.awt.Color(204, 204, 204));
 
-        titlePanelTer1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titlePanelTer1.setText("Title");
         titlePanelTer1.setAutoscrolls(true);
         titlePanelTer1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         titlePanelTer1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        titlePanelTer2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titlePanelTer2.setText("Title");
 
         javax.swing.GroupLayout panelJumlahTerLayout = new javax.swing.GroupLayout(panelJumlahTer);
         panelJumlahTer.setLayout(panelJumlahTerLayout);
         panelJumlahTerLayout.setHorizontalGroup(
             panelJumlahTerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titlePanelTer1)
-            .addComponent(titlePanelTer2)
+            .addComponent(titlePanelTer1, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+            .addComponent(titlePanelTer2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelJumlahTerLayout.setVerticalGroup(
             panelJumlahTerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,8 +173,10 @@ public class Home extends javax.swing.JPanel {
 
         panelKaryawanTerbaru.setBackground(new java.awt.Color(204, 204, 204));
 
-        titlePanelKaryawanTerbaru.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titlePanelKaryawanTerbaru.setLabelFor(jScrollPane1);
         titlePanelKaryawanTerbaru.setText("Title");
+
+        jScrollPane1.setVerifyInputWhenFocusTarget(false);
 
         tableKaryawanTerbaru.setAutoCreateRowSorter(true);
         tableKaryawanTerbaru.getTableHeader().setResizingAllowed(false);
@@ -191,38 +187,37 @@ public class Home extends javax.swing.JPanel {
         panelKaryawanTerbaru.setLayout(panelKaryawanTerbaruLayout);
         panelKaryawanTerbaruLayout.setHorizontalGroup(
             panelKaryawanTerbaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelKaryawanTerbaruLayout.createSequentialGroup()
-                .addComponent(titlePanelKaryawanTerbaru)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1131, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
+            .addComponent(titlePanelKaryawanTerbaru, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelKaryawanTerbaruLayout.setVerticalGroup(
             panelKaryawanTerbaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelKaryawanTerbaruLayout.createSequentialGroup()
                 .addComponent(titlePanelKaryawanTerbaru)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
+            .addComponent(panelKaryawanTerbaru, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(titlePage)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(panelKaryawanTerbaru, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(titlePage)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(20, 20, 20)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64)
+                .addGap(50, 50, 50)
                 .addComponent(panelKaryawanTerbaru, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 100, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.getAccessibleContext().setAccessibleName("");

@@ -5,6 +5,11 @@
  */
 package penggajian.page.dashboard;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import penggajian.dao.JabatanDao;
+import penggajian.helper.BaseSetting;
+
 /**
  *
  * @author Dion
@@ -16,6 +21,33 @@ public class Jabatan extends javax.swing.JPanel {
      */
     public Jabatan() {
         initComponents();
+        
+        BaseSetting.setTitlePage(titlePage, "Jabatan");
+        
+        BaseSetting.setBoxPanel(panelJabatan);
+        BaseSetting.setTitlePanel(titlePanelJabatan, "Semua Jabatan");
+        
+        JabatanDao jabatan = new JabatanDao();
+
+        BaseSetting.setTable(tableJabatan);
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("Nama Jabatan");
+        model.addColumn("Tunjangan");
+        model.addColumn("Total Karyawan");
+
+        List<Object[]> results = jabatan.getSemuaJabatan();
+        for (Object[] row : results) {
+            model.addRow(new Object[]{
+                "#" + String.format("%02d", row[0]),
+                row[1],
+                BaseSetting.setRupiah((Long) row[2] ),
+                row[3]
+            });
+        }
+
+        tableJabatan.setModel(model);
+
     }
 
     /**
@@ -27,30 +59,68 @@ public class Jabatan extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
+        titlePage = new javax.swing.JLabel();
+        panelJabatan = new javax.swing.JPanel();
+        titlePanelJabatan = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableJabatan = new javax.swing.JTable();
 
-        jLabel2.setText("Jabatan");
+        titlePage.setText("Jabatan");
+
+        panelJabatan.setBackground(new java.awt.Color(204, 204, 204));
+
+        titlePanelJabatan.setText("Title");
+
+        jScrollPane1.setVerifyInputWhenFocusTarget(false);
+
+        tableJabatan.setAutoCreateRowSorter(true);
+        tableJabatan.getTableHeader().setResizingAllowed(false);
+        tableJabatan.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tableJabatan);
+
+        javax.swing.GroupLayout panelJabatanLayout = new javax.swing.GroupLayout(panelJabatan);
+        panelJabatan.setLayout(panelJabatanLayout);
+        panelJabatanLayout.setHorizontalGroup(
+            panelJabatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+            .addComponent(titlePanelJabatan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        panelJabatanLayout.setVerticalGroup(
+            panelJabatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelJabatanLayout.createSequentialGroup()
+                .addComponent(titlePanelJabatan)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jScrollPane1.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelJabatan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(295, Short.MAX_VALUE))
+                .addComponent(titlePage)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addComponent(titlePage)
+                .addGap(20, 20, 20)
+                .addComponent(panelJabatan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel panelJabatan;
+    private javax.swing.JTable tableJabatan;
+    private javax.swing.JLabel titlePage;
+    private javax.swing.JLabel titlePanelJabatan;
     // End of variables declaration//GEN-END:variables
 }
