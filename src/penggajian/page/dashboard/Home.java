@@ -5,6 +5,11 @@
  */
 package penggajian.page.dashboard;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import penggajian.helper.BaseSetting;
+import penggajian.dao.*;
+
 /**
  *
  * @author Dion
@@ -16,6 +21,44 @@ public class Home extends javax.swing.JPanel {
      */
     public Home() {
         initComponents();
+        BaseSetting.setTitlePage(titlePage, "Home");
+        
+        KaryawanDao karyawan = new KaryawanDao();
+        JabatanDao jabatan = new JabatanDao();
+        TerDao ter = new TerDao();
+
+        BaseSetting.setBoxPanel(panelJumlahKaryawan);
+        BaseSetting.setTitlePanel(titlePanelKaryawan1, String.valueOf(karyawan.getJumlahKaryawan()), 80);
+        BaseSetting.setTitlePanel(titlePanelKaryawan2, "Total Karyawan");
+        
+        BaseSetting.setBoxPanel(panelJumlahJabatan, false);
+        BaseSetting.setTitlePanel(titlePanelJabatan1, String.valueOf(jabatan.getJumlahJabatan()), 80, true);
+        BaseSetting.setTitlePanel(titlePanelJabatan2, "Total Jabatan",true);
+        
+        BaseSetting.setBoxPanel(panelJumlahTer);
+        BaseSetting.setTitlePanel(titlePanelTer1, String.valueOf(ter.getJumlahTer()), 80);
+        BaseSetting.setTitlePanel(titlePanelTer2, "Total Ter");
+        
+        BaseSetting.setBoxPanel(panelKaryawanTerbaru);
+        BaseSetting.setTitlePanel(titlePanelKaryawanTerbaru, "Karyawan Terbaru");
+        
+        BaseSetting.setTable(tableKaryawanTerbaru);
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("Nama");
+        model.addColumn("Jabatan");
+
+        List<Object[]> results = karyawan.getKaryawanTerbaru();
+        for (Object[] row : results) {
+            model.addRow(new Object[]{
+                "#" + String.format("%03d", row[0]),
+                row[1],
+                row[4]
+            });
+        }
+
+        tableKaryawanTerbaru.setModel(model);
+
     }
 
     /**
@@ -27,30 +70,180 @@ public class Home extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        titlePage = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        panelJumlahKaryawan = new javax.swing.JPanel();
+        titlePanelKaryawan1 = new javax.swing.JLabel();
+        titlePanelKaryawan2 = new javax.swing.JLabel();
+        panelJumlahJabatan = new javax.swing.JPanel();
+        titlePanelJabatan1 = new javax.swing.JLabel();
+        titlePanelJabatan2 = new javax.swing.JLabel();
+        panelJumlahTer = new javax.swing.JPanel();
+        titlePanelTer1 = new javax.swing.JLabel();
+        titlePanelTer2 = new javax.swing.JLabel();
+        panelKaryawanTerbaru = new javax.swing.JPanel();
+        titlePanelKaryawanTerbaru = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableKaryawanTerbaru = new javax.swing.JTable();
 
-        jLabel1.setText("Home");
+        titlePage.setText("Title");
+        titlePage.setToolTipText("");
+        titlePage.setAutoscrolls(true);
+
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.setLayout(new java.awt.GridLayout(1, 3, 50, 0));
+
+        panelJumlahKaryawan.setBackground(new java.awt.Color(204, 204, 204));
+
+        titlePanelKaryawan1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titlePanelKaryawan1.setText("Title");
+        titlePanelKaryawan1.setAutoscrolls(true);
+        titlePanelKaryawan1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        titlePanelKaryawan1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        titlePanelKaryawan2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titlePanelKaryawan2.setText("Title");
+
+        javax.swing.GroupLayout panelJumlahKaryawanLayout = new javax.swing.GroupLayout(panelJumlahKaryawan);
+        panelJumlahKaryawan.setLayout(panelJumlahKaryawanLayout);
+        panelJumlahKaryawanLayout.setHorizontalGroup(
+            panelJumlahKaryawanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(titlePanelKaryawan1)
+            .addComponent(titlePanelKaryawan2)
+        );
+        panelJumlahKaryawanLayout.setVerticalGroup(
+            panelJumlahKaryawanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelJumlahKaryawanLayout.createSequentialGroup()
+                .addComponent(titlePanelKaryawan1)
+                .addGap(0, 0, 0)
+                .addComponent(titlePanelKaryawan2))
+        );
+
+        jPanel1.add(panelJumlahKaryawan);
+
+        panelJumlahJabatan.setBackground(new java.awt.Color(204, 204, 204));
+
+        titlePanelJabatan1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titlePanelJabatan1.setText("Title");
+        titlePanelJabatan1.setAutoscrolls(true);
+        titlePanelJabatan1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        titlePanelJabatan1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        titlePanelJabatan2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titlePanelJabatan2.setText("Title");
+
+        javax.swing.GroupLayout panelJumlahJabatanLayout = new javax.swing.GroupLayout(panelJumlahJabatan);
+        panelJumlahJabatan.setLayout(panelJumlahJabatanLayout);
+        panelJumlahJabatanLayout.setHorizontalGroup(
+            panelJumlahJabatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(titlePanelJabatan1)
+            .addComponent(titlePanelJabatan2)
+        );
+        panelJumlahJabatanLayout.setVerticalGroup(
+            panelJumlahJabatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelJumlahJabatanLayout.createSequentialGroup()
+                .addComponent(titlePanelJabatan1)
+                .addGap(0, 0, 0)
+                .addComponent(titlePanelJabatan2))
+        );
+
+        jPanel1.add(panelJumlahJabatan);
+
+        panelJumlahTer.setBackground(new java.awt.Color(204, 204, 204));
+
+        titlePanelTer1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titlePanelTer1.setText("Title");
+        titlePanelTer1.setAutoscrolls(true);
+        titlePanelTer1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        titlePanelTer1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        titlePanelTer2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titlePanelTer2.setText("Title");
+
+        javax.swing.GroupLayout panelJumlahTerLayout = new javax.swing.GroupLayout(panelJumlahTer);
+        panelJumlahTer.setLayout(panelJumlahTerLayout);
+        panelJumlahTerLayout.setHorizontalGroup(
+            panelJumlahTerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(titlePanelTer1)
+            .addComponent(titlePanelTer2)
+        );
+        panelJumlahTerLayout.setVerticalGroup(
+            panelJumlahTerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelJumlahTerLayout.createSequentialGroup()
+                .addComponent(titlePanelTer1)
+                .addGap(0, 0, 0)
+                .addComponent(titlePanelTer2))
+        );
+
+        jPanel1.add(panelJumlahTer);
+
+        panelKaryawanTerbaru.setBackground(new java.awt.Color(204, 204, 204));
+
+        titlePanelKaryawanTerbaru.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titlePanelKaryawanTerbaru.setText("Title");
+
+        tableKaryawanTerbaru.setAutoCreateRowSorter(true);
+        tableKaryawanTerbaru.getTableHeader().setResizingAllowed(false);
+        tableKaryawanTerbaru.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tableKaryawanTerbaru);
+
+        javax.swing.GroupLayout panelKaryawanTerbaruLayout = new javax.swing.GroupLayout(panelKaryawanTerbaru);
+        panelKaryawanTerbaru.setLayout(panelKaryawanTerbaruLayout);
+        panelKaryawanTerbaruLayout.setHorizontalGroup(
+            panelKaryawanTerbaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelKaryawanTerbaruLayout.createSequentialGroup()
+                .addComponent(titlePanelKaryawanTerbaru)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1131, Short.MAX_VALUE)
+        );
+        panelKaryawanTerbaruLayout.setVerticalGroup(
+            panelKaryawanTerbaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelKaryawanTerbaruLayout.createSequentialGroup()
+                .addComponent(titlePanelKaryawanTerbaru)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(356, Short.MAX_VALUE))
+                .addComponent(titlePage)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelKaryawanTerbaru, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(246, Short.MAX_VALUE))
+                .addComponent(titlePage)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64)
+                .addComponent(panelKaryawanTerbaru, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 100, Short.MAX_VALUE))
         );
+
+        jPanel1.getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel panelJumlahJabatan;
+    private javax.swing.JPanel panelJumlahKaryawan;
+    private javax.swing.JPanel panelJumlahTer;
+    private javax.swing.JPanel panelKaryawanTerbaru;
+    private javax.swing.JTable tableKaryawanTerbaru;
+    private javax.swing.JLabel titlePage;
+    private javax.swing.JLabel titlePanelJabatan1;
+    private javax.swing.JLabel titlePanelJabatan2;
+    private javax.swing.JLabel titlePanelKaryawan1;
+    private javax.swing.JLabel titlePanelKaryawan2;
+    private javax.swing.JLabel titlePanelKaryawanTerbaru;
+    private javax.swing.JLabel titlePanelTer1;
+    private javax.swing.JLabel titlePanelTer2;
     // End of variables declaration//GEN-END:variables
 }

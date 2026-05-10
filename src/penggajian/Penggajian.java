@@ -7,7 +7,6 @@ package penggajian;
 
 import penggajian.helper.*;
 import penggajian.page.*;
-import penggajian.page.dashboard.*;
 
 /**
  *
@@ -21,8 +20,8 @@ public class Penggajian {
     public static void main(String[] args) {
         BaseSetting.setGlobalFont();
         
-//        new Dashboard().setVisible(true);
-        new Login().setVisible(true);
+        new Dashboard().setVisible(true);
+//        new Login().setVisible(true);
 
 
     }
