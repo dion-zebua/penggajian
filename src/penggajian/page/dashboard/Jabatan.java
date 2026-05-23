@@ -8,46 +8,60 @@ package penggajian.page.dashboard;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import penggajian.dao.JabatanDao;
+import penggajian.dialog.JabatanDialog;
 import penggajian.helper.BaseSetting;
+import penggajian.model.JabatanModel;
 
 /**
  *
  * @author Dion
  */
 public class Jabatan extends javax.swing.JPanel {
-
     /**
      * Creates new form Home
      */
     public Jabatan() {
+        
+
         initComponents();
+
+        BaseSetting.setTitlePage(titlePage);
         
-        BaseSetting.setTitlePage(titlePage, "Jabatan");
-        
+        BaseSetting.setButton(add);
+        BaseSetting.setButton(search);
+        BaseSetting.setInput(searchInput);
         BaseSetting.setBoxPanel(panelJabatan);
-        BaseSetting.setTitlePanel(titlePanelJabatan, "Semua Jabatan");
+        BaseSetting.setTitlePanel(titlePanelJabatan);
         
-        JabatanDao jabatan = new JabatanDao();
 
         BaseSetting.setTable(tableJabatan);
+        
+        loadTable("");
+
+    }
+    
+    
+    public void loadTable(String searchValue)
+    {
+        JabatanDao jabatanDao = new JabatanDao();
+        
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID");
         model.addColumn("Nama Jabatan");
         model.addColumn("Tunjangan");
         model.addColumn("Total Karyawan");
 
-        List<Object[]> results = jabatan.getSemuaJabatan();
-        for (Object[] row : results) {
+        List<JabatanModel> results = jabatanDao.getAllData(searchValue);
+        for (JabatanModel j : results) {
             model.addRow(new Object[]{
-                "#" + String.format("%02d", row[0]),
-                row[1],
-                BaseSetting.setRupiah((Long) row[2] ),
-                row[3]
+                "#" + j.getId(),
+                j.getNama(),
+                BaseSetting.setRupiah(j.getTunjangan()),
+                j.getTotalKaryawan() + " orang",
             });
         }
 
         tableJabatan.setModel(model);
-
     }
 
     /**
@@ -62,6 +76,11 @@ public class Jabatan extends javax.swing.JPanel {
         titlePage = new javax.swing.JLabel();
         panelJabatan = new javax.swing.JPanel();
         titlePanelJabatan = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        add = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        search = new javax.swing.JButton();
+        searchInput = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableJabatan = new javax.swing.JTable();
 
@@ -69,29 +88,81 @@ public class Jabatan extends javax.swing.JPanel {
 
         panelJabatan.setBackground(new java.awt.Color(204, 204, 204));
 
-        titlePanelJabatan.setText("Title");
+        titlePanelJabatan.setText("Semua Jabatan");
+
+        jPanel1.setOpaque(false);
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        add.setText("Tambah");
+        add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addMouseClicked(evt);
+            }
+        });
+        add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addActionPerformed(evt);
+            }
+        });
+        jPanel1.add(add, java.awt.BorderLayout.LINE_START);
+
+        jPanel2.setOpaque(false);
+        jPanel2.setLayout(new java.awt.BorderLayout(10, 0));
+
+        search.setText("Search");
+        search.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchMouseClicked(evt);
+            }
+        });
+        search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchActionPerformed(evt);
+            }
+        });
+        jPanel2.add(search, java.awt.BorderLayout.LINE_END);
+
+        searchInput.setToolTipText("");
+        searchInput.setMinimumSize(new java.awt.Dimension(60, 26));
+        searchInput.setPreferredSize(new java.awt.Dimension(60, 26));
+        searchInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchInputActionPerformed(evt);
+            }
+        });
+        jPanel2.add(searchInput, java.awt.BorderLayout.CENTER);
+
+        jPanel1.add(jPanel2, java.awt.BorderLayout.LINE_END);
 
         jScrollPane1.setVerifyInputWhenFocusTarget(false);
 
         tableJabatan.setAutoCreateRowSorter(true);
         tableJabatan.getTableHeader().setResizingAllowed(false);
         tableJabatan.getTableHeader().setReorderingAllowed(false);
+        tableJabatan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableJabatanMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableJabatan);
 
         javax.swing.GroupLayout panelJabatanLayout = new javax.swing.GroupLayout(panelJabatan);
         panelJabatan.setLayout(panelJabatanLayout);
         panelJabatanLayout.setHorizontalGroup(
             panelJabatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
             .addComponent(titlePanelJabatan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
         );
         panelJabatanLayout.setVerticalGroup(
             panelJabatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelJabatanLayout.createSequentialGroup()
                 .addComponent(titlePanelJabatan)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(20, 20, 20)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
 
         jScrollPane1.getAccessibleContext().setAccessibleName("");
@@ -115,10 +186,55 @@ public class Jabatan extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addActionPerformed
+
+    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchActionPerformed
+
+    private void searchInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchInputActionPerformed
+
+    private void searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseClicked
+        String searchInput = this.searchInput.getText();
+        
+        loadTable(searchInput);
+
+    }//GEN-LAST:event_searchMouseClicked
+
+    private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
+        BaseSetting.setDialog(new JabatanDialog(
+                new javax.swing.JFrame(), true, "Tambah", 0L, this));
+    }//GEN-LAST:event_addMouseClicked
+
+    private void tableJabatanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableJabatanMouseClicked
+        int barisTerpilih = tableJabatan.getSelectedRow();
+        
+        if(barisTerpilih != -1)
+        {
+            Long id = Long.parseLong(
+                tableJabatan.getValueAt(barisTerpilih, 0)
+                    .toString()
+                    .replace("#", "")
+            );
+
+            BaseSetting.setDialog(new JabatanDialog(
+                    new javax.swing.JFrame(), true, "Edit", id, this));
+        }
+    }//GEN-LAST:event_tableJabatanMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton add;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelJabatan;
+    private javax.swing.JButton search;
+    private javax.swing.JTextField searchInput;
     private javax.swing.JTable tableJabatan;
     private javax.swing.JLabel titlePage;
     private javax.swing.JLabel titlePanelJabatan;

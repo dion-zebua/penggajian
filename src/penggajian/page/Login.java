@@ -22,6 +22,8 @@ public class Login extends javax.swing.JFrame {
         BaseSetting.applyFrame(this);
         initComponents();
         
+        BaseSetting.setButton(submit);
+        
 
     }
 
@@ -93,6 +95,8 @@ public class Login extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1);
 
+        jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel2.setName(""); // NOI18N
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
@@ -147,12 +151,9 @@ public class Login extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 25, 0);
         jPanel2.add(password, gridBagConstraints);
 
-        submit.setBackground(new java.awt.Color(51, 0, 153));
-        submit.setForeground(new java.awt.Color(255, 255, 255));
         submit.setText("Submit");
         submit.setToolTipText("");
         submit.setAutoscrolls(true);
-        submit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         submit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         submit.setDoubleBuffered(true);
         submit.addActionListener(new java.awt.event.ActionListener() {
@@ -162,8 +163,6 @@ public class Login extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.ipadx = 50;
-        gridBagConstraints.ipady = 25;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
         jPanel2.add(submit, gridBagConstraints);

@@ -5,24 +5,35 @@
  */
 package penggajian.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.persistence.*;
+import penggajian.helper.DBConnetion;
 
 /**
  *
  * @author Dion
  */
 public class TerDao {
-    private EntityManager em;
+    
+    public int getCount() {
+        int count = 0;
 
-    public TerDao() {
-        EntityManagerFactory emf =
-            Persistence.createEntityManagerFactory("penggajianPU");
-        this.em = emf.createEntityManager();
-    }
+        String sql = "SELECT COUNT(*) FROM ter";
 
-    public long getJumlahTer() {
-        return (Long) em.createNativeQuery(
-            "SELECT COUNT(id) FROM ter"
-        ).getSingleResult();
+        try (Connection con = DBConnetion.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery()) {
+
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return count;
     }
 }

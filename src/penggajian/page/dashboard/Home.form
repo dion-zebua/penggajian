@@ -40,7 +40,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="titlePage">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Title"/>
+        <Property name="text" type="java.lang.String" value="Home"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="autoscrolls" type="boolean" value="true"/>
       </Properties>
@@ -88,7 +88,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="titlePanelKaryawan1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Title"/>
+                <Property name="text" type="java.lang.String" value="0"/>
                 <Property name="autoscrolls" type="boolean" value="true"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Default Cursor"/>
@@ -98,7 +98,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="titlePanelKaryawan2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Title"/>
+                <Property name="text" type="java.lang.String" value="Total Karyawan"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -130,7 +130,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="titlePanelJabatan1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Title"/>
+                <Property name="text" type="java.lang.String" value="0"/>
                 <Property name="autoscrolls" type="boolean" value="true"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Default Cursor"/>
@@ -140,7 +140,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="titlePanelJabatan2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Title"/>
+                <Property name="text" type="java.lang.String" value="Total Jabatan"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -172,7 +172,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="titlePanelTer1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Title"/>
+                <Property name="text" type="java.lang.String" value="0"/>
                 <Property name="autoscrolls" type="boolean" value="true"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Default Cursor"/>
@@ -182,7 +182,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="titlePanelTer2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Title"/>
+                <Property name="text" type="java.lang.String" value="Total TER"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -220,7 +220,7 @@
             <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
               <ComponentRef name="jScrollPane1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Title"/>
+            <Property name="text" type="java.lang.String" value="Karyawan Terbaru"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">

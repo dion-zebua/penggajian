@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import penggajian.helper.BaseSetting;
 import penggajian.dao.*;
+import penggajian.model.KaryawanModel;
 
 /**
  *
@@ -21,26 +22,29 @@ public class Home extends javax.swing.JPanel {
      */
     public Home() {
         initComponents();
-        BaseSetting.setTitlePage(titlePage, "Home");
+        BaseSetting.setTitlePage(titlePage);
         
-        KaryawanDao karyawan = new KaryawanDao();
-        JabatanDao jabatan = new JabatanDao();
-        TerDao ter = new TerDao();
+        KaryawanDao karyawanDao = new KaryawanDao();
+        JabatanDao jabatanDao = new JabatanDao();
+        TerDao terDao = new TerDao();
 
         BaseSetting.setBoxPanel(panelJumlahKaryawan);
-        BaseSetting.setTitlePanel(titlePanelKaryawan1, String.valueOf(karyawan.getJumlahKaryawan()), 80);
-        BaseSetting.setTitlePanel(titlePanelKaryawan2, "Total Karyawan");
+        BaseSetting.setTitlePanel(titlePanelKaryawan1, 80);
+        titlePanelKaryawan1.setText(String.valueOf(karyawanDao.getCount()));
+        BaseSetting.setTitlePanel(titlePanelKaryawan2);
         
         BaseSetting.setBoxPanel(panelJumlahJabatan, false);
-        BaseSetting.setTitlePanel(titlePanelJabatan1, String.valueOf(jabatan.getJumlahJabatan()), 80, true);
-        BaseSetting.setTitlePanel(titlePanelJabatan2, "Total Jabatan",true);
+        BaseSetting.setTitlePanel(titlePanelJabatan1, 80, true);
+        titlePanelJabatan1.setText(String.valueOf(jabatanDao.getCount()));
+        BaseSetting.setTitlePanel(titlePanelJabatan2,true);
         
         BaseSetting.setBoxPanel(panelJumlahTer);
-        BaseSetting.setTitlePanel(titlePanelTer1, String.valueOf(ter.getJumlahTer()), 80);
-        BaseSetting.setTitlePanel(titlePanelTer2, "Total Ter");
+        BaseSetting.setTitlePanel(titlePanelTer1, 80);
+        titlePanelTer1.setText(String.valueOf(terDao.getCount()));
+        BaseSetting.setTitlePanel(titlePanelTer2);
         
         BaseSetting.setBoxPanel(panelKaryawanTerbaru);
-        BaseSetting.setTitlePanel(titlePanelKaryawanTerbaru, "Karyawan Terbaru");
+        BaseSetting.setTitlePanel(titlePanelKaryawanTerbaru);
         
         BaseSetting.setTable(tableKaryawanTerbaru);
         DefaultTableModel model = new DefaultTableModel();
@@ -48,12 +52,12 @@ public class Home extends javax.swing.JPanel {
         model.addColumn("Nama");
         model.addColumn("Jabatan");
 
-        List<Object[]> results = karyawan.getKaryawanTerbaru();
-        for (Object[] row : results) {
+        List<KaryawanModel> results = karyawanDao.getAllData("", true);
+        for (KaryawanModel k : results) {
             model.addRow(new Object[]{
-                "#" + String.format("%05d", row[0]),
-                row[1],
-                row[4]
+                "#" + k.getId(),
+                k.getNama(),
+                k.getJabatan()
             });
         }
 
@@ -86,7 +90,7 @@ public class Home extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableKaryawanTerbaru = new javax.swing.JTable();
 
-        titlePage.setText("Title");
+        titlePage.setText("Home");
         titlePage.setToolTipText("");
         titlePage.setAutoscrolls(true);
 
@@ -95,12 +99,12 @@ public class Home extends javax.swing.JPanel {
 
         panelJumlahKaryawan.setBackground(new java.awt.Color(204, 204, 204));
 
-        titlePanelKaryawan1.setText("Title");
+        titlePanelKaryawan1.setText("0");
         titlePanelKaryawan1.setAutoscrolls(true);
         titlePanelKaryawan1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         titlePanelKaryawan1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        titlePanelKaryawan2.setText("Title");
+        titlePanelKaryawan2.setText("Total Karyawan");
 
         javax.swing.GroupLayout panelJumlahKaryawanLayout = new javax.swing.GroupLayout(panelJumlahKaryawan);
         panelJumlahKaryawan.setLayout(panelJumlahKaryawanLayout);
@@ -121,12 +125,12 @@ public class Home extends javax.swing.JPanel {
 
         panelJumlahJabatan.setBackground(new java.awt.Color(204, 204, 204));
 
-        titlePanelJabatan1.setText("Title");
+        titlePanelJabatan1.setText("0");
         titlePanelJabatan1.setAutoscrolls(true);
         titlePanelJabatan1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         titlePanelJabatan1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        titlePanelJabatan2.setText("Title");
+        titlePanelJabatan2.setText("Total Jabatan");
 
         javax.swing.GroupLayout panelJumlahJabatanLayout = new javax.swing.GroupLayout(panelJumlahJabatan);
         panelJumlahJabatan.setLayout(panelJumlahJabatanLayout);
@@ -147,12 +151,12 @@ public class Home extends javax.swing.JPanel {
 
         panelJumlahTer.setBackground(new java.awt.Color(204, 204, 204));
 
-        titlePanelTer1.setText("Title");
+        titlePanelTer1.setText("0");
         titlePanelTer1.setAutoscrolls(true);
         titlePanelTer1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         titlePanelTer1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        titlePanelTer2.setText("Title");
+        titlePanelTer2.setText("Total TER");
 
         javax.swing.GroupLayout panelJumlahTerLayout = new javax.swing.GroupLayout(panelJumlahTer);
         panelJumlahTer.setLayout(panelJumlahTerLayout);
@@ -174,7 +178,7 @@ public class Home extends javax.swing.JPanel {
         panelKaryawanTerbaru.setBackground(new java.awt.Color(204, 204, 204));
 
         titlePanelKaryawanTerbaru.setLabelFor(jScrollPane1);
-        titlePanelKaryawanTerbaru.setText("Title");
+        titlePanelKaryawanTerbaru.setText("Karyawan Terbaru");
 
         jScrollPane1.setVerifyInputWhenFocusTarget(false);
 

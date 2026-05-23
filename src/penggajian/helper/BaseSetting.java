@@ -32,12 +32,11 @@ public class BaseSetting {
         UIManager.put("TextField.font", font);
         UIManager.put("PasswordField.font", font);
         UIManager.put("OptionPane.messageFont", font);
+        UIManager.put("ComboBox.font", font);
+        UIManager.put("TextArea.font", font);
     }
     
-
-    
-    public static void setTitlePage(JLabel label, String text) {
-        label.setText(text);
+    public static void setTitlePage(JLabel label) {
         label.setForeground(new Color(51, 0, 153));
         label.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
         label.setFont(new Font("Tahoma", Font.BOLD, 48));
@@ -52,17 +51,16 @@ public class BaseSetting {
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
     }
         
-    public static void setTitlePanel(JLabel label, String text) {        
-        setTitlePanel(label, text, 36, false);
+    public static void setTitlePanel(JLabel label) {        
+        setTitlePanel(label, 36, false);
     }
-    public static void setTitlePanel(JLabel label, String text, Boolean light) {        
-        setTitlePanel(label, text, 36, light);
+    public static void setTitlePanel(JLabel label, Boolean light) {        
+        setTitlePanel(label, 36, light);
     }
-    public static void setTitlePanel(JLabel label, String text, int size) {        
-        setTitlePanel(label, text, size, false);
+    public static void setTitlePanel(JLabel label, int size) {        
+        setTitlePanel(label, size, false);
     }
-    public static void setTitlePanel(JLabel label, String text, int size, Boolean light) {
-        label.setText(text);
+    public static void setTitlePanel(JLabel label, int size, Boolean light) {
         label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
         label.setForeground(light ? new Color(255,255,255) : new Color(50,50,50));
@@ -88,7 +86,43 @@ public class BaseSetting {
         table.getTableHeader().setFont(font);
     }
     
-    public static String setRupiah(Long nominal) {
+    public static void setButton(JButton btn) {
+
+        btn.setMargin(new java.awt.Insets(7, 14, 7, 14));
+        btn.setBackground(new java.awt.Color(51, 0, 153));
+        btn.setForeground(new java.awt.Color(255, 255, 255));
+    }
+    
+    
+    public static void setInput(JTextField input) 
+    {    
+        input.setMargin(new java.awt.Insets(5, 10, 5, 10));
+        java.awt.Dimension minSize = new java.awt.Dimension(300, 50);
+        input.setMinimumSize(minSize);
+        input.setPreferredSize(minSize); 
+    }
+    
+    
+    public static void setDialog(JDialog dialog)
+    {
+        dialog.getRootPane().setBorder(
+            BorderFactory.createEmptyBorder(20, 20, 20, 20)
+        );
+            
+        dialog.setSize(1060, 800);
+        dialog.setLocationRelativeTo(null);
+        dialog.setResizable(false);
+        dialog.setVisible(true);  
+    }
+    public static void unsetDialog(JDialog dialog)
+    {
+        dialog.setVisible(false);
+        dialog.dispose();
+    }
+    
+    
+    
+    public static String setRupiah(int nominal) {
         DecimalFormat kursIndonesia = (DecimalFormat)
                 DecimalFormat.getCurrencyInstance();
 
