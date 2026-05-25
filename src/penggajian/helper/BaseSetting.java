@@ -120,7 +120,13 @@ public class BaseSetting {
         dialog.dispose();
     }
     
-    
+    public static void exportTable(JTable table){
+        try {
+            table.print();
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Print Gagal: " + e.getMessage());
+        }
+    }
     
     public static String setRupiah(int nominal) {
         DecimalFormat kursIndonesia = (DecimalFormat)

@@ -11,18 +11,18 @@ import javax.swing.JPanel;
 import penggajian.dao.JabatanDao;
 import penggajian.helper.BaseSetting;
 import penggajian.model.JabatanModel;
-import penggajian.page.dashboard.Jabatan;
+import penggajian.page.dashboard.Ter;
 
 /**
  *
  * @author Dion
  */
-public class JabatanDialog extends javax.swing.JDialog {
-    private Jabatan panel;
+public class TerDialog extends javax.swing.JDialog {
+    private Ter panel;
     /**
      * Creates new form JabatanDialog
      */
-    public JabatanDialog(java.awt.Frame parent, boolean modal, String typeDialog, Long id, Jabatan panel) {
+    public TerDialog(java.awt.Frame parent, boolean modal, String typeDialog, Long id, Ter panel) {
         super(parent, modal);
         this.panel = panel;
         initComponents();
@@ -34,8 +34,10 @@ public class JabatanDialog extends javax.swing.JDialog {
         
         BaseSetting.setInput(inputId);
         inputId.setEditable(false);
-        BaseSetting.setInput(inputNama);
-        BaseSetting.setInput(inputTunjangan);
+        BaseSetting.setInput(inputTarif);
+        BaseSetting.setInput(inputGolongan);
+        BaseSetting.setInput(inputMin);
+        BaseSetting.setInput(inputMax);
         
         BaseSetting.setButton(save);
         BaseSetting.setButton(edit);
@@ -50,8 +52,8 @@ public class JabatanDialog extends javax.swing.JDialog {
 
             JabatanModel j = jabatanDao.getById(id);
             inputId.setText("#" + j.getId());
-            inputNama.setText(j.getNama());
-            inputTunjangan.setText("" + j.getTunjangan());
+            inputTarif.setText(j.getNama());
+            inputGolongan.setText("" + j.getTunjangan());
         }else{
             save.setVisible(true);
             edit.setVisible(false);
@@ -74,11 +76,17 @@ public class JabatanDialog extends javax.swing.JDialog {
         labelId = new javax.swing.JLabel();
         inputId = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        labelNama = new javax.swing.JLabel();
-        inputNama = new javax.swing.JTextField();
+        labelTarif = new javax.swing.JLabel();
+        inputTarif = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
-        labelTunjangan = new javax.swing.JLabel();
-        inputTunjangan = new javax.swing.JTextField();
+        labelGolongan = new javax.swing.JLabel();
+        inputGolongan = new javax.swing.JTextField();
+        jPanel9 = new javax.swing.JPanel();
+        labelMin = new javax.swing.JLabel();
+        inputMin = new javax.swing.JTextField();
+        jPanel10 = new javax.swing.JPanel();
+        labelMax = new javax.swing.JLabel();
+        inputMax = new javax.swing.JTextField();
         save = new javax.swing.JButton();
         edit = new javax.swing.JButton();
         delete = new javax.swing.JButton();
@@ -101,23 +109,23 @@ public class JabatanDialog extends javax.swing.JDialog {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(inputId)
-            .addComponent(labelId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(labelId, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(labelId, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelId)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        labelNama.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelNama.setText("Nama");
+        labelTarif.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelTarif.setText("Tarif");
 
-        inputNama.addActionListener(new java.awt.event.ActionListener() {
+        inputTarif.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputNamaActionPerformed(evt);
+                inputTarifActionPerformed(evt);
             }
         });
 
@@ -125,24 +133,23 @@ public class JabatanDialog extends javax.swing.JDialog {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(inputNama)
-            .addComponent(labelNama, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+            .addComponent(inputTarif)
+            .addComponent(labelTarif, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(labelNama)
+                .addComponent(labelTarif)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(inputTarif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        labelTunjangan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelTunjangan.setText("Tunjangan");
+        labelGolongan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelGolongan.setText("Golongan");
 
-        inputTunjangan.addActionListener(new java.awt.event.ActionListener() {
+        inputGolongan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputTunjanganActionPerformed(evt);
+                inputGolonganActionPerformed(evt);
             }
         });
 
@@ -150,16 +157,67 @@ public class JabatanDialog extends javax.swing.JDialog {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(inputTunjangan)
-            .addComponent(labelTunjangan, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+            .addComponent(inputGolongan)
+            .addComponent(labelGolongan, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(labelTunjangan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(labelGolongan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputTunjangan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(inputGolongan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        labelMin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelMin.setText("Min");
+
+        inputMin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputMinActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(inputMin)
+            .addComponent(labelMin, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(labelMin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        labelMax.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelMax.setText("Max");
+
+        inputMax.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputMaxActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(inputMax)
+            .addComponent(labelMax, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addComponent(labelMax)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -168,23 +226,32 @@ public class JabatanDialog extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -241,7 +308,7 @@ public class JabatanDialog extends javax.swing.JDialog {
                     .addComponent(save)
                     .addComponent(edit)
                     .addComponent(delete))
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
 
         pack();
@@ -251,21 +318,21 @@ public class JabatanDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputIdActionPerformed
 
-    private void inputNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputNamaActionPerformed
+    private void inputTarifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTarifActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_inputNamaActionPerformed
+    }//GEN-LAST:event_inputTarifActionPerformed
 
-    private void inputTunjanganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTunjanganActionPerformed
+    private void inputGolonganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputGolonganActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_inputTunjanganActionPerformed
+    }//GEN-LAST:event_inputGolonganActionPerformed
 
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_editActionPerformed
 
     private void saveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveMouseClicked
-        String nama = inputNama.getText();
-        String tunjangan = inputTunjangan.getText();
+        String nama = inputTarif.getText();
+        String tunjangan = inputGolongan.getText();
         
         int tunjangan_final;
         try {
@@ -317,8 +384,8 @@ public class JabatanDialog extends javax.swing.JDialog {
                 .replace("#", "")
         );
                 
-        String nama = inputNama.getText();
-        int tunjangan = Integer.parseInt(inputTunjangan.getText());
+        String nama = inputTarif.getText();
+        int tunjangan = Integer.parseInt(inputGolongan.getText());
 
         JabatanModel model = new JabatanModel();
         model.setId(id);
@@ -337,6 +404,14 @@ public class JabatanDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_editMouseClicked
 
+    private void inputMinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputMinActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputMinActionPerformed
+
+    private void inputMaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputMaxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputMaxActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -354,22 +429,23 @@ public class JabatanDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JabatanDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TerDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JabatanDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TerDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JabatanDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TerDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JabatanDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TerDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
-        Jabatan panel = new Jabatan();
+        Ter panel = new Ter();
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JabatanDialog dialog = new JabatanDialog(new javax.swing.JFrame(), true, "", 0L, panel);
+                TerDialog dialog = new TerDialog(new javax.swing.JFrame(), true, "", 0L, panel);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -384,16 +460,31 @@ public class JabatanDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton delete;
     private javax.swing.JButton edit;
+    private javax.swing.JTextField inputGolongan;
     private javax.swing.JTextField inputId;
-    private javax.swing.JTextField inputNama;
-    private javax.swing.JTextField inputTunjangan;
+    private javax.swing.JTextField inputMax;
+    private javax.swing.JTextField inputMin;
+    private javax.swing.JTextField inputNama1;
+    private javax.swing.JTextField inputNama2;
+    private javax.swing.JTextField inputNama3;
+    private javax.swing.JTextField inputTarif;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JLabel labelGolongan;
     private javax.swing.JLabel labelId;
-    private javax.swing.JLabel labelNama;
-    private javax.swing.JLabel labelTunjangan;
+    private javax.swing.JLabel labelMax;
+    private javax.swing.JLabel labelMin;
+    private javax.swing.JLabel labelNama1;
+    private javax.swing.JLabel labelNama2;
+    private javax.swing.JLabel labelNama3;
+    private javax.swing.JLabel labelTarif;
     private javax.swing.JButton save;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables

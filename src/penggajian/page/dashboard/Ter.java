@@ -5,6 +5,14 @@
  */
 package penggajian.page.dashboard;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import penggajian.dao.TerDao;
+import penggajian.dialog.JabatanDialog;
+import penggajian.dialog.TerDialog;
+import penggajian.helper.BaseSetting;
+import penggajian.model.TerModel;
+
 /**
  *
  * @author Dion
@@ -16,6 +24,44 @@ public class Ter extends javax.swing.JPanel {
      */
     public Ter() {
         initComponents();
+        
+        BaseSetting.setTitlePage(titlePage);
+        BaseSetting.setButton(add);
+        BaseSetting.setButton(search);
+        BaseSetting.setInput(searchInput);
+        BaseSetting.setBoxPanel(panelTer);
+        BaseSetting.setTitlePanel(titlePanelTer);
+
+        BaseSetting.setTable(tableTer);
+        
+        loadTable("");
+
+    }
+    
+    
+    public void loadTable(String searchValue)
+    {
+        TerDao terDao = new TerDao();
+        
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("Golongan");
+        model.addColumn("Tarif");
+        model.addColumn("Min");
+        model.addColumn("Max");
+
+        List<TerModel> results = terDao.getAllData(searchValue);
+        for (TerModel j : results) {
+            model.addRow(new Object[]{
+                "#" + j.getId(),
+                j.getGolongan(),
+                j.getTarif(),
+                BaseSetting.setRupiah(j.getMin()),
+                BaseSetting.setRupiah(j.getMax()),
+            });
+        }
+
+        tableTer.setModel(model);
     }
 
     /**
@@ -27,30 +73,190 @@ public class Ter extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
+        titlePage = new javax.swing.JLabel();
+        panelTer = new javax.swing.JPanel();
+        titlePanelTer = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        add = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        search = new javax.swing.JButton();
+        searchInput = new javax.swing.JTextField();
+        export = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableTer = new javax.swing.JTable();
 
-        jLabel2.setText("TER");
+        titlePage.setText("TER");
+
+        panelTer.setBackground(new java.awt.Color(204, 204, 204));
+
+        titlePanelTer.setText("Semua Data TER");
+
+        jPanel1.setOpaque(false);
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        add.setText("Tambah");
+        add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addMouseClicked(evt);
+            }
+        });
+        add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addActionPerformed(evt);
+            }
+        });
+        jPanel1.add(add, java.awt.BorderLayout.LINE_START);
+
+        jPanel2.setOpaque(false);
+        jPanel2.setLayout(new java.awt.BorderLayout(10, 0));
+
+        search.setText("Search");
+        search.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchMouseClicked(evt);
+            }
+        });
+        search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchActionPerformed(evt);
+            }
+        });
+        jPanel2.add(search, java.awt.BorderLayout.CENTER);
+
+        searchInput.setToolTipText("");
+        searchInput.setMinimumSize(new java.awt.Dimension(60, 26));
+        searchInput.setPreferredSize(new java.awt.Dimension(60, 26));
+        searchInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchInputActionPerformed(evt);
+            }
+        });
+        jPanel2.add(searchInput, java.awt.BorderLayout.LINE_START);
+
+        export.setText("Export");
+        export.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exportMouseClicked(evt);
+            }
+        });
+        export.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportActionPerformed(evt);
+            }
+        });
+        jPanel2.add(export, java.awt.BorderLayout.LINE_END);
+
+        jPanel1.add(jPanel2, java.awt.BorderLayout.LINE_END);
+
+        jScrollPane1.setVerifyInputWhenFocusTarget(false);
+
+        tableTer.setAutoCreateRowSorter(true);
+        tableTer.getTableHeader().setResizingAllowed(false);
+        tableTer.getTableHeader().setReorderingAllowed(false);
+        tableTer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableTerMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tableTer);
+
+        javax.swing.GroupLayout panelTerLayout = new javax.swing.GroupLayout(panelTer);
+        panelTer.setLayout(panelTerLayout);
+        panelTerLayout.setHorizontalGroup(
+            panelTerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(titlePanelTer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+        );
+        panelTerLayout.setVerticalGroup(
+            panelTerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTerLayout.createSequentialGroup()
+                .addComponent(titlePanelTer)
+                .addGap(20, 20, 20)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(165, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelTer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(282, Short.MAX_VALUE))
+                .addComponent(titlePage)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addComponent(titlePage)
+                .addGap(20, 20, 20)
+                .addComponent(panelTer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
+        BaseSetting.setDialog(new TerDialog(
+            new javax.swing.JFrame(), true, "Tambah", 0L, this));
+    }//GEN-LAST:event_addMouseClicked
+
+    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addActionPerformed
+
+    private void searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseClicked
+        String searchInput = this.searchInput.getText();
+
+        loadTable(searchInput);
+    }//GEN-LAST:event_searchMouseClicked
+
+    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchActionPerformed
+
+    private void searchInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchInputActionPerformed
+
+    private void tableTerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableTerMouseClicked
+        int barisTerpilih = tableTer.getSelectedRow();
+
+        if(barisTerpilih != -1)
+        {
+            Long id = Long.parseLong(
+                tableTer.getValueAt(barisTerpilih, 0)
+                .toString()
+                .replace("#", "")
+            );
+
+//            BaseSetting.setDialog(new JabatanDialog(
+//                new javax.swing.JFrame(), true, "Edit", id, this));
+        }
+    }//GEN-LAST:event_tableTerMouseClicked
+
+    private void exportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportMouseClicked
+        BaseSetting.exportTable(tableTer);
+    }//GEN-LAST:event_exportMouseClicked
+
+    private void exportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_exportActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton add;
+    private javax.swing.JButton export;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel panelTer;
+    private javax.swing.JButton search;
+    private javax.swing.JTextField searchInput;
+    private javax.swing.JTable tableTer;
+    private javax.swing.JLabel titlePage;
+    private javax.swing.JLabel titlePanelTer;
     // End of variables declaration//GEN-END:variables
 }

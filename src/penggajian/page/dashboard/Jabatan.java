@@ -81,6 +81,7 @@ public class Jabatan extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         search = new javax.swing.JButton();
         searchInput = new javax.swing.JTextField();
+        export = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableJabatan = new javax.swing.JTable();
 
@@ -120,7 +121,7 @@ public class Jabatan extends javax.swing.JPanel {
                 searchActionPerformed(evt);
             }
         });
-        jPanel2.add(search, java.awt.BorderLayout.LINE_END);
+        jPanel2.add(search, java.awt.BorderLayout.CENTER);
 
         searchInput.setToolTipText("");
         searchInput.setMinimumSize(new java.awt.Dimension(60, 26));
@@ -130,7 +131,20 @@ public class Jabatan extends javax.swing.JPanel {
                 searchInputActionPerformed(evt);
             }
         });
-        jPanel2.add(searchInput, java.awt.BorderLayout.CENTER);
+        jPanel2.add(searchInput, java.awt.BorderLayout.LINE_START);
+
+        export.setText("Export");
+        export.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exportMouseClicked(evt);
+            }
+        });
+        export.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportActionPerformed(evt);
+            }
+        });
+        jPanel2.add(export, java.awt.BorderLayout.LINE_END);
 
         jPanel1.add(jPanel2, java.awt.BorderLayout.LINE_END);
 
@@ -150,7 +164,9 @@ public class Jabatan extends javax.swing.JPanel {
         panelJabatan.setLayout(panelJabatanLayout);
         panelJabatanLayout.setHorizontalGroup(
             panelJabatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titlePanelJabatan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelJabatanLayout.createSequentialGroup()
+                .addComponent(titlePanelJabatan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(85, 85, 85))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
         );
@@ -162,7 +178,7 @@ public class Jabatan extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         jScrollPane1.getAccessibleContext().setAccessibleName("");
@@ -226,9 +242,18 @@ public class Jabatan extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tableJabatanMouseClicked
 
+    private void exportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_exportActionPerformed
+
+    private void exportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportMouseClicked
+        BaseSetting.exportTable(tableJabatan);
+    }//GEN-LAST:event_exportMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add;
+    private javax.swing.JButton export;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

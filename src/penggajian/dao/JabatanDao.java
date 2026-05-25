@@ -133,24 +133,47 @@ public class JabatanDao {
     
     public boolean deleteData(Long id) {
 
-        if(id == 1){ return false; }
-                
-        String sql = "DELETE FROM jabatan WHERE id = ?";
+        if (id == 1) {
+            return false; 
+        }
 
-        try (
-            Connection con = DBConnetion.getConnection();
-            PreparedStatement ps = con.prepareStatement(sql)
-        ) {
+        String sqlUpdateKaryawan =
+            "UPDATE karyawan SET jabatan_id = 1 WHERE jabatan_id = ?";
 
-            ps.setLong(1, id);
+        String sqlDeleteJabatan =
+            "DELETE FROM jabatan WHERE id = ?";
 
-            int rows = ps.executeUpdate();
+        Connection con = null;
+
+        try {
+
+            con = DBConnetion.getConnection();
+            con.setAutoCommit(false);
+
+            // pindahkan karyawan ke jabatan default
+            PreparedStatement ps1 = con.prepareStatement(sqlUpdateKaryawan);
+            ps1.setLong(1, id);
+            ps1.executeUpdate();
+
+            // hapus jabatan
+            PreparedStatement ps2 = con.prepareStatement(sqlDeleteJabatan);
+            ps2.setLong(1, id);
+            int rows = ps2.executeUpdate();
+
+            con.commit();
 
             return rows > 0;
 
         } catch (Exception e) {
 
             e.printStackTrace();
+
+            try {
+                if (con != null) con.rollback();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+
             return false;
         }
     }
