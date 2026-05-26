@@ -270,7 +270,6 @@ public class JabatanDialog extends javax.swing.JDialog {
         int tunjangan_final;
         try {
             tunjangan_final = Integer.parseInt(tunjangan);
-            JabatanModel jm = new JabatanModel();
             
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Tunjangan harus angka");

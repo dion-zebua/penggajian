@@ -102,6 +102,14 @@ public class BaseSetting {
         input.setPreferredSize(minSize); 
     }
     
+    public static void setCombo(JComboBox<String> comboBox) 
+    {    
+        comboBox.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+        Dimension minSize = new Dimension(300, 50);
+        comboBox.setMinimumSize(minSize);
+        comboBox.setPreferredSize(minSize); 
+    }
+
     
     public static void setDialog(JDialog dialog)
     {

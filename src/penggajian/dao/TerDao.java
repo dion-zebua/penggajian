@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import penggajian.helper.DBConnetion;
 import penggajian.model.TerModel;
 
@@ -75,4 +76,115 @@ public class TerDao {
         return list;
     }
     
+    public boolean saveData(TerModel ter) {
+
+        String sql = "INSERT INTO ter(min, max, tarif, golongan) VALUES(?, ?, ?, ?)";
+
+        try (
+            Connection con = DBConnetion.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql)
+        ) {
+
+            ps.setInt(1, ter.getMin());
+            ps.setInt(2, ter.getMax());
+            ps.setDouble(3, ter.getTarif());
+            ps.setString(4, ter.getGolongan());
+
+
+            int rows = ps.executeUpdate();
+
+            return rows > 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public TerModel getById(Long id) {
+
+        TerModel ter = null;
+
+        String sql =
+            "SELECT id, min, max, tarif, golongan from ter " +
+            "WHERE id = ? ";
+
+        try (
+            Connection con = DBConnetion.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql)
+        ) {
+
+            ps.setLong(1, id);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                ter = new TerModel();
+
+                ter.setId(rs.getInt("id"));
+                ter.setMin(rs.getInt("min"));
+                ter.setMax(rs.getInt("max"));
+                ter.setTarif(rs.getDouble("tarif"));
+                ter.setGolongan(rs.getString("golongan"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ter;
+    }
+    
+        
+    public boolean deleteData(Long id) {
+
+        String sqlDeleteTer =
+            "DELETE FROM ter WHERE id = ?";
+
+        try (
+            Connection con = DBConnetion.getConnection();
+            PreparedStatement ps = con.prepareStatement(sqlDeleteTer);
+        ){
+
+            ps.setLong(1, id);
+            int rows = ps.executeUpdate();
+
+            return rows > 0;
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+            return false;
+        }
+    }
+    
+    public boolean editData(TerModel ter) {
+
+        String sql =
+            "UPDATE ter SET " +
+            "min = ?, max = ?, tarif = ?, golongan = ? WHERE id = ?";
+
+        try (
+            Connection con = DBConnetion.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql)
+        ) {
+
+            ps.setInt(1, ter.getMin());
+            ps.setInt(2, ter.getMax());
+            ps.setDouble(3, ter.getTarif());
+            ps.setString(4, ter.getGolongan());
+            ps.setLong(5, ter.getId());
+            
+            int rows = ps.executeUpdate();
+
+            return rows > 0;
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

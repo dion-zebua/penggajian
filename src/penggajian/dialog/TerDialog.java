@@ -9,8 +9,10 @@ import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import penggajian.dao.JabatanDao;
+import penggajian.dao.TerDao;
 import penggajian.helper.BaseSetting;
 import penggajian.model.JabatanModel;
+import penggajian.model.TerModel;
 import penggajian.page.dashboard.Ter;
 
 /**
@@ -34,26 +36,28 @@ public class TerDialog extends javax.swing.JDialog {
         
         BaseSetting.setInput(inputId);
         inputId.setEditable(false);
+        BaseSetting.setCombo(comboGolongan);
         BaseSetting.setInput(inputTarif);
-        BaseSetting.setInput(inputGolongan);
         BaseSetting.setInput(inputMin);
         BaseSetting.setInput(inputMax);
         
         BaseSetting.setButton(save);
         BaseSetting.setButton(edit);
         BaseSetting.setButton(delete);
-        
+
         if(typeDialog.equals("Edit")){
             save.setVisible(false);
             edit.setVisible(true);
             delete.setVisible(true);
             
-            JabatanDao jabatanDao = new JabatanDao();
+            TerDao terDao = new TerDao();
 
-            JabatanModel j = jabatanDao.getById(id);
-            inputId.setText("#" + j.getId());
-            inputTarif.setText(j.getNama());
-            inputGolongan.setText("" + j.getTunjangan());
+            TerModel t = terDao.getById(id);
+            inputId.setText("#" + t.getId());
+            inputTarif.setText(String.valueOf(t.getTarif()));
+            inputMin.setText("" + t.getMin());
+            inputMax.setText("" + t.getMax());
+            comboGolongan.setSelectedItem(t.getGolongan());
         }else{
             save.setVisible(true);
             edit.setVisible(false);
@@ -80,7 +84,7 @@ public class TerDialog extends javax.swing.JDialog {
         inputTarif = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         labelGolongan = new javax.swing.JLabel();
-        inputGolongan = new javax.swing.JTextField();
+        comboGolongan = new javax.swing.JComboBox<>();
         jPanel9 = new javax.swing.JPanel();
         labelMin = new javax.swing.JLabel();
         inputMin = new javax.swing.JTextField();
@@ -109,7 +113,7 @@ public class TerDialog extends javax.swing.JDialog {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(inputId)
-            .addComponent(labelId, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+            .addComponent(labelId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,18 +151,15 @@ public class TerDialog extends javax.swing.JDialog {
         labelGolongan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelGolongan.setText("Golongan");
 
-        inputGolongan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputGolonganActionPerformed(evt);
-            }
-        });
+        comboGolongan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D" }));
+        comboGolongan.setPreferredSize(new java.awt.Dimension(42, 26));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(inputGolongan)
             .addComponent(labelGolongan, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+            .addComponent(comboGolongan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,7 +167,7 @@ public class TerDialog extends javax.swing.JDialog {
                 .addGap(0, 0, 0)
                 .addComponent(labelGolongan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputGolongan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboGolongan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -226,28 +227,27 @@ public class TerDialog extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(67, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -322,35 +322,39 @@ public class TerDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputTarifActionPerformed
 
-    private void inputGolonganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputGolonganActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputGolonganActionPerformed
-
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_editActionPerformed
 
     private void saveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveMouseClicked
-        String nama = inputTarif.getText();
-        String tunjangan = inputGolongan.getText();
+        String golongan = comboGolongan.getSelectedItem().toString();
         
-        int tunjangan_final;
+        String tarif = inputTarif.getText();
+        String min = inputMin.getText();
+        String max = inputMax.getText();
+        
+        double tarif_final;
+        int min_final;
+        int max_final;
         try {
-            tunjangan_final = Integer.parseInt(tunjangan);
-            JabatanModel jm = new JabatanModel();
+            tarif_final = Double.parseDouble(tarif);
+            min_final = Integer.parseInt(min);
+            max_final = Integer.parseInt(max);
             
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Tunjangan harus angka");
+            JOptionPane.showMessageDialog(null, "Min/Max harus angka dan Tarif harus Desimal");
             return;
         }
 
-        JabatanModel model = new JabatanModel();
-        model.setNama(nama);
-        model.setTunjangan(tunjangan_final);
+        TerModel model = new TerModel();
+        model.setGolongan(golongan);
+        model.setTarif(tarif_final);
+        model.setMin(min_final);
+        model.setMax(max_final);
 
-        JabatanDao jabatanDao = new JabatanDao();
+        TerDao terDao = new TerDao();
 
-        if (jabatanDao.saveData(model)) {
+        if (terDao.saveData(model)) {
             panel.loadTable("");
             dispose();
             JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
@@ -366,9 +370,9 @@ public class TerDialog extends javax.swing.JDialog {
                 .replace("#", "")
         );
 
-        JabatanDao jd = new JabatanDao();
+        TerDao ter = new TerDao();
 
-        if (jd.deleteData(id)) {
+        if (ter.deleteData(id)) {
             panel.loadTable("");
             dispose();
             JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
@@ -383,19 +387,36 @@ public class TerDialog extends javax.swing.JDialog {
                 .toString()
                 .replace("#", "")
         );
-                
-        String nama = inputTarif.getText();
-        int tunjangan = Integer.parseInt(inputGolongan.getText());
+        
+        String golongan = comboGolongan.getSelectedItem().toString();
+        
+        String tarif = inputTarif.getText();
+        String min = inputMin.getText();
+        String max = inputMax.getText();
+        
+        double tarif_final;
+        int min_final;
+        int max_final;
+        try {
+            tarif_final = Double.parseDouble(tarif);
+            min_final = Integer.parseInt(min);
+            max_final = Integer.parseInt(max);
+            
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Min/Max harus angka dan Tarif harus Desimal");
+            return;
+        }
 
-        JabatanModel model = new JabatanModel();
+        TerModel model = new TerModel();
         model.setId(id);
-        model.setNama(nama);
-        model.setTunjangan(tunjangan);
-        
-        
-        JabatanDao jd = new JabatanDao();
+        model.setGolongan(golongan);
+        model.setTarif(tarif_final);
+        model.setMin(min_final);
+        model.setMax(max_final);
 
-        if (jd.editData(model)) {
+        TerDao terDao = new TerDao();
+
+        if (terDao.editData(model)) {
             panel.loadTable("");
             dispose();
             JOptionPane.showMessageDialog(null, "Data berhasil diedit");
@@ -458,32 +479,23 @@ public class TerDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> comboGolongan;
     private javax.swing.JButton delete;
     private javax.swing.JButton edit;
-    private javax.swing.JTextField inputGolongan;
     private javax.swing.JTextField inputId;
     private javax.swing.JTextField inputMax;
     private javax.swing.JTextField inputMin;
-    private javax.swing.JTextField inputNama1;
-    private javax.swing.JTextField inputNama2;
-    private javax.swing.JTextField inputNama3;
     private javax.swing.JTextField inputTarif;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel labelGolongan;
     private javax.swing.JLabel labelId;
     private javax.swing.JLabel labelMax;
     private javax.swing.JLabel labelMin;
-    private javax.swing.JLabel labelNama1;
-    private javax.swing.JLabel labelNama2;
-    private javax.swing.JLabel labelNama3;
     private javax.swing.JLabel labelTarif;
     private javax.swing.JButton save;
     private javax.swing.JLabel title;

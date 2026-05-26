@@ -5,6 +5,8 @@
  */
 package penggajian.page.dashboard;
 
+import penggajian.helper.BaseSetting;
+
 /**
  *
  * @author Dion
@@ -16,6 +18,20 @@ public class Bpjs extends javax.swing.JPanel {
      */
     public Bpjs() {
         initComponents();
+
+        BaseSetting.setTitlePage(titlePage);
+        
+        BaseSetting.setBoxPanel(panelBpjs);
+        BaseSetting.setTitlePanel(titlePanelBpjs);
+        titlePanelBpjs.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        
+        BaseSetting.setInput(inputJkk);
+        BaseSetting.setInput(inputJkm);
+        BaseSetting.setInput(inputJhtP);
+        BaseSetting.setInput(inputJhtK);
+        BaseSetting.setButton(edit);
+
     }
 
     /**
@@ -27,30 +43,333 @@ public class Bpjs extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        titlePage = new javax.swing.JLabel();
+        panelBpjs = new javax.swing.JPanel();
+        titlePanelBpjs = new javax.swing.JLabel();
+        jPanel15 = new javax.swing.JPanel();
+        labelTarif = new javax.swing.JLabel();
+        inputJkk = new javax.swing.JTextField();
+        jPanel16 = new javax.swing.JPanel();
+        labelTarif1 = new javax.swing.JLabel();
+        inputJkm = new javax.swing.JTextField();
+        jPanel17 = new javax.swing.JPanel();
+        labelTarif2 = new javax.swing.JLabel();
+        inputJhtP = new javax.swing.JTextField();
+        jPanel18 = new javax.swing.JPanel();
+        labelTarif3 = new javax.swing.JLabel();
+        inputJhtK = new javax.swing.JTextField();
+        edit = new javax.swing.JButton();
 
-        jLabel1.setText("BPSJ");
+        titlePage.setText("BPJS");
+
+        panelBpjs.setBackground(new java.awt.Color(204, 204, 204));
+
+        titlePanelBpjs.setText("Settingan BPJS");
+
+        jPanel15.setOpaque(false);
+
+        labelTarif.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelTarif.setText("JKK");
+
+        inputJkk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputJkkActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(inputJkk)
+            .addComponent(labelTarif, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addComponent(labelTarif)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputJkk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel16.setOpaque(false);
+
+        labelTarif1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelTarif1.setText("JKM");
+
+        inputJkm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputJkmActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(inputJkm)
+            .addComponent(labelTarif1, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addComponent(labelTarif1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputJkm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel17.setOpaque(false);
+
+        labelTarif2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelTarif2.setText("JHT Perusahaan");
+
+        inputJhtP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputJhtPActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(inputJhtP)
+            .addComponent(labelTarif2, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addComponent(labelTarif2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputJhtP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel18.setOpaque(false);
+
+        labelTarif3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelTarif3.setText("JHT Karyawan");
+
+        inputJhtK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputJhtKActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(inputJhtK)
+            .addComponent(labelTarif3, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addComponent(labelTarif3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputJhtK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        edit.setText("Edit");
+        edit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editMouseClicked(evt);
+            }
+        });
+        edit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelBpjsLayout = new javax.swing.GroupLayout(panelBpjs);
+        panelBpjs.setLayout(panelBpjsLayout);
+        panelBpjsLayout.setHorizontalGroup(
+            panelBpjsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBpjsLayout.createSequentialGroup()
+                .addComponent(titlePanelBpjs, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
+                .addGap(85, 85, 85))
+            .addGroup(panelBpjsLayout.createSequentialGroup()
+                .addGroup(panelBpjsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelBpjsLayout.createSequentialGroup()
+                        .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelBpjsLayout.createSequentialGroup()
+                        .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edit))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelBpjsLayout.setVerticalGroup(
+            panelBpjsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBpjsLayout.createSequentialGroup()
+                .addComponent(titlePanelBpjs)
+                .addGap(30, 30, 30)
+                .addGroup(panelBpjsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(panelBpjsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addComponent(edit)
+                .addContainerGap(290, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelBpjs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(364, Short.MAX_VALUE))
+                .addComponent(titlePage)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(246, Short.MAX_VALUE))
+                .addComponent(titlePage)
+                .addGap(20, 20, 20)
+                .addComponent(panelBpjs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void inputJkkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputJkkActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputJkkActionPerformed
+
+    private void inputJkmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputJkmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputJkmActionPerformed
+
+    private void inputJhtPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputJhtPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputJhtPActionPerformed
+
+    private void inputJhtKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputJhtKActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputJhtKActionPerformed
+
+    private void editMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMouseClicked
+//        Long id = Long.parseLong(
+//            inputId.getText()
+//            .toString()
+//            .replace("#", "")
+//        );
+//
+//        String nama = inputNama.getText();
+//        int tunjangan = Integer.parseInt(inputTunjangan.getText());
+//
+//        JabatanModel model = new JabatanModel();
+//        model.setId(id);
+//        model.setNama(nama);
+//        model.setTunjangan(tunjangan);
+//
+//        JabatanDao jd = new JabatanDao();
+//
+//        if (jd.editData(model)) {
+//            panel.loadTable("");
+//            dispose();
+//            JOptionPane.showMessageDialog(null, "Data berhasil diedit");
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Gagal mengedit data");
+//        }
+    }//GEN-LAST:event_editMouseClicked
+
+    private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton add;
+    private javax.swing.JButton add1;
+    private javax.swing.JButton add2;
+    private javax.swing.JButton add3;
+    private javax.swing.JButton add4;
+    private javax.swing.JButton add5;
+    private javax.swing.JButton add6;
+    private javax.swing.JButton edit;
+    private javax.swing.JButton export;
+    private javax.swing.JButton export1;
+    private javax.swing.JButton export2;
+    private javax.swing.JButton export3;
+    private javax.swing.JButton export4;
+    private javax.swing.JButton export5;
+    private javax.swing.JButton export6;
+    private javax.swing.JTextField inputJhtK;
+    private javax.swing.JTextField inputJhtP;
+    private javax.swing.JTextField inputJkk;
+    private javax.swing.JTextField inputJkm;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JLabel labelTarif;
+    private javax.swing.JLabel labelTarif1;
+    private javax.swing.JLabel labelTarif2;
+    private javax.swing.JLabel labelTarif3;
+    private javax.swing.JPanel panelBpjs;
+    private javax.swing.JPanel panelJabatan;
+    private javax.swing.JPanel panelJabatan1;
+    private javax.swing.JPanel panelJabatan2;
+    private javax.swing.JPanel panelJabatan3;
+    private javax.swing.JPanel panelJabatan4;
+    private javax.swing.JPanel panelJabatan5;
+    private javax.swing.JPanel panelJabatan6;
+    private javax.swing.JButton search;
+    private javax.swing.JButton search1;
+    private javax.swing.JButton search2;
+    private javax.swing.JButton search3;
+    private javax.swing.JButton search4;
+    private javax.swing.JButton search5;
+    private javax.swing.JButton search6;
+    private javax.swing.JTextField searchInput;
+    private javax.swing.JTextField searchInput1;
+    private javax.swing.JTextField searchInput2;
+    private javax.swing.JTextField searchInput3;
+    private javax.swing.JTextField searchInput4;
+    private javax.swing.JTextField searchInput5;
+    private javax.swing.JTextField searchInput6;
+    private javax.swing.JTable tableJabatan;
+    private javax.swing.JTable tableJabatan1;
+    private javax.swing.JTable tableJabatan2;
+    private javax.swing.JTable tableJabatan3;
+    private javax.swing.JTable tableJabatan4;
+    private javax.swing.JTable tableJabatan5;
+    private javax.swing.JTable tableJabatan6;
+    private javax.swing.JLabel titlePage;
+    private javax.swing.JLabel titlePanelBpjs;
+    private javax.swing.JLabel titlePanelJabatan;
+    private javax.swing.JLabel titlePanelJabatan1;
+    private javax.swing.JLabel titlePanelJabatan2;
+    private javax.swing.JLabel titlePanelJabatan3;
+    private javax.swing.JLabel titlePanelJabatan4;
+    private javax.swing.JLabel titlePanelJabatan5;
+    private javax.swing.JLabel titlePanelJabatan6;
     // End of variables declaration//GEN-END:variables
 }

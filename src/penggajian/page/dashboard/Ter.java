@@ -6,6 +6,7 @@
 package penggajian.page.dashboard;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import penggajian.dao.TerDao;
 import penggajian.dialog.JabatanDialog;
@@ -232,8 +233,8 @@ public class Ter extends javax.swing.JPanel {
                 .replace("#", "")
             );
 
-//            BaseSetting.setDialog(new JabatanDialog(
-//                new javax.swing.JFrame(), true, "Edit", id, this));
+            BaseSetting.setDialog(new TerDialog(
+                new javax.swing.JFrame(), true, "Edit", id, this));
         }
     }//GEN-LAST:event_tableTerMouseClicked
 
