@@ -241,13 +241,16 @@ public class Ter extends javax.swing.JPanel {
     }//GEN-LAST:event_tableTerMouseClicked
 
     private void exportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportMouseClicked
-        BaseSetting.exportTable(tableTer);
+        print();
     }//GEN-LAST:event_exportMouseClicked
 
     private void exportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_exportActionPerformed
-
+    
+    public void print(){
+        BaseSetting.exportTable(tableTer);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add;

@@ -247,9 +247,12 @@ public class Jabatan extends javax.swing.JPanel {
     }//GEN-LAST:event_exportActionPerformed
 
     private void exportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportMouseClicked
-        BaseSetting.exportTable(tableJabatan);
+        print();
     }//GEN-LAST:event_exportMouseClicked
 
+    public void print(){
+        BaseSetting.exportTable(tableJabatan);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add;
