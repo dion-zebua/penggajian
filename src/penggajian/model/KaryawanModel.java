@@ -17,10 +17,12 @@ public class KaryawanModel {
     private int tunjanganTransportasi;
     private int tunjanganMakan;
     private int tunjanganLembur;
-    private int tunjanganAbsen;
+    private int potonganAbsen;
     private String golonganTer;
     private long jabatanId;
     private String jabatan;
+    private JabatanModel jabatanModel;
+
 
     public long getId() {
         return id;
@@ -78,12 +80,12 @@ public class KaryawanModel {
         this.tunjanganLembur = tunjanganLembur;
     }
 
-    public int getTunjanganAbsen() {
-        return tunjanganAbsen;
+    public int getPotonganAbsen() {
+        return potonganAbsen;
     }
 
-    public void setTunjanganAbsen(int tunjanganAbsen) {
-        this.tunjanganAbsen = tunjanganAbsen;
+    public void setPotonganAbsen(int potonganAbsen) {
+        this.potonganAbsen = potonganAbsen;
     }
 
     public String getGolonganTer() {
@@ -109,4 +111,13 @@ public class KaryawanModel {
     public void setJabatan(String jabatan) {
         this.jabatan = jabatan;
     }
+    
+    public JabatanModel getJabatanModel() {
+        return jabatanModel;
+    }
+    
+    public void setJabatanModel(JabatanModel jabatanModel) {
+        this.jabatanModel = jabatanModel;
+    }
+    
 }

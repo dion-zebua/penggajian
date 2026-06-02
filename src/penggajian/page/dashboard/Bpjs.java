@@ -5,7 +5,10 @@
  */
 package penggajian.page.dashboard;
 
+import javax.swing.JOptionPane;
+import penggajian.dao.BpjsDao;
 import penggajian.helper.BaseSetting;
+import penggajian.model.BpjsModel;
 
 /**
  *
@@ -31,7 +34,17 @@ public class Bpjs extends javax.swing.JPanel {
         BaseSetting.setInput(inputJhtP);
         BaseSetting.setInput(inputJhtK);
         BaseSetting.setButton(edit);
-
+        
+        
+        
+        BpjsDao bpjsDao = new BpjsDao();
+        BpjsModel bpjs = new BpjsModel();
+        BpjsModel bpjs_first = bpjsDao.getDataFirst();
+        
+        inputJkk.setText(String.valueOf(bpjs_first.getJkk()));
+        inputJkm.setText(String.valueOf(bpjs_first.getJkm()));
+        inputJhtP.setText(String.valueOf(bpjs_first.getJhtP()));
+        inputJhtK.setText(String.valueOf(bpjs_first.getJhtK()));
     }
 
     /**
@@ -254,25 +267,21 @@ public class Bpjs extends javax.swing.JPanel {
     }//GEN-LAST:event_inputJhtKActionPerformed
 
     private void editMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMouseClicked
-//        Long id = Long.parseLong(
-//            inputId.getText()
-//            .toString()
-//            .replace("#", "")
-//        );
-//
-//        String nama = inputNama.getText();
-//        int tunjangan = Integer.parseInt(inputTunjangan.getText());
-//
-//        JabatanModel model = new JabatanModel();
-//        model.setId(id);
-//        model.setNama(nama);
-//        model.setTunjangan(tunjangan);
-//
-//        JabatanDao jd = new JabatanDao();
-//
-//        if (jd.editData(model)) {
-//            panel.loadTable("");
-//            dispose();
+
+        double jkk = Double.parseDouble(inputJkk.getText());
+        double jkm = Double.parseDouble(inputJkm.getText());
+        double jht_p = Double.parseDouble(inputJhtP.getText());
+        double jht_k = Double.parseDouble(inputJhtK.getText());
+
+        BpjsModel model = new BpjsModel();
+        model.setJkk(jkk);
+        model.setJkm(jkm);
+        model.setJhtP(jht_p);
+        model.setJhtK(jht_k);
+
+        BpjsDao bpjs = new BpjsDao();
+
+//        if (bpjs.getDataFirst()) {
 //            JOptionPane.showMessageDialog(null, "Data berhasil diedit");
 //        } else {
 //            JOptionPane.showMessageDialog(null, "Gagal mengedit data");

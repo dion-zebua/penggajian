@@ -45,6 +45,8 @@ public class Ter extends javax.swing.JPanel {
         TerDao terDao = new TerDao();
         
         DefaultTableModel model = new DefaultTableModel();
+
+        
         model.addColumn("ID");
         model.addColumn("Golongan");
         model.addColumn("Tarif");

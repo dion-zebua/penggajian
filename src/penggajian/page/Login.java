@@ -23,7 +23,9 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         
         BaseSetting.setButton(submit);
-        
+        BaseSetting.setButton(clear);
+        clear.setBackground(new java.awt.Color(210,210,210));
+        clear.setForeground(new java.awt.Color(10,10,10));
 
     }
 
@@ -47,6 +49,8 @@ public class Login extends javax.swing.JFrame {
         username = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         password = new javax.swing.JPasswordField();
+        jPanel3 = new javax.swing.JPanel();
+        clear = new javax.swing.JButton();
         submit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -151,6 +155,25 @@ public class Login extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 25, 0);
         jPanel2.add(password, gridBagConstraints);
 
+        jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 5));
+
+        clear.setText("Clear");
+        clear.setToolTipText("");
+        clear.setAutoscrolls(true);
+        clear.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        clear.setDoubleBuffered(true);
+        clear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clearMouseClicked(evt);
+            }
+        });
+        clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearActionPerformed(evt);
+            }
+        });
+        jPanel3.add(clear);
+
         submit.setText("Submit");
         submit.setToolTipText("");
         submit.setAutoscrolls(true);
@@ -161,11 +184,12 @@ public class Login extends javax.swing.JFrame {
                 submitActionPerformed(evt);
             }
         });
+        jPanel3.add(submit);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
-        jPanel2.add(submit, gridBagConstraints);
+        jPanel2.add(jPanel3, gridBagConstraints);
 
         getContentPane().add(jPanel2);
 
@@ -182,7 +206,7 @@ public class Login extends javax.swing.JFrame {
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         String new_username = username.getText();
-        String new_password = password.getText();;
+        String new_password = password.getText();
 
         if (new_username.equals("a") && new_password.equals("a")) {
             new Dashboard().setVisible(true);
@@ -191,6 +215,15 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Login Gagal!");
         }
     }//GEN-LAST:event_submitActionPerformed
+
+    private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clearActionPerformed
+
+    private void clearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearMouseClicked
+        username.setText("");
+        password.setText("");
+    }//GEN-LAST:event_clearMouseClicked
 
     /**
      * @param args the command line arguments
@@ -229,6 +262,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton clear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -237,6 +271,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPasswordField password;
     private javax.swing.JButton submit;
     private javax.swing.JTextField username;

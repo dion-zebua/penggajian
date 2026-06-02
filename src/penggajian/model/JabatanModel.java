@@ -14,6 +14,7 @@ public class JabatanModel {
     private String nama;
     private int tunjangan;
     private int totalKaryawan;
+
     
     public long getId() {
         return id;
@@ -44,5 +45,10 @@ public class JabatanModel {
     }
     public void setTotalKaryawan(int totalKaryawan) {
         this.totalKaryawan = totalKaryawan;
+    }
+    
+    @Override
+    public String toString() {
+        return this.nama;
     }
 }

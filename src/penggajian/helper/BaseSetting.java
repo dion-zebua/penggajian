@@ -8,6 +8,7 @@ import java.awt.*;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import javax.swing.*;
+import penggajian.model.JabatanModel;
 
 /**
  *
@@ -102,7 +103,7 @@ public class BaseSetting {
         input.setPreferredSize(minSize); 
     }
     
-    public static void setCombo(JComboBox<String> comboBox) 
+    public static void setCombo(JComboBox<?> comboBox) 
     {    
         comboBox.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
         Dimension minSize = new Dimension(300, 50);
@@ -117,7 +118,8 @@ public class BaseSetting {
             BorderFactory.createEmptyBorder(20, 20, 20, 20)
         );
             
-        dialog.setSize(1060, 800);
+//        dialog.setSize(1060, 800);
+        dialog.pack();
         dialog.setLocationRelativeTo(null);
         dialog.setResizable(false);
         dialog.setVisible(true);  
