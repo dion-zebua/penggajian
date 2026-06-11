@@ -15,6 +15,10 @@ import penggajian.model.JabatanModel;
  * @author Dion
  */
 public class BaseSetting {
+    
+    public static String getBrand(){
+        return "CV. Anugrah Berkah Cemerlang";
+    }
     public static void applyFrame(JFrame frame) {
         frame.setMinimumSize(new Dimension(1800, 1012));
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -25,7 +29,6 @@ public class BaseSetting {
     
     
     public static void setGlobalFont() {
-
         Font font = new Font("Tahoma", Font.PLAIN, 24);
 
         UIManager.put("Label.font", font);

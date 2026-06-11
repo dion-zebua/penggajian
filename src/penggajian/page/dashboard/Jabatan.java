@@ -5,8 +5,15 @@
  */
 package penggajian.page.dashboard;
 
+import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 import penggajian.dao.JabatanDao;
 import penggajian.dialog.JabatanDialog;
 import penggajian.helper.BaseSetting;
@@ -151,6 +158,14 @@ public class Jabatan extends javax.swing.JPanel {
         jScrollPane1.setVerifyInputWhenFocusTarget(false);
 
         tableJabatan.setAutoCreateRowSorter(true);
+        tableJabatan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         tableJabatan.getTableHeader().setResizingAllowed(false);
         tableJabatan.getTableHeader().setReorderingAllowed(false);
         tableJabatan.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -167,8 +182,10 @@ public class Jabatan extends javax.swing.JPanel {
             .addGroup(panelJabatanLayout.createSequentialGroup()
                 .addComponent(titlePanelJabatan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(85, 85, 85))
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJabatanLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelJabatanLayout.setVerticalGroup(
             panelJabatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,9 +193,9 @@ public class Jabatan extends javax.swing.JPanel {
                 .addComponent(titlePanelJabatan)
                 .addGap(20, 20, 20)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         jScrollPane1.getAccessibleContext().setAccessibleName("");
@@ -251,7 +268,27 @@ public class Jabatan extends javax.swing.JPanel {
     }//GEN-LAST:event_exportMouseClicked
 
     public void print(){
-        BaseSetting.exportTable(tableJabatan);
+        try {
+            InputStream reportStream = getClass().getResourceAsStream("/penggajian/jasper/jabatan.jasper");        
+            if (reportStream == null) {
+                JOptionPane.showMessageDialog(this, "File .jasper tidak ditemukan");
+                return;
+            }
+            Map<String, Object> parameter = new HashMap<>();
+//            parameter.put("BRAND_LOGO", getClass().getResource("/penggajian/img/logo.png")); 
+            java.net.URL imgURL = getClass().getResource("/penggajian/img/logo.png");
+            parameter.put("BRAND_LOGO", imgURL); 
+            parameter.put("BRAND_NAME", BaseSetting.getBrand()); 
+            
+            JasperPrint jp = JasperFillManager.fillReport(reportStream, parameter);
+            JasperViewer.viewReport(jp, false);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Gagal: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

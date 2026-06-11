@@ -27,6 +27,7 @@ public class Login extends javax.swing.JFrame {
         clear.setBackground(new java.awt.Color(210,210,210));
         clear.setForeground(new java.awt.Color(10,10,10));
 
+        brand.setText(BaseSetting.getBrand());
     }
 
     /**
@@ -42,7 +43,7 @@ public class Login extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        brand = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -86,16 +87,16 @@ public class Login extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(30, 0, 10, 0);
         jPanel1.add(jLabel1, gridBagConstraints);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("CV. Anugrah Berkah Cemerlang");
-        jLabel4.setFocusable(false);
-        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        brand.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        brand.setForeground(new java.awt.Color(255, 255, 255));
+        brand.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        brand.setText("Brand");
+        brand.setFocusable(false);
+        brand.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        jPanel1.add(jLabel4, gridBagConstraints);
+        jPanel1.add(brand, gridBagConstraints);
 
         getContentPane().add(jPanel1);
 
@@ -262,11 +263,11 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel brand;
     private javax.swing.JButton clear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;

@@ -24,8 +24,9 @@ public class Dashboard extends javax.swing.JFrame {
     Ter ter = new Ter();
     Bpjs bpjs = new Bpjs();
     Karyawan karyawan = new Karyawan();
-    Gaji gaji = new Gaji();
+    GajiKotor gajiKotor = new GajiKotor();
 
+    
     CardLayout clInner = new CardLayout();
 
     public Dashboard() {
@@ -38,9 +39,12 @@ public class Dashboard extends javax.swing.JFrame {
         innerContent.add(jabatan, "jabatan");
         innerContent.add(bpjs, "bpjs");
         innerContent.add(karyawan, "karyawan");
-        innerContent.add(gaji, "gaji");
+        innerContent.add(gajiKotor, "gajiKotor");
 
-        clInner.show(innerContent, "jabatan");
+        clInner.show(innerContent, "home");
+        
+        brand.setText(BaseSetting.getBrand());
+
     }
 
     /**
@@ -56,7 +60,7 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        brand = new javax.swing.JLabel();
         jPanel21 = new javax.swing.JPanel();
         menuHome = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -85,7 +89,16 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel52 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
-        printGaji = new javax.swing.JLabel();
+        menuGajiKotor = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel54 = new javax.swing.JLabel();
+        jLabel57 = new javax.swing.JLabel();
+        printGajiKotor = new javax.swing.JLabel();
+        menuGajiBersih = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel60 = new javax.swing.JLabel();
+        jLabel61 = new javax.swing.JLabel();
+        printGajiBersih = new javax.swing.JLabel();
         jPanel25 = new javax.swing.JPanel();
         menuLogout = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
@@ -116,13 +129,13 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jLabel1);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("CV. Anugrah Berkah Cemerlang");
-        jLabel4.setFocusable(false);
-        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel2.add(jLabel4);
+        brand.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        brand.setForeground(new java.awt.Color(255, 255, 255));
+        brand.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        brand.setText("Get the Brand");
+        brand.setFocusable(false);
+        brand.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel2.add(brand);
 
         jPanel21.setMaximumSize(new java.awt.Dimension(32767, 264));
         jPanel21.setOpaque(false);
@@ -301,17 +314,75 @@ public class Dashboard extends javax.swing.JFrame {
 
         menuGaji.add(jPanel8, java.awt.BorderLayout.WEST);
 
-        printGaji.setBackground(new java.awt.Color(0, 51, 51));
-        printGaji.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        printGaji.setIcon(new javax.swing.ImageIcon(getClass().getResource("/penggajian/img/print.png"))); // NOI18N
-        printGaji.setToolTipText("");
-        printGaji.setAlignmentX(0.5F);
-        printGaji.addMouseListener(new java.awt.event.MouseAdapter() {
+        menuGajiKotor.setBackground(new java.awt.Color(51, 0, 153));
+        menuGajiKotor.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 40, 0, 20));
+        menuGajiKotor.setMinimumSize(new java.awt.Dimension(141, 34));
+        menuGajiKotor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                printGajiMouseClicked(evt);
+                menuGajiKotorMouseClicked(evt);
             }
         });
-        menuGaji.add(printGaji, java.awt.BorderLayout.EAST);
+        menuGajiKotor.setLayout(new java.awt.BorderLayout());
+
+        jPanel10.setOpaque(false);
+        jPanel10.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 25, 12));
+
+        jLabel54.setBackground(new java.awt.Color(0, 51, 51));
+        jLabel54.setIcon(new javax.swing.ImageIcon(getClass().getResource("/penggajian/img/arrow-right.png"))); // NOI18N
+        jPanel10.add(jLabel54);
+
+        jLabel57.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel57.setText("Gaji Kotor");
+        jPanel10.add(jLabel57);
+
+        menuGajiKotor.add(jPanel10, java.awt.BorderLayout.WEST);
+
+        printGajiKotor.setBackground(new java.awt.Color(0, 51, 51));
+        printGajiKotor.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        printGajiKotor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/penggajian/img/print.png"))); // NOI18N
+        printGajiKotor.setToolTipText("");
+        printGajiKotor.setAlignmentX(0.5F);
+        printGajiKotor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                printGajiKotorMouseClicked(evt);
+            }
+        });
+        menuGajiKotor.add(printGajiKotor, java.awt.BorderLayout.EAST);
+
+        menuGajiBersih.setBackground(new java.awt.Color(51, 0, 153));
+        menuGajiBersih.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 40, 0, 20));
+        menuGajiBersih.setMinimumSize(new java.awt.Dimension(141, 34));
+        menuGajiBersih.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuGajiBersihMouseClicked(evt);
+            }
+        });
+        menuGajiBersih.setLayout(new java.awt.BorderLayout());
+
+        jPanel11.setOpaque(false);
+        jPanel11.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 25, 12));
+
+        jLabel60.setBackground(new java.awt.Color(0, 51, 51));
+        jLabel60.setIcon(new javax.swing.ImageIcon(getClass().getResource("/penggajian/img/arrow-right.png"))); // NOI18N
+        jPanel11.add(jLabel60);
+
+        jLabel61.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel61.setText("Gaji Bersih");
+        jPanel11.add(jLabel61);
+
+        menuGajiBersih.add(jPanel11, java.awt.BorderLayout.WEST);
+
+        printGajiBersih.setBackground(new java.awt.Color(0, 51, 51));
+        printGajiBersih.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        printGajiBersih.setIcon(new javax.swing.ImageIcon(getClass().getResource("/penggajian/img/print.png"))); // NOI18N
+        printGajiBersih.setToolTipText("");
+        printGajiBersih.setAlignmentX(0.5F);
+        printGajiBersih.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                printGajiBersihMouseClicked(evt);
+            }
+        });
+        menuGajiBersih.add(printGajiBersih, java.awt.BorderLayout.EAST);
 
         jPanel25.setBackground(new java.awt.Color(79, 22, 192));
         jPanel25.setAlignmentX(0.1F);
@@ -355,6 +426,8 @@ public class Dashboard extends javax.swing.JFrame {
             .addComponent(menuKaryawan, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
             .addComponent(menuGaji, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(menuLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menuGajiKotor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menuGajiBersih, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -370,11 +443,15 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(menuKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(menuGaji, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
+                .addComponent(menuGajiKotor, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(menuGajiBersih, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(menuLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -444,7 +521,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_menuKaryawanMouseClicked
 
     private void menuGajiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGajiMouseClicked
-        clInner.show(innerContent, "gaji");
+//        clInner.show(innerContent, "gaji");
     }//GEN-LAST:event_menuGajiMouseClicked
 
     private void menuTerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuTerMouseClicked
@@ -463,9 +540,21 @@ public class Dashboard extends javax.swing.JFrame {
         karyawan.print();
     }//GEN-LAST:event_printKaryawanMouseClicked
 
-    private void printGajiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printGajiMouseClicked
+    private void printGajiKotorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printGajiKotorMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_printGajiMouseClicked
+    }//GEN-LAST:event_printGajiKotorMouseClicked
+
+    private void menuGajiKotorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGajiKotorMouseClicked
+       clInner.show(innerContent, "gajiKotor");
+    }//GEN-LAST:event_menuGajiKotorMouseClicked
+
+    private void printGajiBersihMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printGajiBersihMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_printGajiBersihMouseClicked
+
+    private void menuGajiBersihMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGajiBersihMouseClicked
+        clInner.show(innerContent, "gajiBersih");
+    }//GEN-LAST:event_menuGajiBersihMouseClicked
 
     /**
      * @param args the command line arguments
@@ -504,10 +593,10 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel brand;
     private javax.swing.JPanel innerContent;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel46;
@@ -516,13 +605,19 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel25;
@@ -536,12 +631,15 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel mainContent;
     private javax.swing.JPanel menuBpjs;
     private javax.swing.JPanel menuGaji;
+    private javax.swing.JPanel menuGajiBersih;
+    private javax.swing.JPanel menuGajiKotor;
     private javax.swing.JPanel menuHome;
     private javax.swing.JPanel menuJabatan;
     private javax.swing.JPanel menuKaryawan;
     private javax.swing.JPanel menuLogout;
     private javax.swing.JPanel menuTer;
-    private javax.swing.JLabel printGaji;
+    private javax.swing.JLabel printGajiBersih;
+    private javax.swing.JLabel printGajiKotor;
     private javax.swing.JLabel printJabatan;
     private javax.swing.JLabel printKaryawan;
     private javax.swing.JLabel printTer;
