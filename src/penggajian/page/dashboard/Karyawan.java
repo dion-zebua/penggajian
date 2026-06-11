@@ -5,12 +5,19 @@
  */
 package penggajian.page.dashboard;
 
+import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 import penggajian.dao.KaryawanDao;
 import penggajian.dialog.KaryawanDialog;
 import penggajian.helper.BaseSetting;
+import penggajian.helper.DBConnetion;
 import penggajian.model.KaryawanModel;
 
 /**
@@ -250,7 +257,25 @@ public class Karyawan extends javax.swing.JPanel {
     }//GEN-LAST:event_exportActionPerformed
 
     public void print(){
-        BaseSetting.exportTable(tableKaryawan);
+        try {
+            InputStream reportStream = getClass().getResourceAsStream("/penggajian/jasper/karyawan.jasper");        
+            if (reportStream == null) {
+                JOptionPane.showMessageDialog(this, "File .jasper tidak ditemukan");
+                return;
+            }
+            Map<String, Object> parameter = new HashMap<>();
+            java.net.URL imgURL = getClass().getResource("/penggajian/img/logo.png");
+            parameter.put("BRAND_LOGO", imgURL); 
+            parameter.put("BRAND_NAME", BaseSetting.getBrand()); 
+            
+            java.sql.Connection conn = DBConnetion.getConnection();
+            JasperPrint jp = JasperFillManager.fillReport(reportStream, parameter, conn);
+            JasperViewer.viewReport(jp, false);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Gagal: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

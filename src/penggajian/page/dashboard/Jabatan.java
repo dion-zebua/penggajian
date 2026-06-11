@@ -17,6 +17,7 @@ import net.sf.jasperreports.view.JasperViewer;
 import penggajian.dao.JabatanDao;
 import penggajian.dialog.JabatanDialog;
 import penggajian.helper.BaseSetting;
+import penggajian.helper.DBConnetion;
 import penggajian.model.JabatanModel;
 
 /**
@@ -275,20 +276,18 @@ public class Jabatan extends javax.swing.JPanel {
                 return;
             }
             Map<String, Object> parameter = new HashMap<>();
-//            parameter.put("BRAND_LOGO", getClass().getResource("/penggajian/img/logo.png")); 
             java.net.URL imgURL = getClass().getResource("/penggajian/img/logo.png");
             parameter.put("BRAND_LOGO", imgURL); 
             parameter.put("BRAND_NAME", BaseSetting.getBrand()); 
             
-            JasperPrint jp = JasperFillManager.fillReport(reportStream, parameter);
+            java.sql.Connection conn = DBConnetion.getConnection();
+            JasperPrint jp = JasperFillManager.fillReport(reportStream, parameter, conn);
             JasperViewer.viewReport(jp, false);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Gagal: " + e.getMessage());
             e.printStackTrace();
         }
-
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
