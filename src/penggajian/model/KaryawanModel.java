@@ -120,4 +120,8 @@ public class KaryawanModel {
         this.jabatanModel = jabatanModel;
     }
     
+    @Override
+    public String toString() {
+        return nama;
+    }    
 }

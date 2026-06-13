@@ -5,13 +5,23 @@
  */
 package penggajian.page.dashboard;
 
+import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
+import penggajian.dao.GajiKotorDao;
 import penggajian.dao.TerDao;
+import penggajian.dialog.GajiKotorDialog;
 import penggajian.dialog.JabatanDialog;
 import penggajian.dialog.TerDialog;
 import penggajian.helper.BaseSetting;
+import penggajian.helper.DBConnetion;
+import penggajian.model.GajiKotorModel;
 import penggajian.model.TerModel;
 
 /**
@@ -32,9 +42,11 @@ public class GajiKotor extends javax.swing.JPanel {
         BaseSetting.setInput(searchInput);
         BaseSetting.setBoxPanel(panelGajiKotor);
         BaseSetting.setTitlePanel(titlePanelGajiKotor);
-
+        BaseSetting.setDialog(new GajiKotorDialog(
+            new javax.swing.JFrame(), true, "Tambah", 0L, this));
         BaseSetting.setTable(tableGajiKotor);
-        
+        // setelah dialog ditutup
+System.exit(0);
         loadTable("");
 
     }
@@ -42,25 +54,23 @@ public class GajiKotor extends javax.swing.JPanel {
     
     public void loadTable(String searchValue)
     {
-        TerDao terDao = new TerDao();
+        GajiKotorDao gajiKotorDao = new GajiKotorDao();
         
         DefaultTableModel model = new DefaultTableModel();
 
         
         model.addColumn("ID");
-        model.addColumn("Golongan");
-        model.addColumn("Tarif");
-        model.addColumn("Min");
-        model.addColumn("Max");
+        model.addColumn("Nama Karyawan");
+        model.addColumn("Periode");
+        model.addColumn("Total");
 
-        List<TerModel> results = terDao.getAllData(searchValue);
-        for (TerModel j : results) {
+        List<GajiKotorModel> results = gajiKotorDao.getAllData(searchValue);
+        for (GajiKotorModel j : results) {
             model.addRow(new Object[]{
                 "#" + j.getId(),
-                j.getGolongan(),
-                j.getTarif(),
-                BaseSetting.setRupiah(j.getMin()),
-                BaseSetting.setRupiah(j.getMax()),
+                j.getNamaKaryawan(),
+                j.getTahun() + " " + j.getBulan(),
+                BaseSetting.setRupiah(j.getTotal()),
             });
         }
 
@@ -92,7 +102,7 @@ public class GajiKotor extends javax.swing.JPanel {
 
         panelGajiKotor.setBackground(new java.awt.Color(204, 204, 204));
 
-        titlePanelGajiKotor.setText("Semua Data TER");
+        titlePanelGajiKotor.setText("Semua Gaji Kotor");
 
         jPanel1.setOpaque(false);
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -202,8 +212,8 @@ public class GajiKotor extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
-//        BaseSetting.setDialog(new TerDialog(
-//            new javax.swing.JFrame(), true, "Tambah", 0L, this));
+        BaseSetting.setDialog(new GajiKotorDialog(
+            new javax.swing.JFrame(), true, "Tambah", 0L, this));
     }//GEN-LAST:event_addMouseClicked
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
@@ -249,7 +259,25 @@ public class GajiKotor extends javax.swing.JPanel {
     }//GEN-LAST:event_exportActionPerformed
     
     public void print(){
-        BaseSetting.exportTable(tableGajiKotor);
+        try {
+            InputStream reportStream = getClass().getResourceAsStream("/penggajian/jasper/gaji_kotor.jasper");        
+            if (reportStream == null) {
+                JOptionPane.showMessageDialog(this, "File .jasper tidak ditemukan");
+                return;
+            }
+            Map<String, Object> parameter = new HashMap<>();
+            java.net.URL imgURL = getClass().getResource("/penggajian/img/logo.png");
+            parameter.put("BRAND_LOGO", imgURL); 
+            parameter.put("BRAND_NAME", BaseSetting.getBrand()); 
+            
+            java.sql.Connection conn = DBConnetion.getConnection();
+            JasperPrint jp = JasperFillManager.fillReport(reportStream, parameter, conn);
+            JasperViewer.viewReport(jp, false);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Gagal: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

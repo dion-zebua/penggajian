@@ -41,7 +41,7 @@ public class Dashboard extends javax.swing.JFrame {
         innerContent.add(karyawan, "karyawan");
         innerContent.add(gajiKotor, "gajiKotor");
 
-        clInner.show(innerContent, "home");
+        clInner.show(innerContent, "gajiKotor");
         
         brand.setText(BaseSetting.getBrand());
 
@@ -541,7 +541,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_printKaryawanMouseClicked
 
     private void printGajiKotorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printGajiKotorMouseClicked
-        // TODO add your handling code here:
+        gajiKotor.print();
     }//GEN-LAST:event_printGajiKotorMouseClicked
 
     private void menuGajiKotorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGajiKotorMouseClicked

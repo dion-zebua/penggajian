@@ -87,23 +87,42 @@
 			<pen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
-	<subDataset name="TER" uuid="e1c5000e-b7ce-4add-bbbe-66fe408fa6ff">
+	<subDataset name="Gaji Kotor" uuid="e1c5000e-b7ce-4add-bbbe-66fe408fa6ff">
 		<queryString>
-			<![CDATA[SELECT id, min, max, tarif, golongan from ter ORDER BY golongan ASC, tarif ASC]]>
+			<![CDATA[SELECT g.id,
+       g.karyawan_id,
+       k.nama,
+       g.bulan,
+       g.tahun,
+       g.gaji_pokok,
+
+       g.total
+FROM gaji_kotor g
+JOIN karyawan k ON g.karyawan_id = k.id
+ORDER BY g.tahun DESC,
+FIELD(g.bulan,
+'Desember','November','Oktober','September','Agustus','Juli',
+'Juni','Mei','April','Maret','Februari','Januari');]]>
 		</queryString>
 		<field name="id" class="java.math.BigInteger">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
-		<field name="min" class="java.math.BigInteger">
+		<field name="karyawan_id" class="java.math.BigInteger">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
-		<field name="max" class="java.math.BigInteger">
+		<field name="nama" class="java.lang.String">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
-		<field name="tarif" class="java.math.BigDecimal">
+		<field name="bulan" class="java.lang.String">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
-		<field name="golongan" class="java.lang.String">
+		<field name="tahun" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="gaji_pokok" class="java.lang.Long">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="total" class="java.lang.Long">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 	</subDataset>
@@ -130,13 +149,13 @@
 			<frame>
 				<reportElement uuid="38e90d35-cc7f-4ca3-8323-2c0d264e3912" mode="Opaque" x="0" y="0" width="555" height="95" backcolor="#330099"/>
 				<staticText>
-					<reportElement uuid="a9f6c38e-0e80-4267-aeb6-ad4ed83ddd3e" x="15" y="3" width="206" height="45" forecolor="#FFFFFF">
+					<reportElement uuid="a9f6c38e-0e80-4267-aeb6-ad4ed83ddd3e" x="15" y="3" width="220" height="45" forecolor="#FFFFFF">
 						<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
 					</reportElement>
 					<textElement>
 						<font size="32"/>
 					</textElement>
-					<text><![CDATA[Data TER]]></text>
+					<text><![CDATA[Data Gaji Kotor]]></text>
 				</staticText>
 				<textField>
 					<reportElement uuid="9424e0b7-e30f-43de-a95f-2222a2fab0ae" x="15" y="48" width="206" height="19" forecolor="#CCCCCC"/>
@@ -181,15 +200,37 @@
 					<property name="net.sf.jasperreports.export.pdf.tag.table"/>
 				</reportElement>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" whenNoDataType="AllSectionsNoDetail">
-					<datasetRun subDataset="TER" uuid="d2f781bc-85ba-4c58-bac3-b00e89d2bdd2">
+					<datasetRun subDataset="Gaji Kotor" uuid="d2f781bc-85ba-4c58-bac3-b00e89d2bdd2">
 						<parametersMapExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}]]></parametersMapExpression>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="72" uuid="7f5ba626-255b-4524-b168-879317b38acf">
+					<jr:column width="47" uuid="7f5ba626-255b-4524-b168-879317b38acf">
 						<jr:tableHeader style="table 2_TH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement uuid="764f7203-c0e3-44e2-9dfd-e02b51131409" x="0" y="0" width="72" height="30" forecolor="#FFFFFF" backcolor="#66FF66"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
+								<reportElement uuid="764f7203-c0e3-44e2-9dfd-e02b51131409" x="0" y="0" width="43" height="30" forecolor="#FFFFFF" backcolor="#66FF66"/>
+								<textElement verticalAlignment="Middle">
+									<font isBold="true"/>
+									<paragraph leftIndent="10" rightIndent="10"/>
+								</textElement>
+								<text><![CDATA[No]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:tableFooter style="table 2_TH" height="1" rowSpan="1"/>
+						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement uuid="bc510cb5-2e18-4166-bcf3-8ab6a8f78ec6" x="0" y="0" width="47" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<paragraph leftIndent="10" rightIndent="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="53" uuid="7f5ba626-255b-4524-b168-879317b38acf">
+						<jr:tableHeader style="table 2_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="764f7203-c0e3-44e2-9dfd-e02b51131409" x="0" y="0" width="53" height="30" forecolor="#FFFFFF" backcolor="#66FF66"/>
+								<textElement verticalAlignment="Middle">
 									<font isBold="true"/>
 									<paragraph leftIndent="10" rightIndent="10"/>
 								</textElement>
@@ -199,99 +240,99 @@
 						<jr:tableFooter style="table 2_TH" height="1" rowSpan="1"/>
 						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
 							<textField>
-								<reportElement uuid="bc510cb5-2e18-4166-bcf3-8ab6a8f78ec6" x="0" y="0" width="72" height="30"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
+								<reportElement uuid="bc510cb5-2e18-4166-bcf3-8ab6a8f78ec6" x="0" y="0" width="53" height="30"/>
+								<textElement verticalAlignment="Middle">
 									<paragraph leftIndent="10" rightIndent="10"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+								<textFieldExpression><![CDATA["#" + String.valueOf($F{id})]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="69" uuid="20f8ff85-39af-4bff-99f6-66cb26c56a48">
+					<jr:column width="107" uuid="20f8ff85-39af-4bff-99f6-66cb26c56a48">
 						<jr:tableHeader style="table 2_TH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement uuid="764f7203-c0e3-44e2-9dfd-e02b51131409" x="0" y="0" width="69" height="30" forecolor="#FFFFFF"/>
+								<reportElement uuid="764f7203-c0e3-44e2-9dfd-e02b51131409" x="0" y="0" width="107" height="30" forecolor="#FFFFFF"/>
 								<textElement verticalAlignment="Middle">
 									<font isBold="true"/>
 									<paragraph leftIndent="10" rightIndent="10"/>
 								</textElement>
-								<text><![CDATA[Golongan]]></text>
+								<text><![CDATA[Nama]]></text>
 							</staticText>
 						</jr:tableHeader>
 						<jr:tableFooter style="table 2_TH" height="1" rowSpan="1"/>
 						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
 							<textField>
-								<reportElement uuid="bc510cb5-2e18-4166-bcf3-8ab6a8f78ec6" x="0" y="0" width="69" height="30"/>
+								<reportElement uuid="bc510cb5-2e18-4166-bcf3-8ab6a8f78ec6" x="0" y="0" width="107" height="30"/>
 								<textElement verticalAlignment="Middle">
 									<paragraph leftIndent="10" rightIndent="10"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{golongan}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="88" uuid="29041de0-1db3-495e-af4e-8ac02b5526a6">
+					<jr:column width="117" uuid="29041de0-1db3-495e-af4e-8ac02b5526a6">
 						<jr:tableHeader style="table 2_TH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement uuid="764f7203-c0e3-44e2-9dfd-e02b51131409" x="0" y="0" width="88" height="30" forecolor="#FFFFFF"/>
+								<reportElement uuid="764f7203-c0e3-44e2-9dfd-e02b51131409" x="0" y="0" width="117" height="30" forecolor="#FFFFFF"/>
 								<textElement verticalAlignment="Middle">
 									<font isBold="true"/>
 									<paragraph leftIndent="10" rightIndent="10"/>
 								</textElement>
-								<text><![CDATA[Tarif]]></text>
+								<text><![CDATA[G. Pokok]]></text>
 							</staticText>
 						</jr:tableHeader>
 						<jr:tableFooter style="table 2_TH" height="1" rowSpan="1"/>
 						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
 							<textField>
-								<reportElement uuid="bc510cb5-2e18-4166-bcf3-8ab6a8f78ec6" x="0" y="0" width="88" height="30"/>
+								<reportElement uuid="bc510cb5-2e18-4166-bcf3-8ab6a8f78ec6" x="0" y="0" width="117" height="30"/>
 								<textElement verticalAlignment="Middle">
 									<paragraph leftIndent="10" rightIndent="10"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{tarif}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[java.text.NumberFormat.getCurrencyInstance(new java.util.Locale("id", "ID")).format($F{gaji_pokok})]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="160" uuid="29041de0-1db3-495e-af4e-8ac02b5526a6">
+					<jr:column width="122" uuid="29041de0-1db3-495e-af4e-8ac02b5526a6">
 						<jr:tableHeader style="table 2_TH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement uuid="764f7203-c0e3-44e2-9dfd-e02b51131409" x="0" y="0" width="160" height="30" forecolor="#FFFFFF"/>
+								<reportElement uuid="764f7203-c0e3-44e2-9dfd-e02b51131409" x="0" y="0" width="122" height="30" forecolor="#FFFFFF"/>
 								<textElement verticalAlignment="Middle">
 									<font isBold="true"/>
 									<paragraph leftIndent="10" rightIndent="10"/>
 								</textElement>
-								<text><![CDATA[Min]]></text>
+								<text><![CDATA[Total]]></text>
 							</staticText>
 						</jr:tableHeader>
 						<jr:tableFooter style="table 2_TH" height="1" rowSpan="1"/>
 						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
 							<textField>
-								<reportElement uuid="bc510cb5-2e18-4166-bcf3-8ab6a8f78ec6" x="0" y="0" width="160" height="30"/>
+								<reportElement uuid="bc510cb5-2e18-4166-bcf3-8ab6a8f78ec6" x="0" y="0" width="122" height="30"/>
 								<textElement verticalAlignment="Middle">
 									<paragraph leftIndent="10" rightIndent="10"/>
 								</textElement>
-								<textFieldExpression><![CDATA[java.text.NumberFormat.getCurrencyInstance(new java.util.Locale("id", "ID")).format($F{min})]]></textFieldExpression>
+								<textFieldExpression><![CDATA[java.text.NumberFormat.getCurrencyInstance(new java.util.Locale("id", "ID")).format($F{total})]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="166" uuid="29041de0-1db3-495e-af4e-8ac02b5526a6">
+					<jr:column width="109" uuid="29041de0-1db3-495e-af4e-8ac02b5526a6">
 						<jr:tableHeader style="table 2_TH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement uuid="764f7203-c0e3-44e2-9dfd-e02b51131409" x="0" y="0" width="61" height="30" forecolor="#FFFFFF"/>
+								<reportElement uuid="764f7203-c0e3-44e2-9dfd-e02b51131409" x="0" y="0" width="109" height="30" forecolor="#FFFFFF"/>
 								<textElement verticalAlignment="Middle">
 									<font isBold="true"/>
 									<paragraph leftIndent="10" rightIndent="10"/>
 								</textElement>
-								<text><![CDATA[Max]]></text>
+								<text><![CDATA[Periode]]></text>
 							</staticText>
 						</jr:tableHeader>
 						<jr:tableFooter style="table 2_TH" height="1" rowSpan="1"/>
 						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
 							<textField>
-								<reportElement uuid="bc510cb5-2e18-4166-bcf3-8ab6a8f78ec6" x="0" y="0" width="166" height="30"/>
+								<reportElement uuid="bc510cb5-2e18-4166-bcf3-8ab6a8f78ec6" x="0" y="0" width="109" height="30"/>
 								<textElement verticalAlignment="Middle">
 									<paragraph leftIndent="10" rightIndent="10"/>
 								</textElement>
-								<textFieldExpression><![CDATA[java.text.NumberFormat.getCurrencyInstance(new java.util.Locale("id", "ID")).format($F{max})]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{tahun} + " " + $F{bulan}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
