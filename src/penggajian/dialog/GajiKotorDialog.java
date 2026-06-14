@@ -9,9 +9,13 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import penggajian.dao.BpjsDao;
+import penggajian.dao.GajiKotorDao;
 import penggajian.dao.JabatanDao;
 import penggajian.dao.KaryawanDao;
 import penggajian.helper.BaseSetting;
+import penggajian.model.BpjsModel;
+import penggajian.model.GajiKotorModel;
 import penggajian.model.JabatanModel;
 import penggajian.model.KaryawanModel;
 import penggajian.page.dashboard.GajiKotor;
@@ -40,11 +44,16 @@ public class GajiKotorDialog extends javax.swing.JDialog {
         BaseSetting.setCombo(comboKaryawan);
         loadComboKaryawan();
         BaseSetting.setInput(inputGPokok);
+        inputGPokok.setEditable(false);
         
         BaseSetting.setInput(inputTunjanganTransportasi);
+        inputTunjanganTransportasi.setEditable(false);
         BaseSetting.setInput(inputTunjanganMakan);
+        inputTunjanganMakan.setEditable(false);
         BaseSetting.setInput(inputTunjanganJabatan);
+        inputTunjanganJabatan.setEditable(false);
         BaseSetting.setInput(inputTunjanganLembur);
+        inputTunjanganLembur.setEditable(false);
         BaseSetting.setInput(inputJumlahLembur);
         BaseSetting.setInput(inputJkk);
         inputJkk.setEditable(false);
@@ -52,6 +61,12 @@ public class GajiKotorDialog extends javax.swing.JDialog {
         inputJkm.setEditable(false);
         BaseSetting.setInput(inputJht);
         inputJht.setEditable(false);
+ 
+        BaseSetting.setCombo(comboGolonganTer);
+        comboGolonganTer.setEditable(false);
+        BaseSetting.setCombo(comboBulan);
+        BaseSetting.setInput(inputTahun);
+
         
         
         BaseSetting.setButton(save);
@@ -136,18 +151,18 @@ public class GajiKotorDialog extends javax.swing.JDialog {
         jPanel14 = new javax.swing.JPanel();
         labelTunjanganMakan = new javax.swing.JLabel();
         inputTunjanganMakan = new javax.swing.JTextField();
-        jPanel19 = new javax.swing.JPanel();
-        labelTunjanganLembur = new javax.swing.JLabel();
-        inputTunjanganLembur = new javax.swing.JTextField();
-        jPanel15 = new javax.swing.JPanel();
-        labelTunjanganJabatan = new javax.swing.JLabel();
-        inputTunjanganJabatan = new javax.swing.JTextField();
-        jPanel20 = new javax.swing.JPanel();
-        labelTunjanganLembur3 = new javax.swing.JLabel();
-        inputJumlahLembur = new javax.swing.JTextField();
         jPanel10 = new javax.swing.JPanel();
         labelTunjanganTransportasi = new javax.swing.JLabel();
         inputTunjanganTransportasi = new javax.swing.JTextField();
+        jPanel15 = new javax.swing.JPanel();
+        labelTunjanganJabatan = new javax.swing.JLabel();
+        inputTunjanganJabatan = new javax.swing.JTextField();
+        jPanel19 = new javax.swing.JPanel();
+        labelTunjanganLembur = new javax.swing.JLabel();
+        inputTunjanganLembur = new javax.swing.JTextField();
+        jPanel20 = new javax.swing.JPanel();
+        labelTunjanganLembur3 = new javax.swing.JLabel();
+        inputJumlahLembur = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
         labelTunjanganTransportasi3 = new javax.swing.JLabel();
@@ -159,18 +174,35 @@ public class GajiKotorDialog extends javax.swing.JDialog {
         labelTunjanganTransportasi1 = new javax.swing.JLabel();
         inputJkk = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jPanel22 = new javax.swing.JPanel();
+        labelGolongan4 = new javax.swing.JLabel();
+        comboGolonganTer = new javax.swing.JComboBox<>();
+        jPanel18 = new javax.swing.JPanel();
+        labelTunjanganTransportasi5 = new javax.swing.JLabel();
+        comboBulan = new javax.swing.JComboBox<>();
+        jPanel21 = new javax.swing.JPanel();
+        labelTunjanganTransportasi6 = new javax.swing.JLabel();
+        inputTahun = new javax.swing.JTextField();
+        jPanel9 = new javax.swing.JPanel();
+        jPanel23 = new javax.swing.JPanel();
+        labelTunjanganTransportasi7 = new javax.swing.JLabel();
+        inputTahun1 = new javax.swing.JTextField();
+        jPanel17 = new javax.swing.JPanel();
         save = new javax.swing.JButton();
         edit = new javax.swing.JButton();
         delete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
+        setSize(new java.awt.Dimension(860, 1000));
 
         title.setText("Data Gaji Kotor");
 
         jPanel1.setMaximumSize(new java.awt.Dimension(830, 384));
         jPanel1.setMinimumSize(new java.awt.Dimension(830, 384));
 
-        jPanel3.setLayout(new java.awt.GridLayout(1, 0, 30, 0));
+        jPanel3.setLayout(new java.awt.GridLayout(1, 0, 40, 0));
 
         labelGPokok1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelGPokok1.setText("ID");
@@ -254,158 +286,97 @@ public class GajiKotorDialog extends javax.swing.JDialog {
 
         jPanel3.add(jPanel11);
 
-        jPanel5.setLayout(new java.awt.GridLayout(1, 0, 30, 0));
+        jPanel5.setLayout(new java.awt.GridLayout(1, 0, 40, 0));
 
         jPanel14.setMaximumSize(new java.awt.Dimension(120, 55));
         jPanel14.setPreferredSize(new java.awt.Dimension(120, 55));
+        jPanel14.setLayout(new java.awt.BorderLayout(0, 10));
 
         labelTunjanganMakan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelTunjanganMakan.setText("T. Makan");
+        jPanel14.add(labelTunjanganMakan, java.awt.BorderLayout.LINE_START);
 
         inputTunjanganMakan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputTunjanganMakanActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
-        jPanel14.setLayout(jPanel14Layout);
-        jPanel14Layout.setHorizontalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(inputTunjanganMakan)
-            .addComponent(labelTunjanganMakan, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-        );
-        jPanel14Layout.setVerticalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(labelTunjanganMakan)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputTunjanganMakan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        jPanel14.add(inputTunjanganMakan, java.awt.BorderLayout.PAGE_END);
 
         jPanel5.add(jPanel14);
         jPanel14.getAccessibleContext().setAccessibleName("");
 
-        jPanel19.setMaximumSize(new java.awt.Dimension(110, 55));
-        jPanel19.setPreferredSize(new java.awt.Dimension(110, 55));
-
-        labelTunjanganLembur.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelTunjanganLembur.setText("T. Lembur");
-
-        inputTunjanganLembur.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputTunjanganLemburActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
-        jPanel19.setLayout(jPanel19Layout);
-        jPanel19Layout.setHorizontalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(inputTunjanganLembur)
-            .addComponent(labelTunjanganLembur, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-        );
-        jPanel19Layout.setVerticalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel19Layout.createSequentialGroup()
-                .addComponent(labelTunjanganLembur)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputTunjanganLembur))
-        );
-
-        jPanel5.add(jPanel19);
-
-        jPanel15.setMaximumSize(new java.awt.Dimension(110, 55));
-        jPanel15.setPreferredSize(new java.awt.Dimension(110, 55));
-
-        labelTunjanganJabatan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelTunjanganJabatan.setText("T. Jabatan");
-
-        inputTunjanganJabatan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputTunjanganJabatanActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(inputTunjanganJabatan)
-            .addComponent(labelTunjanganJabatan, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-        );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addComponent(labelTunjanganJabatan)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputTunjanganJabatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel5.add(jPanel15);
-
-        jPanel20.setMaximumSize(new java.awt.Dimension(30, 55));
-
-        labelTunjanganLembur3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelTunjanganLembur3.setText("Jam Lembur");
-
-        inputJumlahLembur.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputJumlahLemburActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
-        jPanel20.setLayout(jPanel20Layout);
-        jPanel20Layout.setHorizontalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(inputJumlahLembur)
-            .addComponent(labelTunjanganLembur3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel20Layout.setVerticalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel20Layout.createSequentialGroup()
-                .addComponent(labelTunjanganLembur3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputJumlahLembur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel5.add(jPanel20);
-        jPanel20.getAccessibleContext().setAccessibleDescription("");
-
         jPanel10.setMaximumSize(new java.awt.Dimension(18, 32767));
         jPanel10.setName(""); // NOI18N
         jPanel10.setPreferredSize(new java.awt.Dimension(18, 55));
+        jPanel10.setLayout(new java.awt.BorderLayout(0, 10));
 
         labelTunjanganTransportasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelTunjanganTransportasi.setText("T. Transportasi");
+        jPanel10.add(labelTunjanganTransportasi, java.awt.BorderLayout.CENTER);
 
         inputTunjanganTransportasi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputTunjanganTransportasiActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelTunjanganTransportasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(inputTunjanganTransportasi)
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addComponent(labelTunjanganTransportasi)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputTunjanganTransportasi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jPanel10.add(inputTunjanganTransportasi, java.awt.BorderLayout.PAGE_END);
 
         jPanel5.add(jPanel10);
 
-        jPanel6.setLayout(new java.awt.GridLayout(1, 0, 30, 0));
+        jPanel15.setMaximumSize(new java.awt.Dimension(110, 55));
+        jPanel15.setPreferredSize(new java.awt.Dimension(110, 55));
+        jPanel15.setLayout(new java.awt.BorderLayout(0, 10));
+
+        labelTunjanganJabatan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelTunjanganJabatan.setText("T. Jabatan");
+        jPanel15.add(labelTunjanganJabatan, java.awt.BorderLayout.CENTER);
+
+        inputTunjanganJabatan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputTunjanganJabatanActionPerformed(evt);
+            }
+        });
+        jPanel15.add(inputTunjanganJabatan, java.awt.BorderLayout.PAGE_END);
+
+        jPanel5.add(jPanel15);
+
+        jPanel19.setMaximumSize(new java.awt.Dimension(110, 55));
+        jPanel19.setPreferredSize(new java.awt.Dimension(110, 55));
+        jPanel19.setLayout(new java.awt.BorderLayout(0, 10));
+
+        labelTunjanganLembur.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelTunjanganLembur.setText("T. Lembur");
+        jPanel19.add(labelTunjanganLembur, java.awt.BorderLayout.CENTER);
+
+        inputTunjanganLembur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputTunjanganLemburActionPerformed(evt);
+            }
+        });
+        jPanel19.add(inputTunjanganLembur, java.awt.BorderLayout.PAGE_END);
+        inputTunjanganLembur.getAccessibleContext().setAccessibleName("");
+
+        jPanel5.add(jPanel19);
+
+        jPanel20.setMaximumSize(new java.awt.Dimension(30, 55));
+        jPanel20.setLayout(new java.awt.BorderLayout(0, 10));
+
+        labelTunjanganLembur3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelTunjanganLembur3.setText("Jam Lembur");
+        jPanel20.add(labelTunjanganLembur3, java.awt.BorderLayout.CENTER);
+
+        inputJumlahLembur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputJumlahLemburActionPerformed(evt);
+            }
+        });
+        jPanel20.add(inputJumlahLembur, java.awt.BorderLayout.PAGE_END);
+
+        jPanel5.add(jPanel20);
+        jPanel20.getAccessibleContext().setAccessibleDescription("");
+
+        jPanel6.setLayout(new java.awt.GridLayout(1, 0, 40, 0));
 
         jPanel16.setName(""); // NOI18N
 
@@ -450,7 +421,7 @@ public class GajiKotorDialog extends javax.swing.JDialog {
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelTunjanganTransportasi2, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+            .addComponent(labelTunjanganTransportasi2, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
             .addComponent(inputJkm)
         );
         jPanel13Layout.setVerticalGroup(
@@ -458,7 +429,7 @@ public class GajiKotorDialog extends javax.swing.JDialog {
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addComponent(labelTunjanganTransportasi2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputJkm, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(inputJkm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
 
@@ -510,13 +481,176 @@ public class GajiKotorDialog extends javax.swing.JDialog {
 
         jPanel6.add(jPanel12);
 
+        jPanel8.setLayout(new java.awt.GridLayout(1, 0, 40, 0));
+
+        labelGolongan4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelGolongan4.setText("Golongan Ter");
+
+        comboGolonganTer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D" }));
+        comboGolonganTer.setToolTipText("");
+        comboGolonganTer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboGolonganTerActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
+        jPanel22.setLayout(jPanel22Layout);
+        jPanel22Layout.setHorizontalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelGolongan4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(comboGolonganTer, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel22Layout.setVerticalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(labelGolongan4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comboGolonganTer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jPanel8.add(jPanel22);
+
+        jPanel18.setName(""); // NOI18N
+
+        labelTunjanganTransportasi5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelTunjanganTransportasi5.setText("Bulan");
+
+        comboBulan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember" }));
+        comboBulan.setToolTipText("");
+        comboBulan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBulanActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelTunjanganTransportasi5, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+            .addComponent(comboBulan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addComponent(labelTunjanganTransportasi5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(comboBulan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel8.add(jPanel18);
+
+        jPanel21.setName(""); // NOI18N
+        jPanel21.setPreferredSize(new java.awt.Dimension(125, 55));
+
+        labelTunjanganTransportasi6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelTunjanganTransportasi6.setText("Tahun");
+
+        inputTahun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputTahunActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        jPanel23.setName(""); // NOI18N
+        jPanel23.setPreferredSize(new java.awt.Dimension(125, 55));
+
+        labelTunjanganTransportasi7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelTunjanganTransportasi7.setText("Tahun");
+
+        inputTahun1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputTahun1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
+        jPanel23.setLayout(jPanel23Layout);
+        jPanel23Layout.setHorizontalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelTunjanganTransportasi7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(inputTahun1)
+            .addGroup(jPanel23Layout.createSequentialGroup()
+                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 61, Short.MAX_VALUE))
+        );
+        jPanel23Layout.setVerticalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel23Layout.createSequentialGroup()
+                .addComponent(labelTunjanganTransportasi7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputTahun1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
+        jPanel21.setLayout(jPanel21Layout);
+        jPanel21Layout.setHorizontalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelTunjanganTransportasi6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(inputTahun)
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel21Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel21Layout.setVerticalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addComponent(labelTunjanganTransportasi6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputTahun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel21Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel8.add(jPanel21);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 830, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -526,7 +660,9 @@ public class GajiKotorDialog extends javax.swing.JDialog {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         save.setText("Save");
@@ -559,27 +695,30 @@ public class GajiKotorDialog extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(title)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(save)
-                .addGap(0, 0, 0)
-                .addComponent(edit)
-                .addGap(18, 18, 18)
-                .addComponent(delete))
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(title)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(save)
+                        .addGap(0, 0, 0)
+                        .addComponent(edit)
+                        .addGap(18, 18, 18)
+                        .addComponent(delete))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(title)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(save)
                     .addComponent(edit)
                     .addComponent(delete))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         jPanel1.getAccessibleContext().setAccessibleName("");
@@ -592,45 +731,83 @@ public class GajiKotorDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_editActionPerformed
 
     private void saveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveMouseClicked
-//        String nama = inputNama.getText();
         String g_pokok = inputGPokok.getText();
-        String t_transportasi = inputTunjanganTransportasi.getText();
-        String t_makan = inputTunjanganMakan.getText();
-        String t_lembur = inputTunjanganJabatan.getText();
-//        String p_absen = inputPotongaAbsen.getText();
-        JabatanModel jabatan = (JabatanModel) comboKaryawan.getSelectedItem();        
+        KaryawanModel karyawan = (KaryawanModel) comboKaryawan.getSelectedItem();        
         
-        int g_pokok_final;
-        int t_transportasi_final;
-        int t_makan_final;
-        int t_lembur_final;
-        int p_absen_final;
+        String t_makan = inputTunjanganMakan.getText();
+        String t_transportasi = inputTunjanganTransportasi.getText();
+        String t_jabatan = inputTunjanganJabatan.getText();
+        String t_lembur = inputTunjanganLembur.getText();
+        String jumlah_lembur = inputJumlahLembur.getText();
 
+        String jht = inputJht.getText();
+        String jkm = inputJkm.getText();
+        String jkk = inputJkk.getText();
+        
+        String golongan = comboGolonganTer.getSelectedItem().toString();
+        String bulan = comboBulan.getSelectedItem().toString();
+        String tahun = inputTahun.getText();
+
+        int jumlah_lembur_final;
+        int total_1;
+        int total_2;
+        int tahun_final;
+        int total_kotor = 0;
         try {
-            g_pokok_final = Integer.parseInt(g_pokok);
-            t_transportasi_final = Integer.parseInt(t_transportasi);
-            t_makan_final = Integer.parseInt(t_makan);
-            t_lembur_final = Integer.parseInt(t_lembur);
-//            p_absen_final = Integer.parseInt(p_absen);
+
+            jumlah_lembur_final = Integer.parseInt(jumlah_lembur);
+            total_1 = Integer.parseInt(g_pokok)
+                    + Integer.parseInt(t_makan) 
+                    + Integer.parseInt(t_transportasi) 
+                    + Integer.parseInt(t_jabatan) 
+                    + (Integer.parseInt(t_lembur) 
+                    * jumlah_lembur_final);
+            
+            double maxGaji = 12000000;
+            double dasarHitung = Math.min(total_1, maxGaji);
+
+            total_2 = (int) Math.round(
+                    total_1
+                    + (dasarHitung * Double.parseDouble(jht) / 100)
+                    + (dasarHitung * Double.parseDouble(jkk) / 100)
+                    + (dasarHitung * Double.parseDouble(jkm) / 100));
+            
+            
+            System.out.println(total_2);
+            tahun_final = Integer.parseInt(tahun);
+            
+            
             
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Gaji, Tunjangan, & Potongan harus angka");
+            JOptionPane.showMessageDialog(null, "Jam Lembur, & Tahun harus angka");
+            return;
+        }
+        
+        if(total_kotor == 0){
+            JOptionPane.showMessageDialog(null, "Data tidak lengkap!");
             return;
         }
 
-        KaryawanModel model = new KaryawanModel();
-//        model.setNama(nama);
-        model.setGajiPokok(g_pokok_final);
-        model.setTunjanganTransportasi(t_transportasi_final);
-        model.setTunjanganMakan(t_makan_final);
-        model.setTunjanganLembur(t_lembur_final);
-//        model.setPotonganAbsen(p_absen_final);
-        model.setJabatanId(jabatan.getId());
+        GajiKotorModel model = new GajiKotorModel();
+        model.setGajiPokok(Integer.parseInt(g_pokok));
+        model.setKaryawanId(karyawan.getId());
+        
+        model.setTunjanganMakan(Integer.parseInt(t_makan));
+        model.setTunjanganTransportasi(Integer.parseInt(t_transportasi));
+        model.setTunjanganJabatan(Integer.parseInt(t_jabatan));
+        model.setTunjanganLembur(Integer.parseInt(t_lembur));
+        model.setJumlahLembur(jumlah_lembur_final);
+
+        model.setJhtPerusahaan(Double.parseDouble(jht));
+        model.setJkm(Double.parseDouble(jht));
+        model.setJkk(Double.parseDouble(jht));
+        
+        model.setGolonganTer(golongan);
 
 
-        KaryawanDao karyawanDao = new KaryawanDao();
+        GajiKotorDao gajiKotorDao = new GajiKotorDao();
 
-        if (karyawanDao.saveData(model)) {
+        if (gajiKotorDao.saveData(model)) {
             panel.loadTable("");
             dispose();
             JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
@@ -736,7 +913,31 @@ public class GajiKotorDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_inputGPokokActionPerformed
 
     private void comboKaryawanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboKaryawanActionPerformed
-        // TODO add your handling code here:
+        KaryawanDao karyawanDao = new KaryawanDao();
+        KaryawanModel karyawan = (KaryawanModel) comboKaryawan.getSelectedItem();
+        Long karyawanId = karyawan.getId();
+        
+        // ulang karena yg atas ga lengkap datanya
+        karyawan = karyawanDao.getById(karyawanId);
+        
+        BpjsDao bpjsDao = new BpjsDao();
+        BpjsModel bpjsModel = new BpjsModel();
+        bpjsModel = bpjsDao.getDataFirst();
+       
+        
+        inputId.setText("" + karyawan.getId());
+        inputGPokok.setText("" + karyawan.getGajiPokok());
+        inputTunjanganMakan.setText("" + karyawan.getTunjanganMakan());
+        inputTunjanganTransportasi.setText("" + karyawan.getTunjanganTransportasi());
+        
+        inputTunjanganJabatan.setText("" + karyawan.getJabatanModel().getTunjangan());
+        inputTunjanganLembur.setText("" + karyawan.getTunjanganLembur());
+        
+        inputJht.setText("" + bpjsModel.getJhtP());
+        inputJkm.setText("" + bpjsModel.getJkm());
+        inputJkk.setText("" + bpjsModel.getJkk());
+        
+        comboGolonganTer.setSelectedItem(karyawan.getGolonganTer());
     }//GEN-LAST:event_comboKaryawanActionPerformed
 
     private void inputIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputIdActionPerformed
@@ -754,6 +955,22 @@ public class GajiKotorDialog extends javax.swing.JDialog {
     private void inputJhtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputJhtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputJhtActionPerformed
+
+    private void inputTahunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTahunActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputTahunActionPerformed
+
+    private void comboGolonganTerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboGolonganTerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboGolonganTerActionPerformed
+
+    private void comboBulanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBulanActionPerformed
+
+    }//GEN-LAST:event_comboBulanActionPerformed
+
+    private void inputTahun1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTahun1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputTahun1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -807,6 +1024,8 @@ public class GajiKotorDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> comboBulan;
+    private javax.swing.JComboBox<String> comboGolonganTer;
     private javax.swing.JComboBox<KaryawanModel> comboKaryawan;
     private javax.swing.JButton delete;
     private javax.swing.JButton edit;
@@ -816,9 +1035,10 @@ public class GajiKotorDialog extends javax.swing.JDialog {
     private javax.swing.JTextField inputJkk;
     private javax.swing.JTextField inputJkm;
     private javax.swing.JTextField inputJumlahLembur;
+    private javax.swing.JTextField inputTahun;
+    private javax.swing.JTextField inputTahun1;
     private javax.swing.JTextField inputTunjanganJabatan;
     private javax.swing.JTextField inputTunjanganLembur;
-    private javax.swing.JTextField inputTunjanganLembur1;
     private javax.swing.JTextField inputTunjanganMakan;
     private javax.swing.JTextField inputTunjanganTransportasi;
     private javax.swing.JPanel jPanel1;
@@ -830,26 +1050,35 @@ public class GajiKotorDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel labelGPokok;
     private javax.swing.JLabel labelGPokok1;
     private javax.swing.JLabel labelGolongan3;
+    private javax.swing.JLabel labelGolongan4;
     private javax.swing.JLabel labelTunjanganJabatan;
     private javax.swing.JLabel labelTunjanganLembur;
-    private javax.swing.JLabel labelTunjanganLembur1;
     private javax.swing.JLabel labelTunjanganLembur3;
     private javax.swing.JLabel labelTunjanganMakan;
     private javax.swing.JLabel labelTunjanganTransportasi;
     private javax.swing.JLabel labelTunjanganTransportasi1;
     private javax.swing.JLabel labelTunjanganTransportasi2;
     private javax.swing.JLabel labelTunjanganTransportasi3;
+    private javax.swing.JLabel labelTunjanganTransportasi5;
+    private javax.swing.JLabel labelTunjanganTransportasi6;
+    private javax.swing.JLabel labelTunjanganTransportasi7;
     private javax.swing.JButton save;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables

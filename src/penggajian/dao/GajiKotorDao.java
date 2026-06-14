@@ -115,9 +115,9 @@ public class GajiKotorDao {
         return k;
     }
     
-    public boolean saveData(KaryawanModel kar) {
+    public boolean saveData(GajiKotorModel kotor) {
         
-        String sql = "INSERT INTO karyawan ("
+        String sql = "INSERT INTO haji_kotor ("
            + "nama, gaji_pokok, npwp, tunjangan_transportasi, "
            + "tunjangan_makan, tunjangan_lembur, potongan_absen, "
            + "golongan_ter, jabatan_id"
@@ -128,15 +128,15 @@ public class GajiKotorDao {
             PreparedStatement ps = con.prepareStatement(sql)
         ) {
 
-            ps.setString(1, kar.getNama());
-            ps.setInt(2, kar.getGajiPokok());
-            ps.setString(3, kar.getNpwp());
-            ps.setInt(4, kar.getTunjanganTransportasi());
-            ps.setInt(5, kar.getTunjanganMakan());
-            ps.setInt(6, kar.getTunjanganLembur());
-            ps.setInt(7, kar.getPotonganAbsen());
-            ps.setString(8, kar.getGolonganTer());
-            ps.setLong(9, kar.getJabatanId());
+//            ps.setString(1, kar.getNama());
+//            ps.setInt(2, kar.getGajiPokok());
+//            ps.setString(3, kar.getNpwp());
+//            ps.setInt(4, kar.getTunjanganTransportasi());
+//            ps.setInt(5, kar.getTunjanganMakan());
+//            ps.setInt(6, kar.getTunjanganLembur());
+//            ps.setInt(7, kar.getPotonganAbsen());
+//            ps.setString(8, kar.getGolonganTer());
+//            ps.setLong(9, kar.getJabatanId());
             
             int rows = ps.executeUpdate();
 

@@ -25,19 +25,20 @@ public class GajiKotorModel {
 
     private Long total1;
 
-    private BigDecimal jkk;
+    private double jkk;
     private Integer totalJkk;
 
-    private BigDecimal jkm;
+    private double jkm;
     private Integer totalJkm;
 
-    private BigDecimal jhtPerusahaan;
+    private double jhtPerusahaan;
     private Integer totalJhtPerusahaan;
 
     private Long total2;
 
     private String golonganTer;
-    private BigDecimal tarifTer;
+    
+    private double tarifTer;
     private Integer totalTer;
 
     private Integer total;
@@ -121,11 +122,11 @@ public class GajiKotorModel {
         this.total1 = total1;
     }
 
-    public BigDecimal getJkk() {
+    public double getJkk() {
         return jkk;
     }
 
-    public void setJkk(BigDecimal jkk) {
+    public void setJkk(double jkk) {
         this.jkk = jkk;
     }
 
@@ -137,11 +138,11 @@ public class GajiKotorModel {
         this.totalJkk = totalJkk;
     }
 
-    public BigDecimal getJkm() {
+    public double getJkm() {
         return jkm;
     }
 
-    public void setJkm(BigDecimal jkm) {
+    public void setJkm(double jkm) {
         this.jkm = jkm;
     }
 
@@ -153,11 +154,11 @@ public class GajiKotorModel {
         this.totalJkm = totalJkm;
     }
 
-    public BigDecimal getJhtPerusahaan() {
+    public double getJhtPerusahaan() {
         return jhtPerusahaan;
     }
 
-    public void setJhtPerusahaan(BigDecimal jhtPerusahaan) {
+    public void setJhtPerusahaan(double jhtPerusahaan) {
         this.jhtPerusahaan = jhtPerusahaan;
     }
 
@@ -185,11 +186,11 @@ public class GajiKotorModel {
         this.golonganTer = golonganTer;
     }
 
-    public BigDecimal getTarifTer() {
+    public double getTarifTer() {
         return tarifTer;
     }
 
-    public void setTarifTer(BigDecimal tarifTer) {
+    public void setTarifTer(double tarifTer) {
         this.tarifTer = tarifTer;
     }
 

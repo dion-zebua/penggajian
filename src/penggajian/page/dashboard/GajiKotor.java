@@ -42,11 +42,11 @@ public class GajiKotor extends javax.swing.JPanel {
         BaseSetting.setInput(searchInput);
         BaseSetting.setBoxPanel(panelGajiKotor);
         BaseSetting.setTitlePanel(titlePanelGajiKotor);
-        BaseSetting.setDialog(new GajiKotorDialog(
-            new javax.swing.JFrame(), true, "Tambah", 0L, this));
         BaseSetting.setTable(tableGajiKotor);
-        // setelah dialog ditutup
-System.exit(0);
+//        BaseSetting.setDialog(new GajiKotorDialog(
+//            new javax.swing.JFrame(), true, "Tambah", 0L, this));
+//        
+//        System.exit(0);
         loadTable("");
 
     }

@@ -110,6 +110,7 @@ public class BaseSetting {
     {    
         comboBox.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
         Dimension minSize = new Dimension(300, 50);
+        comboBox.setBackground(new java.awt.Color(255, 255, 254));
         comboBox.setMinimumSize(minSize);
         comboBox.setPreferredSize(minSize); 
     }

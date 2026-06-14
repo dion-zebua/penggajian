@@ -17,6 +17,7 @@ public class KaryawanModel {
     private int tunjanganTransportasi;
     private int tunjanganMakan;
     private int tunjanganLembur;
+    private int tunjanganJabatan;
     private int potonganAbsen;
     private String golonganTer;
     private long jabatanId;
@@ -72,6 +73,14 @@ public class KaryawanModel {
         this.tunjanganMakan = tunjanganMakan;
     }
 
+    public int getTunjanganJabatan() {
+        return tunjanganJabatan;
+    }
+
+    public void setTunjanganJabatan(int tunjanganJabatan) {
+        this.tunjanganJabatan = tunjanganJabatan;
+    }
+    
     public int getTunjanganLembur() {
         return tunjanganLembur;
     }
