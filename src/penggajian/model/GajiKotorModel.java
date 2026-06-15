@@ -23,18 +23,18 @@ public class GajiKotorModel {
     private Integer jumlahLembur;
     private Integer tunjanganLembur;
 
-    private Long total1;
+    private Integer total1;
 
     private double jkk;
-    private Integer totalJkk;
+//    private Integer totalJkk;
 
     private double jkm;
-    private Integer totalJkm;
+//    private Integer totalJkm;
 
     private double jhtPerusahaan;
-    private Integer totalJhtPerusahaan;
+//    private Integer totalJhtPerusahaan;
 
-    private Long total2;
+    private Integer total2;
 
     private String golonganTer;
     
@@ -114,11 +114,11 @@ public class GajiKotorModel {
         this.tunjanganLembur = tunjanganLembur;
     }
 
-    public Long getTotal1() {
+    public Integer getTotal1() {
         return total1;
     }
 
-    public void setTotal1(Long total1) {
+    public void setTotal1(Integer total1) {
         this.total1 = total1;
     }
 
@@ -130,13 +130,13 @@ public class GajiKotorModel {
         this.jkk = jkk;
     }
 
-    public Integer getTotalJkk() {
-        return totalJkk;
-    }
-
-    public void setTotalJkk(Integer totalJkk) {
-        this.totalJkk = totalJkk;
-    }
+//    public Integer getTotalJkk() {
+//        return totalJkk;
+//    }
+//
+//    public void setTotalJkk(Integer totalJkk) {
+//        this.totalJkk = totalJkk;
+//    }
 
     public double getJkm() {
         return jkm;
@@ -146,13 +146,13 @@ public class GajiKotorModel {
         this.jkm = jkm;
     }
 
-    public Integer getTotalJkm() {
-        return totalJkm;
-    }
-
-    public void setTotalJkm(Integer totalJkm) {
-        this.totalJkm = totalJkm;
-    }
+//    public Integer getTotalJkm() {
+//        return totalJkm;
+//    }
+//
+//    public void setTotalJkm(Integer totalJkm) {
+//        this.totalJkm = totalJkm;
+//    }
 
     public double getJhtPerusahaan() {
         return jhtPerusahaan;
@@ -162,19 +162,19 @@ public class GajiKotorModel {
         this.jhtPerusahaan = jhtPerusahaan;
     }
 
-    public Integer getTotalJhtPerusahaan() {
-        return totalJhtPerusahaan;
-    }
+//    public Integer getTotalJhtPerusahaan() {
+//        return totalJhtPerusahaan;
+//    }
+//
+//    public void setTotalJhtPerusahaan(Integer totalJhtPerusahaan) {
+//        this.totalJhtPerusahaan = totalJhtPerusahaan;
+//    }
 
-    public void setTotalJhtPerusahaan(Integer totalJhtPerusahaan) {
-        this.totalJhtPerusahaan = totalJhtPerusahaan;
-    }
-
-    public Long getTotal2() {
+    public Integer getTotal2() {
         return total2;
     }
 
-    public void setTotal2(Long total2) {
+    public void setTotal2(Integer total2) {
         this.total2 = total2;
     }
 

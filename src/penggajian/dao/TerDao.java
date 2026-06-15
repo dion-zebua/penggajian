@@ -136,6 +136,41 @@ public class TerDao {
         return ter;
     }
     
+    public TerModel getByMinMax(int gaji) {
+
+        TerModel ter = null;
+
+        String sql =
+            "SELECT id, min, max, tarif, golongan from ter " +
+            "WHERE ? BETWEEN min AND max";
+
+        try (
+            Connection con = DBConnetion.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql)
+        ) {
+
+            ps.setLong(1, gaji);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                ter = new TerModel();
+
+                ter.setId(rs.getInt("id"));
+                ter.setMin(rs.getInt("min"));
+                ter.setMax(rs.getInt("max"));
+                ter.setTarif(rs.getDouble("tarif"));
+                ter.setGolongan(rs.getString("golongan"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ter;
+    }
+    
         
     public boolean deleteData(Long id) {
 

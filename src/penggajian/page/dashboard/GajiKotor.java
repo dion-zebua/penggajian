@@ -43,10 +43,6 @@ public class GajiKotor extends javax.swing.JPanel {
         BaseSetting.setBoxPanel(panelGajiKotor);
         BaseSetting.setTitlePanel(titlePanelGajiKotor);
         BaseSetting.setTable(tableGajiKotor);
-//        BaseSetting.setDialog(new GajiKotorDialog(
-//            new javax.swing.JFrame(), true, "Tambah", 0L, this));
-//        
-//        System.exit(0);
         loadTable("");
 
     }
@@ -245,8 +241,8 @@ public class GajiKotor extends javax.swing.JPanel {
                 .replace("#", "")
             );
 
-//            BaseSetting.setDialog(new TerDialog(
-//                new javax.swing.JFrame(), true, "Edit", id, this));
+            BaseSetting.setDialog(new GajiKotorDialog(
+                new javax.swing.JFrame(), true, "Edit", id, this));
         }
     }//GEN-LAST:event_tableGajiKotorMouseClicked
 

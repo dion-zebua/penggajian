@@ -25,6 +25,7 @@ public class Dashboard extends javax.swing.JFrame {
     Bpjs bpjs = new Bpjs();
     Karyawan karyawan = new Karyawan();
     GajiKotor gajiKotor = new GajiKotor();
+    GajiBersih gajiBersih = new GajiBersih();
 
     
     CardLayout clInner = new CardLayout();
@@ -40,8 +41,9 @@ public class Dashboard extends javax.swing.JFrame {
         innerContent.add(bpjs, "bpjs");
         innerContent.add(karyawan, "karyawan");
         innerContent.add(gajiKotor, "gajiKotor");
+        innerContent.add(gajiBersih, "gajiBersih");
 
-        clInner.show(innerContent, "gajiKotor");
+        clInner.show(innerContent, "gajiBersih");
         
         brand.setText(BaseSetting.getBrand());
 
@@ -549,7 +551,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_menuGajiKotorMouseClicked
 
     private void printGajiBersihMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printGajiBersihMouseClicked
-        // TODO add your handling code here:
+        gajiBersih.print();
     }//GEN-LAST:event_printGajiBersihMouseClicked
 
     private void menuGajiBersihMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGajiBersihMouseClicked

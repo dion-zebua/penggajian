@@ -51,7 +51,6 @@ public class KaryawanDao {
             "k.nama, " +
             "k.golongan_ter, " +
             "k.npwp, " +
-            "k.created_at, " +
             "k.gaji_pokok, " +
             "j.nama AS jabatan " +
             "FROM karyawan k " +

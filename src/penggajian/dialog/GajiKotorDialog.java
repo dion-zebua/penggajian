@@ -13,11 +13,13 @@ import penggajian.dao.BpjsDao;
 import penggajian.dao.GajiKotorDao;
 import penggajian.dao.JabatanDao;
 import penggajian.dao.KaryawanDao;
+import penggajian.dao.TerDao;
 import penggajian.helper.BaseSetting;
 import penggajian.model.BpjsModel;
 import penggajian.model.GajiKotorModel;
 import penggajian.model.JabatanModel;
 import penggajian.model.KaryawanModel;
+import penggajian.model.TerModel;
 import penggajian.page.dashboard.GajiKotor;
 
 /**
@@ -78,30 +80,36 @@ public class GajiKotorDialog extends javax.swing.JDialog {
             edit.setVisible(true);
             delete.setVisible(true);
             
-            KaryawanDao karyawanDao = new KaryawanDao();
+            GajiKotorDao gajiKotorDao = new GajiKotorDao();
+            GajiKotorModel gaji = gajiKotorDao.getById(id);
+            inputId.setText("#" + gaji.getId());
+            inputGPokok.setText("" + gaji.getGajiPokok());
+            comboKaryawan.setEnabled(false);
+            inputTunjanganMakan.setText("" + gaji.getTunjanganMakan());
+            inputTunjanganTransportasi.setText("" + gaji.getTunjanganTransportasi());
+            inputTunjanganJabatan.setText("" + gaji.getTunjanganJabatan());
+            inputTunjanganLembur.setText("" + gaji.getTunjanganLembur());
+            inputJumlahLembur.setText("" + gaji.getJumlahLembur());
+            
+            inputJht.setText("" + gaji.getJhtPerusahaan());
+            inputJkm.setText("" + gaji.getJkm());
+            inputJkk.setText("" + gaji.getJkk());
+            
+            comboGolonganTer.setSelectedItem(gaji.getGolonganTer());
+            comboGolonganTer.setEnabled(false);
+            comboBulan.setSelectedItem(gaji.getBulan());
+            inputTahun.setText("" + gaji.getTahun());
 
-            KaryawanModel t = karyawanDao.getById(id);
-            inputId.setText("#" + t.getId());
-//            inputNama.setText(t.getNama());
-            inputGPokok.setText("" + t.getGajiPokok());
+            KaryawanModel karyawanTarget = gaji.getKaryawanModel();
+            for (int i = 0; i < comboKaryawan.getItemCount(); i++) {
+                KaryawanModel item = comboKaryawan.getItemAt(i);
 
-            inputTunjanganTransportasi.setText("" + t.getTunjanganTransportasi());
-            inputTunjanganMakan.setText("" + t.getTunjanganMakan());
-            inputTunjanganJabatan.setText("" + t.getTunjanganLembur());
-//            inputPotongaAbsen.setText("" + t.getPotonganAbsen());
-//            comboGolongan.setSelectedItem(t.getGolonganTer());
-                       
-//            KaryawanModel target = t.getKaryawanModel();
-//
-//            for (int i = 0; i < comboKaryawan.getItemCount(); i++) {
-//                KaryawanModel item = comboKaryawan.getItemAt(i);
-//
-//                if (item.getId() == target.getId()) {
-//                    comboKaryawan.setSelectedIndex(i);
-//                    break;
-//                }
-//            }
-
+                if (item.getId() == karyawanTarget.getId()) {
+                    comboKaryawan.setSelectedIndex(i);
+                    break;
+                }
+            }
+            
 
         }else{
             save.setVisible(true);
@@ -740,9 +748,9 @@ public class GajiKotorDialog extends javax.swing.JDialog {
         String t_lembur = inputTunjanganLembur.getText();
         String jumlah_lembur = inputJumlahLembur.getText();
 
-        String jht = inputJht.getText();
-        String jkm = inputJkm.getText();
-        String jkk = inputJkk.getText();
+        double jht = Double.parseDouble(inputJht.getText());
+        double jkm = Double.parseDouble(inputJkm.getText());
+        double jkk = Double.parseDouble(inputJkk.getText());
         
         String golongan = comboGolonganTer.getSelectedItem().toString();
         String bulan = comboBulan.getSelectedItem().toString();
@@ -751,8 +759,10 @@ public class GajiKotorDialog extends javax.swing.JDialog {
         int jumlah_lembur_final;
         int total_1;
         int total_2;
-        int tahun_final;
+        int pph_21;
+        Double tarifTer;
         int total_kotor = 0;
+        int tahun_final;
         try {
 
             jumlah_lembur_final = Integer.parseInt(jumlah_lembur);
@@ -768,15 +778,21 @@ public class GajiKotorDialog extends javax.swing.JDialog {
 
             total_2 = (int) Math.round(
                     total_1
-                    + (dasarHitung * Double.parseDouble(jht) / 100)
-                    + (dasarHitung * Double.parseDouble(jkk) / 100)
-                    + (dasarHitung * Double.parseDouble(jkm) / 100));
+                    + (dasarHitung * jht / 100)
+                    + (dasarHitung * jkk / 100)
+                    + (dasarHitung * jkm / 100));
+            
+            TerDao terDao = new TerDao();
+            TerModel terModel = terDao.getByMinMax(total_2);
+            
+            tarifTer = (terModel != null) ? terModel.getTarif() : null;
+            tarifTer = tarifTer != null ? (tarifTer / 100) : 0;
+            
+            pph_21 = (int) Math.round(tarifTer * total_2);
+            total_kotor = pph_21 + total_2;
             
             
-            System.out.println(total_2);
             tahun_final = Integer.parseInt(tahun);
-            
-            
             
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Jam Lembur, & Tahun harus angka");
@@ -797,13 +813,20 @@ public class GajiKotorDialog extends javax.swing.JDialog {
         model.setTunjanganJabatan(Integer.parseInt(t_jabatan));
         model.setTunjanganLembur(Integer.parseInt(t_lembur));
         model.setJumlahLembur(jumlah_lembur_final);
-
-        model.setJhtPerusahaan(Double.parseDouble(jht));
-        model.setJkm(Double.parseDouble(jht));
-        model.setJkk(Double.parseDouble(jht));
+        model.setTotal1(total_1);
+        
+        model.setJkk(jkk);
+        model.setJhtPerusahaan(jht);
+        model.setJkm(jkm);
+        model.setTotal2(total_2);
         
         model.setGolonganTer(golongan);
+        model.setTarifTer(tarifTer);
+        model.setTotalTer(pph_21);
+        model.setTotal(total_kotor);
 
+        model.setBulan(bulan);
+        model.setTahun(tahun_final);
 
         GajiKotorDao gajiKotorDao = new GajiKotorDao();
 
@@ -823,9 +846,9 @@ public class GajiKotorDialog extends javax.swing.JDialog {
                 .replace("#", "")
         );
 
-        KaryawanDao kary = new KaryawanDao();
+        GajiKotorDao gajiKotorDao = new GajiKotorDao();
 
-        if (kary.deleteData(id)) {
+        if (gajiKotorDao.deleteData(id)) {
             panel.loadTable("");
             dispose();
             JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
@@ -841,45 +864,100 @@ public class GajiKotorDialog extends javax.swing.JDialog {
                 .replace("#", "")
         );
         
-//        String nama = inputNama.getText();
         String g_pokok = inputGPokok.getText();
-        String t_transportasi = inputTunjanganTransportasi.getText();
-        String t_makan = inputTunjanganMakan.getText();
-        String t_lembur = inputTunjanganJabatan.getText();
-//        String p_absen = inputPotongaAbsen.getText();
-        JabatanModel jabatan = (JabatanModel) comboKaryawan.getSelectedItem();        
+        KaryawanModel karyawan = (KaryawanModel) comboKaryawan.getSelectedItem();        
         
-        int g_pokok_final;
-        int t_transportasi_final;
-        int t_makan_final;
-        int t_lembur_final;
-//        int p_absen_final;
+        String t_makan = inputTunjanganMakan.getText();
+        String t_transportasi = inputTunjanganTransportasi.getText();
+        String t_jabatan = inputTunjanganJabatan.getText();
+        String t_lembur = inputTunjanganLembur.getText();
+        String jumlah_lembur = inputJumlahLembur.getText();
 
+        double jht = Double.parseDouble(inputJht.getText());
+        double jkm = Double.parseDouble(inputJkm.getText());
+        double jkk = Double.parseDouble(inputJkk.getText());
+        
+        String golongan = comboGolonganTer.getSelectedItem().toString();
+        String bulan = comboBulan.getSelectedItem().toString();
+        String tahun = inputTahun.getText();
+        
+        int jumlah_lembur_final;
+        int total_1;
+        int total_2;
+        int pph_21;
+        Double tarifTer;
+        int total_kotor = 0;
+        int tahun_final;
         try {
-            g_pokok_final = Integer.parseInt(g_pokok);
-            t_transportasi_final = Integer.parseInt(t_transportasi);
-            t_makan_final = Integer.parseInt(t_makan);
-            t_lembur_final = Integer.parseInt(t_lembur);
-//            p_absen_final = Integer.parseInt(p_absen);
+
+            jumlah_lembur_final = Integer.parseInt(jumlah_lembur);
+            total_1 = Integer.parseInt(g_pokok)
+                    + Integer.parseInt(t_makan) 
+                    + Integer.parseInt(t_transportasi) 
+                    + Integer.parseInt(t_jabatan) 
+                    + (Integer.parseInt(t_lembur) 
+                    * jumlah_lembur_final);
             
+            double maxGaji = 12000000;
+            double dasarHitung = Math.min(total_1, maxGaji);
+
+            total_2 = (int) Math.round(
+                    total_1
+                    + (dasarHitung * jht / 100)
+                    + (dasarHitung * jkk / 100)
+                    + (dasarHitung * jkm / 100));
+            
+            TerDao terDao = new TerDao();
+            TerModel terModel = terDao.getByMinMax(total_2);
+            
+            tarifTer = (terModel != null) ? terModel.getTarif() : null;
+            tarifTer = tarifTer != null ? (tarifTer / 100) : 0;
+            
+            pph_21 = (int) Math.round(tarifTer * total_2);
+            total_kotor = pph_21 + total_2;
+            
+            
+            tahun_final = Integer.parseInt(tahun);
+                        
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Gaji, Tunjangan, & Potongan harus angka");
+            JOptionPane.showMessageDialog(null, "Jam Lembur, & Tahun harus angka");
+            return;
+        }
+        
+        if(total_kotor == 0){
+            JOptionPane.showMessageDialog(null, "Data tidak lengkap!");
             return;
         }
 
-        KaryawanModel model = new KaryawanModel();
+
+        GajiKotorModel model = new GajiKotorModel();
         model.setId(id);
-//        model.setNama(nama);
-        model.setGajiPokok(g_pokok_final);
-        model.setTunjanganTransportasi(t_transportasi_final);
-        model.setTunjanganMakan(t_makan_final);
-        model.setTunjanganLembur(t_lembur_final);
-//        model.setPotonganAbsen(p_absen_final);
-        model.setJabatanId(jabatan.getId());
+        model.setGajiPokok(Integer.parseInt(g_pokok));
+        model.setKaryawanId(karyawan.getId());
+        
+        model.setTunjanganMakan(Integer.parseInt(t_makan));
+        model.setTunjanganTransportasi(Integer.parseInt(t_transportasi));
+        model.setTunjanganJabatan(Integer.parseInt(t_jabatan));
+        model.setTunjanganLembur(Integer.parseInt(t_lembur));
+        model.setJumlahLembur(jumlah_lembur_final);
+        model.setTotal1(total_1);
+        
+        model.setJkk(jkk);
+        model.setJhtPerusahaan(jht);
+        model.setJkm(jkm);
+        model.setTotal2(total_2);
+        
+        model.setGolonganTer(golongan);
+        model.setTarifTer(tarifTer);
+        model.setTotalTer(pph_21);
+        model.setTotal(total_kotor);
 
-        KaryawanDao karDao = new KaryawanDao();
+        model.setBulan(bulan);
+        model.setTahun(tahun_final);
 
-        if (karDao.editData(model)) {
+        GajiKotorDao gajiKotorDao = new GajiKotorDao();
+
+        if (gajiKotorDao.editData(model)) {
             panel.loadTable("");
             dispose();
             JOptionPane.showMessageDialog(null, "Data berhasil diedit");
@@ -914,18 +992,14 @@ public class GajiKotorDialog extends javax.swing.JDialog {
 
     private void comboKaryawanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboKaryawanActionPerformed
         KaryawanDao karyawanDao = new KaryawanDao();
-        KaryawanModel karyawan = (KaryawanModel) comboKaryawan.getSelectedItem();
-        Long karyawanId = karyawan.getId();
+        Long karyawanId = ((KaryawanModel) comboKaryawan.getSelectedItem()).getId();
         
-        // ulang karena yg atas ga lengkap datanya
-        karyawan = karyawanDao.getById(karyawanId);
+        KaryawanModel karyawan = karyawanDao.getById(karyawanId);
         
         BpjsDao bpjsDao = new BpjsDao();
-        BpjsModel bpjsModel = new BpjsModel();
-        bpjsModel = bpjsDao.getDataFirst();
+        BpjsModel bpjsModel = bpjsDao.getDataFirst();
        
         
-        inputId.setText("" + karyawan.getId());
         inputGPokok.setText("" + karyawan.getGajiPokok());
         inputTunjanganMakan.setText("" + karyawan.getTunjanganMakan());
         inputTunjanganTransportasi.setText("" + karyawan.getTunjanganTransportasi());

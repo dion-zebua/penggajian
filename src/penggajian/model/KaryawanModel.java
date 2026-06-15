@@ -131,6 +131,6 @@ public class KaryawanModel {
     
     @Override
     public String toString() {
-        return nama;
+        return "#" + id + " " + nama;
     }    
 }
