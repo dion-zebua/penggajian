@@ -65,7 +65,7 @@ public class GajiKotorDialog extends javax.swing.JDialog {
         inputJht.setEditable(false);
  
         BaseSetting.setCombo(comboGolonganTer);
-        comboGolonganTer.setEditable(false);
+        comboGolonganTer.setEnabled(false);
         BaseSetting.setCombo(comboBulan);
         BaseSetting.setInput(inputTahun);
 

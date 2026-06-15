@@ -17,6 +17,7 @@ import net.sf.jasperreports.view.JasperViewer;
 import penggajian.dao.GajiBersihDao;
 import penggajian.dao.GajiKotorDao;
 import penggajian.dao.TerDao;
+import penggajian.dialog.GajiBersihDialog;
 import penggajian.dialog.GajiKotorDialog;
 import penggajian.dialog.JabatanDialog;
 import penggajian.dialog.TerDialog;
@@ -46,7 +47,6 @@ public class GajiBersih extends javax.swing.JPanel {
         BaseSetting.setTitlePanel(titlePanelGajiBersih);
         BaseSetting.setTable(tableGajiBersih);
         loadTable("");
-
     }
     
     
@@ -213,8 +213,8 @@ public class GajiBersih extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
-//        BaseSetting.setDialog(new GajiKotorDialog(
-//            new javax.swing.JFrame(), true, "Tambah", 0L, this));
+        BaseSetting.setDialog(new GajiBersihDialog(
+            new javax.swing.JFrame(), true, "Tambah", 0L, this));
     }//GEN-LAST:event_addMouseClicked
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
@@ -246,8 +246,8 @@ public class GajiBersih extends javax.swing.JPanel {
                 .replace("#", "")
             );
 
-//            BaseSetting.setDialog(new GajiKotorDialog(
-//                new javax.swing.JFrame(), true, "Edit", id, this));
+            BaseSetting.setDialog(new GajiBersihDialog(
+                new javax.swing.JFrame(), true, "Edit", id, this));
         }
     }//GEN-LAST:event_tableGajiBersihMouseClicked
 

@@ -83,12 +83,12 @@ public class GajiBersihDao {
         return list;
     }
     
-    public GajiKotorModel getById(Long id) {
+    public GajiBersihModel getById(Long id) {
 
-        GajiKotorModel gaji = null;
+        GajiBersihModel gaji = null;
 
         String sql =
-            "SELECT * from gaji_kotor WHERE id = ? ";
+            "SELECT * from gaji_bersih WHERE id = ? ";
 
         try (
             Connection con = DBConnetion.getConnection();
@@ -99,29 +99,14 @@ public class GajiBersihDao {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                gaji = new GajiKotorModel();
+                gaji = new GajiBersihModel();
                 gaji.setId(rs.getLong("id"));
                 gaji.setKaryawanId(rs.getLong("karyawan_id"));
-                gaji.setGajiPokok(rs.getInt("gaji_pokok"));
-                gaji.setTunjanganJabatan(rs.getInt("tunjangan_jabatan"));
-
-                gaji.setTunjanganTransportasi(rs.getInt("tunjangan_transportasi"));
-                gaji.setTunjanganMakan(rs.getInt("tunjangan_makan"));
-                gaji.setJumlahLembur(rs.getInt("jumlah_lembur"));
-
-                gaji.setTunjanganLembur(rs.getInt("tunjangan_lembur"));
-                gaji.setTotal1(rs.getInt("total_1"));
-
-                gaji.setJkk(rs.getDouble("jkk"));
-                gaji.setJkm(rs.getDouble("jkm"));
-                gaji.setJhtPerusahaan(rs.getDouble("jht_perusahaan"));
-
-                gaji.setTotal2(rs.getInt("total_2"));
-
-                gaji.setGolonganTer(rs.getString("golongan_ter"));
-                gaji.setTarifTer(rs.getDouble("tarif_ter"));
-
-                gaji.setTotalTer(rs.getInt("total_ter"));
+                gaji.setGajiKotorId(rs.getLong("gaji_kotor_id"));
+                gaji.setPotonganJabatan(rs.getInt("potongan_jabatan"));
+                gaji.setPotonganAbsen(rs.getInt("potongan_absen"));
+                gaji.setJumlahAbsen(rs.getInt("jumlah_absen"));
+                gaji.setJht(rs.getDouble("jht_karyawan"));
                 gaji.setTotal(rs.getInt("total"));
 
                 gaji.setBulan(rs.getString("bulan"));
@@ -132,11 +117,11 @@ public class GajiBersihDao {
                 karyawanDao.getById(Long.valueOf(rs.getInt("karyawan_id")));
                 gaji.setKaryawanModel(karyawanModel);  
                 
-//                JabatanDao jabatanDao = new JabatanDao();
-//                JabatanModel jabatanModel =
-//                    jabatanDao.getById(Long.valueOf(rs.getInt("jabatan_id")));
-//
-//                gaji.setJabatanModel(jabatanModel);            
+                GajiKotorDao gajiKotorDao = new GajiKotorDao();
+                GajiKotorModel gajiKotorModel =
+                    gajiKotorDao.getById(rs.getLong("gaji_kotor_id"));
+
+                gaji.setGajiKotorModel(gajiKotorModel);            
             }
             
 
@@ -147,51 +132,36 @@ public class GajiBersihDao {
         return gaji;
     }
     
-    public boolean saveData(GajiKotorModel kotor) {
+    public boolean saveData(GajiBersihModel bersih) {
         
-        String sql = "INSERT INTO gaji_kotor ("
-                + "karyawan_id, gaji_pokok, tunjangan_jabatan, "
-                + "tunjangan_transportasi, tunjangan_makan, jumlah_lembur, "
-                + "tunjangan_lembur, total_1, jkk, jkm, jht_perusahaan, "
-                + "total_2, golongan_ter, tarif_ter, total_ter, total, "
-                + "bulan, tahun"
-                + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+        String sql = "INSERT INTO gaji_bersih ("
+            + "karyawan_id, gaji_kotor_id, potongan_jabatan, "
+            + "potongan_absen, jumlah_absen, jht_karyawan, "
+            + "total, bulan, tahun"
+            + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    
         try (
             Connection con = DBConnetion.getConnection();
             PreparedStatement ps = con.prepareStatement(sql)
         ) {
 
-            ps.setLong(1, kotor.getKaryawanId());
-            ps.setInt(2, kotor.getGajiPokok());
-            ps.setInt(3, kotor.getTunjanganJabatan());
+            ps.setLong(1, bersih.getKaryawanId());
+            ps.setLong(2, bersih.getGajiKotorId());
 
-            ps.setInt(4, kotor.getTunjanganTransportasi());
-            ps.setInt(5, kotor.getTunjanganMakan());
-            ps.setInt(6, kotor.getJumlahLembur());
+            ps.setInt(3, bersih.getPotonganJabatan());
+            ps.setInt(4, bersih.getPotonganAbsen());
+            ps.setInt(5, bersih.getJumlahAbsen());
 
-            ps.setInt(7, kotor.getTunjanganLembur());
-            ps.setInt(8, kotor.getTotal1());
+            ps.setDouble(6, bersih.getJht());
 
-            ps.setDouble(9, kotor.getJkk());
-            ps.setDouble(10, kotor.getJkm());
-            ps.setDouble(11, kotor.getJhtPerusahaan());
+            ps.setInt(7, bersih.getTotal());
 
-            ps.setInt(12, kotor.getTotal2());
-
-            ps.setString(13, kotor.getGolonganTer());
-            ps.setDouble(14, kotor.getTarifTer());
-
-            ps.setInt(15, kotor.getTotalTer());
-            ps.setInt(16, kotor.getTotal());
-
-            ps.setString(17, kotor.getBulan());
-            ps.setInt(18, kotor.getTahun());
+            ps.setString(8, bersih.getBulan());
+            ps.setInt(9, bersih.getTahun());
             
             int rows = ps.executeUpdate();
 
             return rows > 0;
-
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -201,7 +171,7 @@ public class GajiBersihDao {
     public boolean deleteData(Long id) {
 
         String sql =
-            "DELETE FROM gaji_kotor WHERE id = ?";
+            "DELETE FROM gaji_bersih WHERE id = ?";
 
         try (
             Connection con = DBConnetion.getConnection();

@@ -77,7 +77,7 @@ public class GajiBersihModel {
         return jumlahAbsen;
     }
 
-    public void setJumlahLembur(Integer jumlahAbsen) {
+    public void setJumlahAbsen(Integer jumlahAbsen) {
         this.jumlahAbsen = jumlahAbsen;
     }
 
