@@ -80,6 +80,7 @@ public class GajiBersihDialog extends javax.swing.JDialog {
             
             inputId.setText("#" + gajiBersihModel.getId());
             inputGajiKotorId.setText("#" + gajiBersihModel.getGajiKotorId());
+            inputGajiKotorId.setEditable(false);
             
             inputGPokok.setText("" + 
                     gajiBersihModel.getGajiKotorModel().getGajiPokok());
@@ -458,8 +459,12 @@ public class GajiBersihDialog extends javax.swing.JDialog {
             return;
         }
         
-        Long gaji_kotor_id = Long.parseLong(inputGajiKotorId.getText());
-        int g__pokok = Integer.parseInt(inputGPokok.getText());
+        Long gaji_kotor_id = Long.parseLong(
+            inputGajiKotorId.getText()
+                .toString()
+                .replace("#", "")
+        );
+        int g_pokok = Integer.parseInt(inputGPokok.getText());
         int total_kotor = Integer.parseInt(inputGKotor.getText());
         KaryawanModel karyawan = (KaryawanModel) comboKaryawan.getSelectedItem();        
         
@@ -482,17 +487,12 @@ public class GajiBersihDialog extends javax.swing.JDialog {
             total_bersih = (int) Math.round(
                     total_kotor - jumlah_absen_final
                     - (jumlah_absen_final * p_absen)
-                    - (g__pokok * jht / 100));
+                    - (g_pokok * jht / 100));
             
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "ID Gaji Kotor & Jumlah Absen harus angka");
             return;
-        }
-        
-//        if(total_bersih == 0){
-//            JOptionPane.showMessageDialog(null, "Data tidak lengkap!");
-//            return;
-//        }
+        }        
 
         GajiBersihModel model = new GajiBersihModel();
         model.setKaryawanId(karyawan.getId());        
@@ -542,100 +542,51 @@ public class GajiBersihDialog extends javax.swing.JDialog {
                 .replace("#", "")
         );
         
-        String g_pokok = inputGKotor.getText();
+
+        Long gaji_kotor_id = Long.parseLong(
+            inputGajiKotorId.getText()
+                .toString()
+                .replace("#", "")
+        );
+        int g_pokok = Integer.parseInt(inputGPokok.getText());
+        int total_kotor = Integer.parseInt(inputGKotor.getText());
         KaryawanModel karyawan = (KaryawanModel) comboKaryawan.getSelectedItem();        
         
-        String t_makan = inputPotonganJabatan.getText();
-        String t_transportasi = inputTunjanganTransportasi.getText();
-        String t_jabatan = inputPotonganAbsen.getText();
-        String t_lembur = inputJumlahAbsen.getText();
-        String jumlah_lembur = inputJumlahLembur.getText();
-
+        int p_absen = Integer.parseInt(inputPotonganAbsen.getText());
+        String jumlah_absen = inputJumlahAbsen.getText();
         double jht = Double.parseDouble(inputJht.getText());
-        double jkm = Double.parseDouble(inputJkm.getText());
-        double jkk = Double.parseDouble(inputJkk.getText());
         
-        String golongan = comboGolonganTer.getSelectedItem().toString();
         String bulan = comboBulan.getSelectedItem().toString();
-        String tahun = inputTahun.getText();
+        int tahun = Integer.parseInt(inputTahun.getText());
+
         
-        int jumlah_lembur_final;
-        int total_1;
-        int total_2;
-        int pph_21;
-        Double tarifTer;
-        int total_kotor = 0;
-        int tahun_final;
+        int p_jabatan = 0;
+        int jumlah_absen_final;
+        int total_bersih = 0;
+          
         try {
 
-            jumlah_lembur_final = Integer.parseInt(jumlah_lembur);
-            total_1 = Integer.parseInt(g_pokok)
-                    + Integer.parseInt(t_makan) 
-                    + Integer.parseInt(t_transportasi) 
-                    + Integer.parseInt(t_jabatan) 
-                    + (Integer.parseInt(t_lembur) 
-                    * jumlah_lembur_final);
+            jumlah_absen_final = (int) 
+                Math.round(total_kotor * 5 / 100);
+            jumlah_absen_final = Integer.parseInt(jumlah_absen);
+            total_bersih = (int) Math.round(
+                    total_kotor - jumlah_absen_final
+                    - (jumlah_absen_final * p_absen)
+                    - (g_pokok * jht / 100));
             
-            double maxGaji = 12000000;
-            double dasarHitung = Math.min(total_1, maxGaji);
-
-            total_2 = (int) Math.round(
-                    total_1
-                    + (dasarHitung * jht / 100)
-                    + (dasarHitung * jkk / 100)
-                    + (dasarHitung * jkm / 100));
-            
-            TerDao terDao = new TerDao();
-            TerModel terModel = terDao.getByMinMax(total_2);
-            
-            tarifTer = (terModel != null) ? terModel.getTarif() : null;
-            tarifTer = tarifTer != null ? (tarifTer / 100) : 0;
-            
-            pph_21 = (int) Math.round(tarifTer * total_2);
-            total_kotor = pph_21 + total_2;
-            
-            
-            tahun_final = Integer.parseInt(tahun);
-                        
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Jam Lembur, & Tahun harus angka");
+            JOptionPane.showMessageDialog(null, "ID Gaji Kotor & Jumlah Absen harus angka");
             return;
-        }
-        
-        if(total_kotor == 0){
-            JOptionPane.showMessageDialog(null, "Data tidak lengkap!");
-            return;
-        }
+        }   
 
+        GajiBersihModel model = new GajiBersihModel();
+        model.setId(id);        
+        model.setJumlahAbsen(jumlah_absen_final);
+        model.setTotal(total_bersih);
 
-        GajiKotorModel model = new GajiKotorModel();
-        model.setId(id);
-        model.setGajiPokok(Integer.parseInt(g_pokok));
-        model.setKaryawanId(karyawan.getId());
-        
-        model.setTunjanganMakan(Integer.parseInt(t_makan));
-        model.setTunjanganTransportasi(Integer.parseInt(t_transportasi));
-        model.setTunjanganJabatan(Integer.parseInt(t_jabatan));
-        model.setTunjanganLembur(Integer.parseInt(t_lembur));
-        model.setJumlahLembur(jumlah_lembur_final);
-        model.setTotal1(total_1);
-        
-        model.setJkk(jkk);
-        model.setJhtPerusahaan(jht);
-        model.setJkm(jkm);
-        model.setTotal2(total_2);
-        
-        model.setGolonganTer(golongan);
-        model.setTarifTer(tarifTer);
-        model.setTotalTer(pph_21);
-        model.setTotal(total_kotor);
+        GajiBersihDao gajiBersihDao = new GajiBersihDao();
 
-        model.setBulan(bulan);
-        model.setTahun(tahun_final);
-
-        GajiKotorDao gajiKotorDao = new GajiKotorDao();
-
-        if (gajiKotorDao.editData(model)) {
+        if (gajiBersihDao.editData(model)) {
             panel.loadTable("");
             dispose();
             JOptionPane.showMessageDialog(null, "Data berhasil diedit");

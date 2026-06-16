@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Dion/Documents/NetBeansProjects/penggajian/src/penggajian/page/dashboard/GajiKotor.java</file>
-            <file>file:/C:/Users/Dion/Documents/NetBeansProjects/penggajian/src/penggajian/dialog/GajiKotorDialog.java</file>
-            <file>file:/C:/Users/Dion/Documents/NetBeansProjects/penggajian/src/penggajian/dao/GajiKotorDao.java</file>
+            <file>file:/C:/Users/Dion/Documents/NetBeansProjects/penggajian/src/penggajian/dialog/GajiBersihDialog.java</file>
+            <file>file:/C:/Users/Dion/Documents/NetBeansProjects/penggajian/src/penggajian/dao/GajiBersihDao.java</file>
+            <file>file:/C:/Users/Dion/Documents/NetBeansProjects/penggajian/src/penggajian/page/dashboard/GajiBersih.java</file>
+            <file>file:/C:/Users/Dion/Documents/NetBeansProjects/penggajian/src/penggajian/model/GajiBersihModel.java</file>
         </group>
     </open-files>
 </project-private>

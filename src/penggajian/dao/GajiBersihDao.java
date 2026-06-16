@@ -191,33 +191,21 @@ public class GajiBersihDao {
         }
     }
     
-    public boolean editData(GajiKotorModel gaji) {
+    public boolean editData(GajiBersihModel gaji) {
 
         String sql =
-            "UPDATE gaji_kotor SET " +
-            "jumlah_lembur = ?, " +
-            "total_1 = ?, " +
-            "total_2 = ?, " +
-            "tarif_ter = ?, " +
-            "total_ter = ?, " +
-            "total = ?, " +
-            "bulan = ?, " +
-            "tahun = ? " +
+            "UPDATE gaji_bersih SET " +
+            "jumlah_absen = ?, " +
+            "total = ? " +
             "WHERE id = ?";
         
         try (
             Connection con = DBConnetion.getConnection();
             PreparedStatement ps = con.prepareStatement(sql)
         ) {
-            ps.setInt(1, gaji.getJumlahLembur());
-            ps.setInt(2, gaji.getTotal1());
-            ps.setInt(3, gaji.getTotal2());
-            ps.setDouble(4, gaji.getTarifTer());
-            ps.setInt(5, gaji.getTotalTer());
-            ps.setInt(6, gaji.getTotal());
-            ps.setString(7, gaji.getBulan());
-            ps.setInt(8, gaji.getTahun());
-            ps.setLong(9, gaji.getId());
+            ps.setInt(1, gaji.getJumlahAbsen());
+            ps.setInt(2, gaji.getTotal());
+            ps.setLong(3, gaji.getId());
             
             int rows = ps.executeUpdate();
 
