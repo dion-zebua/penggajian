@@ -128,7 +128,7 @@
 	<title>
 		<band height="95" splitType="Stretch">
 			<frame>
-				<reportElement uuid="38e90d35-cc7f-4ca3-8323-2c0d264e3912" mode="Opaque" x="0" y="0" width="555" height="95" backcolor="#330099"/>
+				<reportElement uuid="38e90d35-cc7f-4ca3-8323-2c0d264e3912" mode="Opaque" x="0" y="0" width="555" height="95" backcolor="#000000"/>
 				<staticText>
 					<reportElement uuid="a9f6c38e-0e80-4267-aeb6-ad4ed83ddd3e" x="15" y="3" width="206" height="45" forecolor="#FFFFFF">
 						<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>

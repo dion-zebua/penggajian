@@ -111,15 +111,16 @@ public class Dashboard extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(51, 0, 153));
+        jPanel1.setBackground(BaseSetting.getPrimaryColor());
         jPanel1.setPreferredSize(new java.awt.Dimension(500, 500));
 
         jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.setOpaque(false);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/penggajian/img/logo.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/penggajian/img/logo-mini.png"))); // NOI18N
         jLabel2.setAutoscrolls(true);
+        jLabel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 30, 30, 30));
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jLabel2);
 
@@ -142,9 +143,9 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel21.setMaximumSize(new java.awt.Dimension(32767, 264));
         jPanel21.setOpaque(false);
 
-        menuHome.setBackground(new java.awt.Color(51, 0, 153));
         menuHome.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 20));
         menuHome.setMinimumSize(new java.awt.Dimension(141, 34));
+        menuHome.setOpaque(false);
         menuHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuHomeMouseClicked(evt);
@@ -166,9 +167,9 @@ public class Dashboard extends javax.swing.JFrame {
         menuHome.add(jPanel3, java.awt.BorderLayout.WEST);
         jPanel3.getAccessibleContext().setAccessibleName("");
 
-        menuJabatan.setBackground(new java.awt.Color(51, 0, 153));
         menuJabatan.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 20));
         menuJabatan.setMinimumSize(new java.awt.Dimension(141, 34));
+        menuJabatan.setOpaque(false);
         menuJabatan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuJabatanMouseClicked(evt);
@@ -204,6 +205,7 @@ public class Dashboard extends javax.swing.JFrame {
         menuTer.setBackground(new java.awt.Color(51, 0, 153));
         menuTer.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 20));
         menuTer.setMinimumSize(new java.awt.Dimension(141, 34));
+        menuTer.setOpaque(false);
         menuTer.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuTerMouseClicked(evt);
@@ -238,6 +240,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         menuBpjs.setBackground(new java.awt.Color(51, 0, 153));
         menuBpjs.setMinimumSize(new java.awt.Dimension(141, 34));
+        menuBpjs.setOpaque(false);
         menuBpjs.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuBpjsMouseClicked(evt);
@@ -261,6 +264,7 @@ public class Dashboard extends javax.swing.JFrame {
         menuKaryawan.setBackground(new java.awt.Color(51, 0, 153));
         menuKaryawan.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 20));
         menuKaryawan.setMinimumSize(new java.awt.Dimension(141, 34));
+        menuKaryawan.setOpaque(false);
         menuKaryawan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuKaryawanMouseClicked(evt);
@@ -296,6 +300,7 @@ public class Dashboard extends javax.swing.JFrame {
         menuGaji.setBackground(new java.awt.Color(51, 0, 153));
         menuGaji.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 20));
         menuGaji.setMinimumSize(new java.awt.Dimension(141, 34));
+        menuGaji.setOpaque(false);
         menuGaji.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuGajiMouseClicked(evt);
@@ -319,6 +324,7 @@ public class Dashboard extends javax.swing.JFrame {
         menuGajiKotor.setBackground(new java.awt.Color(51, 0, 153));
         menuGajiKotor.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 40, 0, 20));
         menuGajiKotor.setMinimumSize(new java.awt.Dimension(141, 34));
+        menuGajiKotor.setOpaque(false);
         menuGajiKotor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuGajiKotorMouseClicked(evt);
@@ -354,6 +360,7 @@ public class Dashboard extends javax.swing.JFrame {
         menuGajiBersih.setBackground(new java.awt.Color(51, 0, 153));
         menuGajiBersih.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 40, 0, 20));
         menuGajiBersih.setMinimumSize(new java.awt.Dimension(141, 34));
+        menuGajiBersih.setOpaque(false);
         menuGajiBersih.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuGajiBersihMouseClicked(evt);
@@ -386,7 +393,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
         menuGajiBersih.add(printGajiBersih, java.awt.BorderLayout.EAST);
 
-        jPanel25.setBackground(new java.awt.Color(79, 22, 192));
+        jPanel25.setBackground(new java.awt.Color(153, 0, 51));
         jPanel25.setAlignmentX(0.1F);
         jPanel25.setAlignmentY(0.1F);
         jPanel25.setAutoscrolls(true);
@@ -396,6 +403,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         menuLogout.setBackground(new java.awt.Color(51, 0, 153));
         menuLogout.setMinimumSize(new java.awt.Dimension(141, 34));
+        menuLogout.setOpaque(false);
         menuLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuLogoutMouseClicked(evt);

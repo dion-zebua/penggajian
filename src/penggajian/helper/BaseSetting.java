@@ -17,7 +17,10 @@ import penggajian.model.JabatanModel;
 public class BaseSetting {
     
     public static String getBrand(){
-        return "CV. Anugrah Berkah Cemerlang";
+        return "SMK Forward Nusantara";
+    }
+    public static Color getPrimaryColor() {
+        return new Color(128, 0, 0);
     }
     public static void applyFrame(JFrame frame) {
         frame.setMinimumSize(new Dimension(1800, 1012));
@@ -41,7 +44,7 @@ public class BaseSetting {
     }
     
     public static void setTitlePage(JLabel label) {
-        label.setForeground(new Color(51, 0, 153));
+        label.setForeground(getPrimaryColor());
         label.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
         label.setFont(new Font("Tahoma", Font.BOLD, 48));
         label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -51,7 +54,7 @@ public class BaseSetting {
         setBoxPanel(panel, true);
     }
     public static void setBoxPanel(JPanel panel, Boolean light) {
-        panel.setBackground(light ? new java.awt.Color(255, 255, 255) : new java.awt.Color(51, 0, 153));
+        panel.setBackground(light ? new java.awt.Color(255, 255, 255) : getPrimaryColor());
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
     }
         
@@ -93,7 +96,7 @@ public class BaseSetting {
     public static void setButton(JButton btn) {
 
         btn.setMargin(new java.awt.Insets(7, 14, 7, 14));
-        btn.setBackground(new java.awt.Color(51, 0, 153));
+        btn.setBackground(getPrimaryColor());
         btn.setForeground(new java.awt.Color(255, 255, 255));
     }
     

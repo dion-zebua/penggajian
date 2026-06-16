@@ -57,7 +57,7 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
 
-        jPanel1.setBackground(new java.awt.Color(51, 0, 153));
+        jPanel1.setBackground(BaseSetting.getPrimaryColor());
         jPanel1.setMaximumSize(new java.awt.Dimension(32767, 100));
         jPanel1.setMinimumSize(new java.awt.Dimension(321, 100));
         jPanel1.setPreferredSize(new java.awt.Dimension(760, 110));
@@ -105,7 +105,7 @@ public class Login extends javax.swing.JFrame {
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel5.setForeground(BaseSetting.getPrimaryColor());
         jLabel5.setText("Login");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
