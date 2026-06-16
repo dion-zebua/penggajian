@@ -95,8 +95,11 @@ public class BaseSetting {
     
     public static void setButton(JButton btn) {
 
+        btn.setBackground(new Color(40, 39, 39));
+        if(!btn.getText().equalsIgnoreCase("delete")){
+            btn.setBackground(getPrimaryColor());
+        }
         btn.setMargin(new java.awt.Insets(7, 14, 7, 14));
-        btn.setBackground(getPrimaryColor());
         btn.setForeground(new java.awt.Color(255, 255, 255));
     }
     
