@@ -413,6 +413,11 @@ public class GajiBersihDialog extends javax.swing.JDialog {
                 deleteMouseClicked(evt);
             }
         });
+        delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -669,6 +674,10 @@ public class GajiBersihDialog extends javax.swing.JDialog {
     private void inputPotonganAbsenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPotonganAbsenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputPotonganAbsenActionPerformed
+
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteActionPerformed
 
     /**
      * @param args the command line arguments

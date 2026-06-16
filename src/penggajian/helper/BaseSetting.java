@@ -20,7 +20,7 @@ public class BaseSetting {
         return "SMK Forward Nusantara";
     }
     public static Color getPrimaryColor() {
-        return new Color(128, 0, 0);
+        return new Color(131, 22, 22);
     }
     public static void applyFrame(JFrame frame) {
         frame.setMinimumSize(new Dimension(1800, 1012));
