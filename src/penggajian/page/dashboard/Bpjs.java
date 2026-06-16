@@ -281,11 +281,11 @@ public class Bpjs extends javax.swing.JPanel {
 
         BpjsDao bpjs = new BpjsDao();
 
-//        if (bpjs.getDataFirst()) {
-//            JOptionPane.showMessageDialog(null, "Data berhasil diedit");
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Gagal mengedit data");
-//        }
+        if (bpjs.editData(model)) {
+            JOptionPane.showMessageDialog(null, "Data berhasil diedit");
+        } else {
+            JOptionPane.showMessageDialog(null, "Gagal mengedit data");
+        }
     }//GEN-LAST:event_editMouseClicked
 
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed

@@ -43,7 +43,7 @@ public class Dashboard extends javax.swing.JFrame {
         innerContent.add(gajiKotor, "gajiKotor");
         innerContent.add(gajiBersih, "gajiBersih");
 
-        clInner.show(innerContent, "gajiBersih");
+        clInner.show(innerContent, "home");
         
         brand.setText(BaseSetting.getBrand());
 
