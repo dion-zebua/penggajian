@@ -22,9 +22,8 @@ public class Home extends javax.swing.JPanel {
      */
     public Home() {
         initComponents();
+            
         BaseSetting.setTitlePage(titlePage);
-        
-        
         
         KaryawanDao karyawanDao = new KaryawanDao();
         
@@ -73,6 +72,8 @@ public class Home extends javax.swing.JPanel {
         titlePanelJabatan1.setText(String.valueOf(jabatanDao.getCount()));
         titlePanelTer1.setText(String.valueOf(terDao.getCount()));
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

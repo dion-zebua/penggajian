@@ -511,6 +511,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void menuHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuHomeMouseClicked
         clInner.show(innerContent, "home");
+        home.loadData();
     }//GEN-LAST:event_menuHomeMouseClicked
 
     private void menuJabatanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuJabatanMouseClicked
