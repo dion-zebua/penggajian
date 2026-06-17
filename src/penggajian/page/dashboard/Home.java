@@ -24,9 +24,7 @@ public class Home extends javax.swing.JPanel {
         initComponents();
             
         BaseSetting.setTitlePage(titlePage);
-        
-        KaryawanDao karyawanDao = new KaryawanDao();
-        
+                
         loadData();
 
         BaseSetting.setBoxPanel(panelJumlahKaryawan);
@@ -45,6 +43,15 @@ public class Home extends javax.swing.JPanel {
         BaseSetting.setTitlePanel(titlePanelKaryawanTerbaru);
         
         BaseSetting.setTable(tableKaryawanTerbaru);
+        loadTable();
+
+        
+
+    }
+    
+    public void loadTable(){
+        KaryawanDao karyawanDao = new KaryawanDao();
+
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID");
         model.addColumn("Nama");
@@ -60,7 +67,6 @@ public class Home extends javax.swing.JPanel {
         }
 
         tableKaryawanTerbaru.setModel(model);
-
     }
     
     public void loadData() {
@@ -188,7 +194,7 @@ public class Home extends javax.swing.JPanel {
         panelKaryawanTerbaru.setBackground(new java.awt.Color(204, 204, 204));
 
         titlePanelKaryawanTerbaru.setLabelFor(jScrollPane1);
-        titlePanelKaryawanTerbaru.setText("Karyawan Terbaru");
+        titlePanelKaryawanTerbaru.setText("5 Karyawan Terbaru");
 
         jScrollPane1.setVerifyInputWhenFocusTarget(false);
 

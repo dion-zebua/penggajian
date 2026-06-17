@@ -512,10 +512,12 @@ public class Dashboard extends javax.swing.JFrame {
     private void menuHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuHomeMouseClicked
         clInner.show(innerContent, "home");
         home.loadData();
+        home.loadTable();
     }//GEN-LAST:event_menuHomeMouseClicked
 
     private void menuJabatanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuJabatanMouseClicked
         clInner.show(innerContent, "jabatan");
+        jabatan.loadTable("");
     }//GEN-LAST:event_menuJabatanMouseClicked
 
     private void menuLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLogoutMouseClicked
@@ -529,6 +531,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void menuKaryawanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuKaryawanMouseClicked
         clInner.show(innerContent, "karyawan");
+        karyawan.loadTable("");
     }//GEN-LAST:event_menuKaryawanMouseClicked
 
     private void menuGajiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGajiMouseClicked
@@ -537,6 +540,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void menuTerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuTerMouseClicked
         clInner.show(innerContent, "ter");
+        ter.loadTable("");
     }//GEN-LAST:event_menuTerMouseClicked
 
     private void printJabatanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printJabatanMouseClicked
@@ -557,6 +561,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void menuGajiKotorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGajiKotorMouseClicked
        clInner.show(innerContent, "gajiKotor");
+       gajiKotor.loadTable("");
     }//GEN-LAST:event_menuGajiKotorMouseClicked
 
     private void printGajiBersihMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printGajiBersihMouseClicked
@@ -565,6 +570,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void menuGajiBersihMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGajiBersihMouseClicked
         clInner.show(innerContent, "gajiBersih");
+        gajiBersih.loadTable("");
     }//GEN-LAST:event_menuGajiBersihMouseClicked
 
     /**

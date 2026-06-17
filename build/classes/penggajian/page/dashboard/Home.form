@@ -220,7 +220,7 @@
             <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
               <ComponentRef name="jScrollPane1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Karyawan Terbaru"/>
+            <Property name="text" type="java.lang.String" value="5 Karyawan Terbaru"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
