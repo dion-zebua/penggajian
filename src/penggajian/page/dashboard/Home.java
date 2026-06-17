@@ -24,23 +24,22 @@ public class Home extends javax.swing.JPanel {
         initComponents();
         BaseSetting.setTitlePage(titlePage);
         
+        
+        
         KaryawanDao karyawanDao = new KaryawanDao();
-        JabatanDao jabatanDao = new JabatanDao();
-        TerDao terDao = new TerDao();
+        
+        loadData();
 
         BaseSetting.setBoxPanel(panelJumlahKaryawan);
         BaseSetting.setTitlePanel(titlePanelKaryawan1, 80);
-        titlePanelKaryawan1.setText(String.valueOf(karyawanDao.getCount()));
         BaseSetting.setTitlePanel(titlePanelKaryawan2);
         
         BaseSetting.setBoxPanel(panelJumlahJabatan, false);
         BaseSetting.setTitlePanel(titlePanelJabatan1, 80, true);
-        titlePanelJabatan1.setText(String.valueOf(jabatanDao.getCount()));
         BaseSetting.setTitlePanel(titlePanelJabatan2,true);
         
         BaseSetting.setBoxPanel(panelJumlahTer);
         BaseSetting.setTitlePanel(titlePanelTer1, 80);
-        titlePanelTer1.setText(String.valueOf(terDao.getCount()));
         BaseSetting.setTitlePanel(titlePanelTer2);
         
         BaseSetting.setBoxPanel(panelKaryawanTerbaru);
@@ -63,6 +62,16 @@ public class Home extends javax.swing.JPanel {
 
         tableKaryawanTerbaru.setModel(model);
 
+    }
+    
+    public void loadData() {
+        KaryawanDao karyawanDao = new KaryawanDao();
+        JabatanDao jabatanDao = new JabatanDao();
+        TerDao terDao = new TerDao();
+        
+        titlePanelKaryawan1.setText(String.valueOf(karyawanDao.getCount()));
+        titlePanelJabatan1.setText(String.valueOf(jabatanDao.getCount()));
+        titlePanelTer1.setText(String.valueOf(terDao.getCount()));
     }
 
     /**
