@@ -1,81 +1,141 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="df085765-d1b4-4e14-a5b8-7c1f040176e4">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="kaka" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isTitleNewPage="true" isSummaryNewPage="true" isSummaryWithPageHeaderAndFooter="true" isFloatColumnFooter="true" isIgnorePagination="true" uuid="d5dc78e7-9a41-45e5-911f-630119ff5f8c">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="106"/>
-	<subDataset name="penggajian" uuid="41eec5a3-6796-46c9-a5fc-817afbcf5507">
-		<queryString language="SQL">
-			<![CDATA[select * from  karyawan;]]>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="New Dataset 1" uuid="3366d3e0-fcaa-4ebe-8484-92bcd96fca98">
+		<queryString>
+			<![CDATA[select * from karyawan;]]>
 		</queryString>
+		<field name="id" class="java.math.BigInteger">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="nama" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="gaji_pokok" class="java.lang.Long">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="npwp" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="tunjangan_transportasi" class="java.lang.Long">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="tunjangan_makan" class="java.lang.Long">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="tunjangan_lembur" class="java.lang.Long">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="potongan_absen" class="java.lang.Long">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="golongan_ter" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="jabatan_id" class="java.math.BigInteger">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
 	</subDataset>
+	<queryString language="SQL">
+		<![CDATA[select * from karyawan;]]>
+	</queryString>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="d62da473-ed48-4d32-acf5-c06bfe45ecca" x="241" y="26" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Static text]]></text>
+			</staticText>
+		</band>
 	</title>
 	<pageHeader>
-		<band height="5" splitType="Stretch"/>
+		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="17" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="12" splitType="Stretch"/>
+		<band height="16" splitType="Stretch"/>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="15" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band splitType="Stretch"/>
+		<band height="17" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="418" splitType="Stretch">
+		<band height="120" splitType="Stretch">
 			<componentElement>
-				<reportElement uuid="3a5cf14c-2ee1-46bd-a749-cd3c222e7a7d" x="177" y="183" width="360" height="140"/>
+				<reportElement uuid="7428b99f-761f-4a11-9c6b-90ed3d822162" key="table" style="table" isPrintRepeatedValues="false" x="26" y="23" width="344" height="97" isPrintInFirstWholeBand="true"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="penggajian" uuid="a11d1662-ccab-447b-8f01-c1536c2a849f">
-						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource(1)]]></dataSourceExpression>
+					<datasetRun subDataset="New Dataset 1" uuid="9e2b5234-d74e-4922-a54f-c371325cb751">
+						<parametersMapExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}]]></parametersMapExpression>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="90" uuid="64c8ad8c-acf1-49cd-b85c-c6b3224c0598">
-						<jr:tableHeader height="30">
+					<jr:column width="90" uuid="fa3a88c4-9453-4bb3-8a9f-2ed3bba75d42">
+						<jr:tableHeader style="table_TH" height="30"/>
+						<jr:tableFooter style="table_TH" height="30"/>
+						<jr:columnHeader style="table_CH" height="30"/>
+						<jr:columnFooter style="table_CH" height="30"/>
+						<jr:detailCell style="table_TD" height="20">
 							<textField>
-								<reportElement uuid="6756aa92-e9cb-46f6-9be5-2622862e5b9c" x="0" y="0" width="90" height="30"/>
+								<reportElement uuid="4f2f5d79-a23b-4f30-996a-a46c7e25ce0a" x="0" y="0" width="90" height="20"/>
 								<textElement/>
-								<textFieldExpression><![CDATA[ID]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 							</textField>
-						</jr:tableHeader>
-						<jr:tableFooter height="30"/>
-						<jr:columnHeader height="30">
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="987d8276-5d0b-431f-ad7f-3f3552ce0b8e">
+						<jr:tableHeader style="table_TH" height="30"/>
+						<jr:tableFooter style="table_TH" height="30"/>
+						<jr:columnHeader style="table_CH" height="30"/>
+						<jr:columnFooter style="table_CH" height="30"/>
+						<jr:detailCell style="table_TD" height="20">
 							<textField>
-								<reportElement uuid="6756aa92-e9cb-46f6-9be5-2622862e5b9c" x="0" y="0" width="90" height="30"/>
+								<reportElement uuid="4f2f5d79-a23b-4f30-996a-a46c7e25ce0a" x="0" y="0" width="90" height="20"/>
 								<textElement/>
 								<textFieldExpression><![CDATA["#" + String.valueOf($F{id})]]></textFieldExpression>
 							</textField>
-						</jr:columnHeader>
-						<jr:columnFooter height="30"/>
-						<jr:detailCell height="20"/>
+						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="d2f97f6f-adc1-4f3d-a6dc-7db1d6626929">
-						<jr:tableHeader height="30"/>
-						<jr:tableFooter height="30"/>
-						<jr:columnHeader height="30"/>
-						<jr:columnFooter height="30"/>
-						<jr:detailCell height="20"/>
+					<jr:column width="90" uuid="bd446bd9-ce8e-4079-a334-0ac140b9201c">
+						<jr:tableHeader style="table_TH" height="30"/>
+						<jr:tableFooter style="table_TH" height="30"/>
+						<jr:columnHeader style="table_CH" height="30"/>
+						<jr:columnFooter style="table_CH" height="30"/>
+						<jr:detailCell style="table_TD" height="20"/>
 					</jr:column>
-					<jr:column width="90" uuid="bcd58c2d-5dca-4d05-b571-248f8d5f4137">
-						<jr:tableHeader height="30"/>
-						<jr:tableFooter height="30"/>
-						<jr:columnHeader height="30"/>
-						<jr:columnFooter height="30"/>
-						<jr:detailCell height="20"/>
-					</jr:column>
-					<jr:column width="90" uuid="cf6ea5d6-ae16-466f-90fd-c8385f59ecff">
-						<jr:tableHeader height="30"/>
-						<jr:tableFooter height="30"/>
-						<jr:columnHeader height="30"/>
-						<jr:columnFooter height="30"/>
-						<jr:detailCell height="20"/>
+					<jr:column width="90" uuid="f4712c29-1689-49a2-a9a2-60ae4a987fe9">
+						<jr:tableHeader style="table_TH" height="30"/>
+						<jr:tableFooter style="table_TH" height="30"/>
+						<jr:columnHeader style="table_CH" height="30"/>
+						<jr:columnFooter style="table_CH" height="30"/>
+						<jr:detailCell style="table_TD" height="20"/>
 					</jr:column>
 				</jr:table>
 			</componentElement>
