@@ -151,8 +151,12 @@ public class TerDialog extends javax.swing.JDialog {
         labelGolongan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelGolongan.setText("Golongan");
 
-        comboGolongan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D" }));
-        comboGolongan.setPreferredSize(new java.awt.Dimension(42, 26));
+        comboGolongan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C" }));
+        comboGolongan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboGolonganActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -432,6 +436,10 @@ public class TerDialog extends javax.swing.JDialog {
     private void inputMaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputMaxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputMaxActionPerformed
+
+    private void comboGolonganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboGolonganActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboGolonganActionPerformed
 
     /**
      * @param args the command line arguments

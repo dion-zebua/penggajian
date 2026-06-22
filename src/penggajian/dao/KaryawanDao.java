@@ -55,11 +55,17 @@ public class KaryawanDao {
             "j.nama AS jabatan " +
             "FROM karyawan k " +
             "JOIN jabatan j ON k.jabatan_id = j.id " +
+//            (!search.isEmpty()
+//                ? "WHERE k.nama LIKE '%" + search + "%' " +
+//                  "OR k.golongan_ter LIKE '%" + search + "%' " +
+//                  "OR j.nama LIKE '%" + search + "%' "
+//                : "") + 
             (!search.isEmpty()
-                ? "WHERE k.nama LIKE '%" + search + "%' " +
-                  "OR k.golongan_ter LIKE '%" + search + "%' " +
-                  "OR j.nama LIKE '%" + search + "%' "
-                : "") + 
+                    ? (search.matches("^[ABC]$")
+                        ? "WHERE k.golongan_ter = '" + search + "' "
+                        : "WHERE k.nama LIKE '%" + search + "%' " +
+                          "OR j.nama LIKE '%" + search + "%' ")
+                    : "") + 
             "ORDER BY k.id DESC " + 
             (limit ? "LIMIT 5" : "");
 

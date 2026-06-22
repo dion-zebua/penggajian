@@ -494,7 +494,7 @@ public class GajiKotorDialog extends javax.swing.JDialog {
         labelGolongan4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelGolongan4.setText("Golongan Ter");
 
-        comboGolonganTer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D" }));
+        comboGolonganTer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C" }));
         comboGolonganTer.setToolTipText("");
         comboGolonganTer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

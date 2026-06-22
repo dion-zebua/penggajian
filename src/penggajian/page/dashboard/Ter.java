@@ -161,6 +161,14 @@ public class Ter extends javax.swing.JPanel {
         jScrollPane1.setVerifyInputWhenFocusTarget(false);
 
         tableTer.setAutoCreateRowSorter(true);
+        tableTer.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         tableTer.getTableHeader().setResizingAllowed(false);
         tableTer.getTableHeader().setReorderingAllowed(false);
         tableTer.addMouseListener(new java.awt.event.MouseAdapter() {

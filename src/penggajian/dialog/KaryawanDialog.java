@@ -206,7 +206,7 @@ public class KaryawanDialog extends javax.swing.JDialog {
         );
 
         labelGPokok.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelGPokok.setText("Gajo Pokok");
+        labelGPokok.setText("Gaji Pokok");
 
         inputGPokok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -358,7 +358,7 @@ public class KaryawanDialog extends javax.swing.JDialog {
         labelGolongan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelGolongan.setText("Golongan TER");
 
-        comboGolongan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D" }));
+        comboGolongan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C" }));
         comboGolongan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboGolonganActionPerformed(evt);
@@ -746,19 +746,15 @@ public class KaryawanDialog extends javax.swing.JDialog {
     private javax.swing.JButton edit;
     private javax.swing.JTextField inputGPokok;
     private javax.swing.JTextField inputId;
-    private javax.swing.JTextField inputMax1;
     private javax.swing.JTextField inputNama;
     private javax.swing.JTextField inputNpwp;
-    private javax.swing.JTextField inputNpwp1;
     private javax.swing.JTextField inputPotongaAbsen;
     private javax.swing.JTextField inputTunjanganLembur;
     private javax.swing.JTextField inputTunjanganMakan;
     private javax.swing.JTextField inputTunjanganTransportasi;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
@@ -771,10 +767,8 @@ public class KaryawanDialog extends javax.swing.JDialog {
     private javax.swing.JLabel labelGolongan;
     private javax.swing.JLabel labelId;
     private javax.swing.JLabel labelJabatan;
-    private javax.swing.JLabel labelMax1;
     private javax.swing.JLabel labelNama;
     private javax.swing.JLabel labelNpwp;
-    private javax.swing.JLabel labelNpwp1;
     private javax.swing.JLabel labelPotongaAbsen;
     private javax.swing.JLabel labelTunjanganLembur;
     private javax.swing.JLabel labelTunjanganMakan;

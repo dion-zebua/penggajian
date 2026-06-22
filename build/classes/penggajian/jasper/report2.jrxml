@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="779e5f6a-fd61-4e0c-99de-e24c15c84a1b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="test" uuid="1a0e2e68-95ad-4630-8731-05b009f1f204">
+		<queryString>
+			<![CDATA[select * from jabatan;]]>
+		</queryString>
+		<field name="id" class="java.math.BigInteger">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="nama" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="tunjangan" class="java.lang.Long">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+	</subDataset>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="758d58ce-d9f1-426e-b1bf-ad5578b2ceec" x="102" y="16" width="321" height="63"/>
+				<textElement>
+					<font size="44"/>
+				</textElement>
+				<text><![CDATA[Static text]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="10" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="23" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="289" splitType="Stretch">
+			<componentElement>
+				<reportElement uuid="6a5ca2d9-54b6-4a7a-b1cc-cbde755b913b" key="table" style="table" x="0" y="29" width="555" height="164" isPrintInFirstWholeBand="true"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="test" uuid="ece9d6e8-d569-4b7f-8fc0-f89db467d4a7">
+						<parametersMapExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}]]></parametersMapExpression>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="186" uuid="2555e26d-966c-494e-8de6-17c7107c4bbc">
+						<jr:tableHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="942426da-2ae9-45bc-a27e-4fb4a686f14b" x="0" y="0" width="90" height="30"/>
+								<textElement>
+									<font size="20"/>
+								</textElement>
+								<text><![CDATA[ID]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table_TD" height="36" rowSpan="1">
+							<textField>
+								<reportElement uuid="60294975-b52a-4ec5-b2dc-8a127e3dfb07" x="0" y="0" width="186" height="36"/>
+								<textElement>
+									<font size="18"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="30aa8477-07df-44e8-98e3-6f085e69a389">
+						<jr:tableHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="942426da-2ae9-45bc-a27e-4fb4a686f14b" x="0" y="0" width="90" height="30"/>
+								<textElement/>
+								<text><![CDATA[ID]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table_TD" height="36" rowSpan="1">
+							<textField>
+								<reportElement uuid="60294975-b52a-4ec5-b2dc-8a127e3dfb07" x="0" y="0" width="90" height="36"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="94e2bed0-8076-44db-aaf4-57e8b9d78d74">
+						<jr:tableHeader style="table_TH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="36" rowSpan="1"/>
+					</jr:column>
+					<jr:column width="90" uuid="88cc9ae4-9c55-49c0-bc13-201173d68dbc">
+						<jr:tableHeader style="table_TH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="36" rowSpan="1"/>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</summary>
+</jasperReport>
